@@ -30,21 +30,35 @@ html.dark-mode {
     }
 
     #logo {
-        // FIXME: is there a better way to make the logo darker?
-        //        `mix-blend-mode: soft-light` makes it slightly too dark
-        opacity: .8;
+        opacity: 1;
     }
 
-    #layout-list,
-    #layout-content,
-    #layout-sidebar,
+    #layout-sidebar {
+        background-color: #0e0e12;
+        border-color: @color-dark-border;
+    }
+
+    #layout-list {
+        background-color: #0a0a0a;
+        border-color: @color-dark-border;
+    }
+
+    #layout-content {
+        background-color: #0a0a0a;
+        border-color: @color-dark-border;
+    }
+
     #layout > div > .header,
-    #layout > div > .footer,
+    #layout > div > .footer {
+        background-color: #141418;
+        border-color: @color-dark-border;
+    }
+
     .popup .listbox .footer,
     .menu.pagenav.pagenav-list,
     .menu.pagenav.pagenav-list + .navlist,
     .menu.pagenav.pagenav-list.expanded + .navlist {
-        background-color: transparent;
+        background-color: #0a0a0a;
         border-color: @color-dark-border;
     }
 
@@ -54,7 +68,7 @@ html.dark-mode {
 
     #layout > div > .header,
     #layout > div > .footer {
-        color: unset;
+        color: @color-dark-font;
 
         a.button {
             color: @color-dark-font;
@@ -62,12 +76,12 @@ html.dark-mode {
     }
 
     #layout-menu {
-        background: unset;
+        background-color: #050505;
         border-right: 1px solid @color-dark-border;
 
         .popover-header,
         .special-buttons {
-            background: transparent !important;
+            background: #050505 !important;
         }
 
         @media screen and (max-width: @screen-width-xs) {
@@ -79,7 +93,7 @@ html.dark-mode {
         }
 
         .special-buttons a:not(:focus) {
-            background: @color-dark-background;
+            background: #050505;
         }
     }
 
@@ -94,7 +108,7 @@ html.dark-mode {
         form:before,
         a,
         input {
-            color: unset;
+            color: @color-dark-font;
         }
 
         a.selected {
@@ -173,7 +187,7 @@ html.dark-mode {
     .popover .menu li a[aria-haspopup]::after,
     .menu.pagenav .pagenav-text,
     .menu.pagenav a {
-        color: unset;
+        color: @color-dark-font;
     }
 
     #taskmenu {
@@ -217,7 +231,7 @@ html.dark-mode {
         .popover-header {
             background: @color-dark-popover-background;
             border-bottom: 1px solid @color-dark-border;
-            color: unset;
+            color: @color-dark-font;
         }
 
         .popover-overlay {
@@ -495,7 +509,7 @@ html.dark-mode {
     }
 
     .form-control-plaintext {
-        color: unset;
+        color: @color-dark-font;
     }
 
     .recipient-input {
@@ -1101,7 +1115,7 @@ html.dark-mode {
     }
 
     .quota-widget {
-        color: unset;
+        color: @color-dark-font;
 
         .bar {
             border-color: @color-dark-border;

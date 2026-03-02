@@ -19,6 +19,29 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
     rcmail.env.skin = 'elastic';
 }
 
+// Editorial: ident_switch plugin fallback
+// The plugin's JS may have run before our skin name patch, so the select
+// might not have been placed. Re-trigger placement on init.
+$(document).ready(function() {
+    if (window.rcmail) {
+        rcmail.addEventListener('init', function() {
+            var sel = $('#plugin-ident_switch-account');
+            if (sel.length && sel.css('display') === 'none') {
+                // Plugin failed to place the select — do it manually for Elastic layout
+                var target = $('.header-title.username');
+                if (target.length) {
+                    sel.css('display', '');
+                    if (!target.find('.ident-switch-wrapper').length) {
+                        var wrapper = $('<span class="ident-switch-wrapper"></span>');
+                        wrapper.append(sel);
+                        target.empty().append(wrapper);
+                    }
+                }
+            }
+        });
+    }
+});
+
 function rcube_elastic_ui() {
     var prefs, ref = this,
         mode = 'normal', // one of: large, normal, small, phone

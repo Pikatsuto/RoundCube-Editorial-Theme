@@ -5759,18 +5759,30 @@ html.dark-mode body {
   background-color: #0a0a0a;
 }
 html.dark-mode #logo {
-  opacity: 0.8;
+  opacity: 1;
 }
-html.dark-mode #layout-list,
-html.dark-mode #layout-content,
-html.dark-mode #layout-sidebar,
+html.dark-mode #layout-sidebar {
+  background-color: #0e0e12;
+  border-color: #252530;
+}
+html.dark-mode #layout-list {
+  background-color: #0a0a0a;
+  border-color: #252530;
+}
+html.dark-mode #layout-content {
+  background-color: #0a0a0a;
+  border-color: #252530;
+}
 html.dark-mode #layout > div > .header,
-html.dark-mode #layout > div > .footer,
+html.dark-mode #layout > div > .footer {
+  background-color: #141418;
+  border-color: #252530;
+}
 html.dark-mode .popup .listbox .footer,
 html.dark-mode .menu.pagenav.pagenav-list,
 html.dark-mode .menu.pagenav.pagenav-list + .navlist,
 html.dark-mode .menu.pagenav.pagenav-list.expanded + .navlist {
-  background-color: transparent;
+  background-color: #0a0a0a;
   border-color: #252530;
 }
 html.dark-mode #layout > div > .footer {
@@ -5778,19 +5790,19 @@ html.dark-mode #layout > div > .footer {
 }
 html.dark-mode #layout > div > .header,
 html.dark-mode #layout > div > .footer {
-  color: unset;
+  color: #f5f5f5;
 }
 html.dark-mode #layout > div > .header a.button,
 html.dark-mode #layout > div > .footer a.button {
   color: #f5f5f5;
 }
 html.dark-mode #layout-menu {
-  background: unset;
+  background-color: #050505;
   border-right: 1px solid #252530;
 }
 html.dark-mode #layout-menu .popover-header,
 html.dark-mode #layout-menu .special-buttons {
-  background: transparent !important;
+  background: #050505 !important;
 }
 @media screen and (max-width: 480px) {
   html.dark-mode #layout-menu {
@@ -5801,7 +5813,7 @@ html.dark-mode #layout-menu .special-buttons {
   }
 }
 html.dark-mode #layout-menu .special-buttons a:not(:focus) {
-  background: #0a0a0a;
+  background: #050505;
 }
 html.dark-mode.layout-phone #layout-menu {
   background: #0e0e12;
@@ -5813,7 +5825,7 @@ html.dark-mode .searchbar {
 html.dark-mode .searchbar form:before,
 html.dark-mode .searchbar a,
 html.dark-mode .searchbar input {
-  color: unset;
+  color: #f5f5f5;
 }
 html.dark-mode .searchbar a.selected {
   color: #4caf7d;
@@ -5878,7 +5890,7 @@ html.dark-mode pre,
 html.dark-mode .popover .menu li a[aria-haspopup]::after,
 html.dark-mode .menu.pagenav .pagenav-text,
 html.dark-mode .menu.pagenav a {
-  color: unset;
+  color: #f5f5f5;
 }
 html.dark-mode #taskmenu .action-buttons a {
   color: #5b9bd5;
@@ -5917,7 +5929,7 @@ html.dark-mode.layout-small .popover-header,
 html.dark-mode.layout-phone .popover-header {
   background: #0e0e12;
   border-bottom: 1px solid #252530;
-  color: unset;
+  color: #f5f5f5;
 }
 html.dark-mode.layout-small .popover-overlay,
 html.dark-mode.layout-phone .popover-overlay {
@@ -6119,7 +6131,7 @@ html.dark-mode .input-group a:focus {
   z-index: 1;
 }
 html.dark-mode .form-control-plaintext {
-  color: unset;
+  color: #f5f5f5;
 }
 html.dark-mode .recipient-input.focus {
   color: #f5f5f5;
@@ -6572,7 +6584,7 @@ html.dark-mode #rcmdraglayer {
   color: #f5f5f5;
 }
 html.dark-mode .quota-widget {
-  color: unset;
+  color: #f5f5f5;
 }
 html.dark-mode .quota-widget .bar {
   border-color: #252530;
