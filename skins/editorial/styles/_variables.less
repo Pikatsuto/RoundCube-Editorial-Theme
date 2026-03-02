@@ -2,9 +2,21 @@
  * Editorial skin — custom variable overrides
  *
  * Font families: Source Sans 3, Source Serif 4, Source Code Pro
+ * Layout dimensions tuned to match the Editorial template
  */
 
 // Font family overrides
 @font-family-sans-serif: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 @font-family-monospace: 'Source Code Pro', SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 @font-family-serif: 'Source Serif 4', Georgia, "Times New Roman", serif;
+
+// Layout — compact sizing from template
+@layout-menu-width:          52px;   // template: 52px desktop
+@layout-menu-width-sm:       48px;   // template: 48px tablet
+@layout-header-height:       42px;   // template: 42px desktop
+@layout-footer-height:       @layout-header-height;
+@layout-footer-small-height: 32px;
+@layout-searchbar-height:    36px;
+
+// Listing rows — tighter
+@listing-line-height:        34px;

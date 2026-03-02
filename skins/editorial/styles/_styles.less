@@ -2,7 +2,9 @@
  * Editorial skin — custom style overrides
  *
  * True black theme with Source Sans 3 / Source Serif 4 / Source Code Pro
- * Compatible with identity_switch plugin
+ * Compatible with ident_switch and identity_switch plugins
+ *
+ * Every section references the template.jsx component it matches.
  */
 
 @import (reference) "variables";
@@ -10,31 +12,441 @@
 // ── Google Fonts ──
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap');
 
-// ── Font family overrides ──
-// Override the Elastic .font-family mixin output
-body, button, input, optgroup, select, textarea, .popover {
-    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
 
-// ── Force dark mode always on ──
+// ═══════════════════════════════════════════
+// ── Global resets ──
+// ═══════════════════════════════════════════
+
 html {
     color-scheme: dark;
 }
 
-// ── Logo styling ──
-#logo {
-    font-family: 'Source Serif 4', Georgia, serif !important;
-    opacity: 1 !important;
+body, button, input, optgroup, select, textarea, .popover {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-// ── Header titles with serif font ──
-#layout > div > .header .header-title,
-.header-title,
+// Scrollbars — thin, matching palette
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #1a1a24;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #55556a;
+}
+
+
+// ═══════════════════════════════════════════
+// ── #layout-menu (task menu sidebar) ──
+// template: 52px, #050505, flex column, center
+// ═══════════════════════════════════════════
+
+#layout-menu {
+    background-color: #050505 !important;
+    border-right: 1px solid #1a1a24 !important;
+
+    // Logo — Source Serif 4, 16px, bold
+    #logo {
+        font-family: 'Source Serif 4', Georgia, serif !important;
+        opacity: 1 !important;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+}
+
+// Task menu buttons — 36x36, border-radius 6
+#taskmenu a {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    margin: 1px 0 !important;
+    color: #55556a;
+    background: transparent;
+    transition: all .12s;
+
+    &:before {
+        margin: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        font-size: 16px;
+    }
+
+    // Labels hidden on desktop (icon-only)
+    span.inner {
+        display: none;
+    }
+
+    &:hover {
+        background-color: #16161e !important;
+        color: #f5f5f5 !important;
+    }
+
+    &.selected {
+        background-color: #1a1a28 !important;
+        color: @color-main !important;
+    }
+}
+
+// Compose button (action button) — accent bg, black text
+#taskmenu .action-buttons a {
+    background-color: @color-main !important;
+    color: #000 !important;
+    border-radius: 6px !important;
+    margin-bottom: 10px !important;
+
+    &:before {
+        font-size: 14px;
+        color: #000 !important;
+    }
+
+    &:hover {
+        background-color: lighten(@color-main, 8%) !important;
+    }
+}
+
+// Bottom menu items (dark mode toggle, logout etc)
+#layout-menu .special-buttons a {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 6px !important;
+    color: #55556a;
+
+    &:hover {
+        background-color: #16161e !important;
+        color: #f5f5f5 !important;
+    }
+}
+
+
+// ═══════════════════════════════════════════
+// ── #layout-sidebar (folder list) ──
+// template: 230px, #0e0e12, border-right #1a1a24
+// ═══════════════════════════════════════════
+
+#layout-sidebar {
+    background-color: #0e0e12 !important;
+    border-color: #1a1a24 !important;
+
+    // Header — 42px, username in mono 11px #888898
+    > .header {
+        background-color: #0e0e12 !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        border-bottom: 1px solid #1a1a24 !important;
+
+        .header-title {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        // Username text — mono
+        .header-title.username,
+        .username {
+            font-family: 'Source Code Pro', monospace !important;
+            font-size: 11px !important;
+            color: #888898 !important;
+            font-weight: 400;
+        }
+    }
+}
+
+// Folder tree — 13px, Source Sans 3
+.folderlist li a,
+#mailbox-list li a,
+.treelist.listing li a {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    padding: 6px 10px !important;
+    color: #f5f5f5;
+    transition: background .1s;
+}
+
+// Selected folder — accent color, left border, #1a1a28 bg
+.treelist.listing li.selected > a,
+.folderlist li.mailbox.selected > a {
+    color: @color-main !important;
+    background-color: #1a1a28 !important;
+    border-left: 2px solid @color-main !important;
+}
+
+// Folder hover
+.treelist.listing li > a:hover,
+.folderlist li a:hover {
+    background-color: #16161e !important;
+}
+
+// Unread count badges — accent bg, black text, mono 9px
+.folderlist li.mailbox .unreadcount {
+    background-color: @color-main !important;
+    color: #000 !important;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px !important;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+}
+
+// Folder icons — #55556a for inactive
+.treelist.listing li > a:before {
+    color: #55556a;
+}
+.treelist.listing li.selected > a:before {
+    color: @color-main;
+}
+
+// Unread folders — bold
+.folderlist li.unread > a {
+    font-weight: 600;
+}
+
+// Quota footer
+.quota-widget {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    color: #55556a;
+
+    .bar {
+        background-color: #1a1a24;
+        height: 2px !important;
+        border-radius: 1px;
+
+        .value {
+            background-color: @color-main;
+            border-radius: 1px;
+        }
+    }
+}
+
+
+// ═══════════════════════════════════════════
+// ── #layout-list (message list) ──
+// template: flex, #0a0a0a
+// ═══════════════════════════════════════════
+
+#layout-list {
+    background-color: #0a0a0a !important;
+
+    > .header {
+        background-color: #0a0a0a !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        border-bottom: 1px solid #1a1a24 !important;
+        padding: 0 6px !important;
+
+        .header-title {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
+    > .footer {
+        background-color: #0a0a0a !important;
+    }
+}
+
+// Toolbar buttons — 32x32, 5px radius, #55556a
+.header a.button.icon,
+.menu.toolbar a {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    color: #55556a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: #16161e;
+        color: #f5f5f5;
+    }
+}
+
+// Search bar — compact, #111116 bg, #1a1a24 border, 5px radius
+.searchbar {
+    background-color: transparent !important;
+    padding: 5px 8px !important;
+    border-bottom: 1px solid #1a1a24;
+
+    input,
+    input.form-control {
+        background-color: #111116 !important;
+        border: 1px solid #1a1a24 !important;
+        border-radius: 5px !important;
+        color: #f5f5f5 !important;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 12px;
+        padding: 5px 9px !important;
+        height: auto !important;
+
+        &:focus {
+            background-color: #16161e !important;
+            border-color: @color-main !important;
+        }
+    }
+
+    &:before {
+        color: #55556a !important;
+    }
+}
+
+// Message list rows
+#messagelist {
+    // Row borders
+    tr {
+        border-bottom: 1px solid #1a1a24 !important;
+        transition: background .08s;
+    }
+
+    // Hover state
+    tr:hover td {
+        background-color: #16161e !important;
+    }
+
+    // Unread messages — slight bg tint
+    tr.unread td {
+        background-color: #0c0c10;
+    }
+
+    // Selected row
+    tr.selected td {
+        background-color: #1c1c2e !important;
+    }
+
+    // From/subject — 13px
+    td.subject {
+        font-size: 13px;
+
+        span.fromto {
+            font-size: 13px;
+            color: #888898;
+        }
+
+        span.date {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 10px;
+            color: #55556a;
+        }
+
+        span.subject a {
+            font-weight: 400;
+            color: #888898;
+        }
+    }
+
+    // Unread — bold from, semibold subject
+    tr.unread td.subject {
+        span.fromto {
+            font-weight: 700;
+            color: #f5f5f5;
+        }
+
+        span.subject a {
+            font-weight: 600;
+            color: #f5f5f5;
+        }
+    }
+
+    // Flag icon
+    span.flag {
+        color: #3a3a4a;
+    }
+
+    tr.flagged span.flag {
+        color: #e5a44d;
+    }
+
+    // Attachment icon
+    span.attachment span {
+        color: #55556a;
+    }
+}
+
+// Page navigation — mono 9px
+.menu.pagenav {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    color: #55556a;
+    background-color: #0a0a0a !important;
+    border-top: 1px solid #1a1a24;
+    padding: 5px 10px;
+}
+
+
+// ═══════════════════════════════════════════
+// ── #layout-content (message view) ──
+// template: flex, #0a0a0a
+// ═══════════════════════════════════════════
+
+#layout-content {
+    background-color: #0a0a0a !important;
+
+    > .header {
+        background-color: #0a0a0a !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        border-bottom: 1px solid #1a1a24 !important;
+        padding: 0 6px !important;
+    }
+}
+
+// Empty state watermark
+#layout-content .watermark {
+    opacity: 0.3;
+}
+
+// Subject heading — Source Serif 4, 20px, bold
 #message-header > .subject {
-    font-family: 'Source Serif 4', Georgia, serif;
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f5f5f5;
+    line-height: 1.3;
+    margin-bottom: 12px;
+
+    span.subject {
+        font-family: 'Source Serif 4', Georgia, serif;
+    }
 }
 
-// ── Monospace elements ──
+// Mail headers — from name, email, date
+#message-header {
+    .header-headers {
+        .header-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f5f5f5;
+        }
+
+        a {
+            color: @color-main;
+        }
+    }
+}
+
+// Contact photo / avatar — 36px circle, accent bg
+#message-header .contactphoto {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background-color: @color-main !important;
+    overflow: hidden;
+}
+
+// Monospace elements — Source Code Pro
 .message-part div.pre,
 pre,
 code,
@@ -42,64 +454,51 @@ code,
     font-family: 'Source Code Pro', SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-// ── Task menu refinements ──
-#layout-menu {
-    background-color: #050505;
+// Plain text message body
+.message-part pre {
+    font-size: 12px;
+    line-height: 1.65;
+    color: #f5f5f5;
+    background-color: #0e0e12;
+    padding: 14px;
+    border-radius: 5px;
+    border: 1px solid #1a1a24;
 }
 
-#taskmenu .action-buttons a {
-    background-color: @color-main;
-    color: #000;
+
+// ═══════════════════════════════════════════
+// ── Headers — all panels ──
+// ═══════════════════════════════════════════
+
+#layout > div > .header {
+    border-bottom: 1px solid #1a1a24 !important;
+}
+
+#layout > div > .footer {
+    border-top: 1px solid #1a1a24 !important;
+}
+
+// Header title — serif on sidebar
+.header-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+
+// ═══════════════════════════════════════════
+// ── Popovers / dropdown menus ──
+// ═══════════════════════════════════════════
+
+.popover {
+    background-color: #0e0e12;
+    border: 1px solid #252530;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
     border-radius: 6px;
-
-    &:hover {
-        background-color: lighten(@color-main, 8%);
-    }
 }
 
-// ── Sidebar active state ──
-#layout-sidebar .treelist li.mailbox.selected > a {
-    border-left: 2px solid @color-main;
-}
 
-// ── List hover states ──
-#messagelist tr:hover td {
-    background-color: #16161e;
-}
-
-// ── Content area empty state ──
-#layout-content .watermark {
-    opacity: 0.3;
-}
-
-// ── Search bar ──
-.searchbar {
-    background-color: transparent;
-
-    input {
-        background-color: #111116;
-        border-color: #1a1a24;
-        color: #f5f5f5;
-
-        &:focus {
-            background-color: #16161e;
-            border-color: @color-main;
-        }
-    }
-}
-
-// ── Quota bar ──
-.quota-widget .bar {
-    background-color: #1a1a24;
-}
-
-// ══════════════════════════════════════════════════
-// ── ident_switch plugin (Gecka-Apps) styling ──
-// ══════════════════════════════════════════════════
-
-// The plugin places a <select> inside .header-title.username
-// via plugin_switchIdent_addCbElastic(). The select gets inline
-// styles (transparent bg, no border) so we style the wrapper.
+// ═══════════════════════════════════════════
+// ── ident_switch plugin (Gecka-Apps) ──
+// ═══════════════════════════════════════════
 
 .ident-switch-wrapper {
     display: inline-flex;
@@ -152,9 +551,10 @@ code,
     margin-left: 0.3em;
 }
 
-// ══════════════════════════════════════════════════════
-// ── identity_switch plugin (toteph42) styling ──
-// ══════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════
+// ── identity_switch plugin (toteph42) ──
+// ═══════════════════════════════════════════
 
 #identity_switch_menu {
     overflow: hidden;
@@ -194,18 +594,44 @@ code,
     }
 }
 
+
+// ═══════════════════════════════════════════
 // ── Login page ──
+// ═══════════════════════════════════════════
+
 .task-login {
-    background-color: #050505;
+    background-color: #050505 !important;
 
     #logo {
-        font-family: 'Source Serif 4', Georgia, serif;
+        font-family: 'Source Serif 4', Georgia, serif !important;
+    }
+
+    #layout-content {
+        background-color: #050505 !important;
     }
 }
 
 #login-form {
     .oauthlogin {
         border-top-color: #252530;
+    }
+
+    input.form-control {
+        background-color: #111116;
+        border-color: #252530;
+        color: #f5f5f5;
+
+        &:focus {
+            background-color: #16161e;
+            border-color: @color-main;
+        }
+    }
+
+    .btn-primary {
+        background-color: @color-main;
+        color: #000;
+        border: none;
+        font-weight: 600;
     }
 }
 
