@@ -3,8 +3,6 @@
  *
  * True black theme with Source Sans 3 / Source Serif 4 / Source Code Pro
  * Compatible with ident_switch and identity_switch plugins
- *
- * Every section references the template.jsx component it matches.
  */
 
 @import (reference) "variables";
@@ -21,29 +19,24 @@ html {
     color-scheme: dark;
 }
 
-body, button, input, optgroup, select, textarea, .popover {
+body {
+    margin: 0 !important;
     font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-// Scrollbars — thin, matching palette
-::-webkit-scrollbar {
-    width: 4px;
+button, input, optgroup, select, textarea, .popover {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    background: #1a1a24;
-    border-radius: 2px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #55556a;
-}
+
+// Scrollbars
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1a1a24; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #55556a; }
 
 
 // ═══════════════════════════════════════════
 // ── Global dark form inputs ──
-// All pages: compose, settings, login, contacts…
 // ═══════════════════════════════════════════
 
 input.form-control,
@@ -67,7 +60,7 @@ select.custom-select {
     }
 }
 
-// Tokenizer recipient input (compose To/Cc/Bcc fields)
+// Tokenizer (compose To/Cc/Bcc)
 .token-input-list,
 .token-input-list-facebook,
 ul.tokens-container {
@@ -80,7 +73,6 @@ ul.tokens-container {
     }
 }
 
-// Generic form labels
 .form-group label,
 .col-form-label {
     color: #888898;
@@ -88,20 +80,17 @@ ul.tokens-container {
     font-size: 13px;
 }
 
-// Checkbox / radio
 .form-check-input {
     background-color: #111116;
     border-color: #252530;
 }
 
-// Buttons (secondary/default)
 .btn-secondary {
     background-color: #1a1a28 !important;
     border-color: #252530 !important;
     color: #f5f5f5 !important;
 }
 
-// Primary button
 .btn-primary {
     background-color: @color-main !important;
     color: #000 !important;
@@ -112,30 +101,30 @@ ul.tokens-container {
 
 // ═══════════════════════════════════════════
 // ── #layout-menu (task menu sidebar) ──
-// template: 52px, #050505, flex column, center
 // ═══════════════════════════════════════════
 
 #layout-menu {
     background-color: #050505 !important;
     border-right: 1px solid #1a1a24 !important;
 
-    // Logo — Source Serif 4, 16px, bold
     #logo {
         font-family: 'Source Serif 4', Georgia, serif !important;
         opacity: 1 !important;
         font-size: 16px;
         font-weight: 700;
-        margin-bottom: 14px;
+        margin: 8px auto 14px;
     }
 }
 
-// #taskmenu — flex column, tous les boutons centrés 36x36
-// Override la media query Elastic >1024px qui affiche le texte
+// #taskmenu — flex column centré, tous les boutons icon-only 36×36
 #taskmenu {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     width: 100% !important;
+    position: relative !important;
+    height: calc(100vh - 42px) !important;
+    gap: 6px !important;
 
     span.inner {
         display: none !important;
@@ -147,7 +136,7 @@ ul.tokens-container {
         min-width: 36px !important;
         max-width: 36px !important;
         padding: 0 !important;
-        margin: 1px 0;
+        margin: 0 !important;
         border-radius: 6px;
         display: flex !important;
         align-items: center !important;
@@ -178,11 +167,12 @@ ul.tokens-container {
         }
     }
 
-    // Bouton Composer — accent bg, texte noir
+    // Bouton Composer — accent bg, margin-top pour séparer du logo
     .action-buttons a {
         background-color: @color-main !important;
         color: #000 !important;
-        margin-bottom: 10px;
+        margin-top: 6px !important;
+        margin-bottom: 0 !important;
 
         &:before {
             font-size: 14px !important;
@@ -195,12 +185,16 @@ ul.tokens-container {
         }
     }
 
-    // Boutons bas (darkmode, ?, logout) — identiques aux boutons du haut
+    // Boutons bas (darkmode, ?, logout) — position absolute, mêmes styles
     .special-buttons {
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
         width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+        gap: 6px !important;
         background-color: #050505 !important;
         padding-bottom: 8px;
 
@@ -220,9 +214,8 @@ ul.tokens-container {
 
 
 // ═══════════════════════════════════════════
-// ── All layout headers — vertical centering ──
-// layout.less has justify-content:center on .header
-// Add align-items:center so icons are vertically centered
+// ── All layout headers — centrage vertical ──
+// layout.less a overflow:hidden et pas d'align-items:center
 // ═══════════════════════════════════════════
 
 #layout > div > .header {
@@ -235,19 +228,44 @@ ul.tokens-container {
     border-top: 1px solid #1a1a24 !important;
 }
 
+// Header avec role=toolbar (mail action bar) — caché sur desktop/tablet
+// Sur mobile ce header sert au bouton retour + actions
+@media screen and (min-width: 481px) {
+    .header[role="toolbar"] {
+        display: none !important;
+    }
+}
+
+// .footer.small — caché
+.footer.small {
+    display: none !important;
+}
+
+// Tous les boutons icon dans les headers — padding 8px pour zone de clic
+a.button.icon {
+    padding: 8px;
+}
+
+// back-sidebar-button spécifique
+a.button.icon.back-sidebar-button.folders {
+    padding: 10px;
+}
+
+// #rcmbtn113 — padding-left
+#rcmbtn113 {
+    padding-left: 8px !important;
+}
+
 
 // ═══════════════════════════════════════════
-// ── #layout-sidebar (folder list) ──
-// template: 230px, #0e0e12, border-right #1a1a24
+// ── #layout-sidebar ──
 // ═══════════════════════════════════════════
 
-// overflow: visible pour que le dropdown ident_switch puisse dépasser le header
 #layout-sidebar {
     background-color: #0e0e12 !important;
     border-color: #1a1a24 !important;
 
-    // Header — 42px, username en mono 11px #888898
-    // overflow:visible override le overflow:hidden de layout.less → permet le dropdown
+    // overflow:visible → le dropdown ident_switch peut sortir du header
     > .header {
         background-color: #0e0e12 !important;
         height: 42px !important;
@@ -262,7 +280,6 @@ ul.tokens-container {
             font-weight: 600;
         }
 
-        // Username — mono
         .header-title.username,
         .username {
             font-family: 'Source Code Pro', monospace !important;
@@ -273,8 +290,7 @@ ul.tokens-container {
     }
 }
 
-// Folder tree — 13px, Source Sans 3
-// Seulement padding vertical, laisser padding-left pour l'indentation
+// Folder tree — 13px, Source Sans 3, padding vertical uniquement (préserver indent)
 .folderlist li a,
 #mailbox-list li a,
 .treelist.listing li a {
@@ -287,7 +303,6 @@ ul.tokens-container {
     transition: background .1s;
 }
 
-// Dossier sélectionné — accent, bordure gauche, bg #1a1a28
 .treelist.listing li.selected > a,
 .folderlist li.mailbox.selected > a {
     color: @color-main !important;
@@ -295,13 +310,11 @@ ul.tokens-container {
     border-left: 2px solid @color-main !important;
 }
 
-// Hover dossier
 .treelist.listing li > a:hover,
 .folderlist li a:hover {
     background-color: #16161e !important;
 }
 
-// Badges non-lus — accent bg, texte noir, mono 9px
 .folderlist li.mailbox .unreadcount {
     background-color: @color-main !important;
     color: #000 !important;
@@ -314,20 +327,10 @@ ul.tokens-container {
     text-align: center;
 }
 
-// Icônes dossiers
-.treelist.listing li > a:before {
-    color: #55556a;
-}
-.treelist.listing li.selected > a:before {
-    color: @color-main;
-}
+.treelist.listing li > a:before          { color: #55556a; }
+.treelist.listing li.selected > a:before  { color: @color-main; }
+.folderlist li.unread > a                 { font-weight: 600; }
 
-// Dossiers non-lus — gras
-.folderlist li.unread > a {
-    font-weight: 600;
-}
-
-// Quota footer
 .quota-widget {
     font-family: 'Source Code Pro', monospace;
     font-size: 9px;
@@ -338,31 +341,25 @@ ul.tokens-container {
         height: 2px !important;
         border-radius: 1px;
 
-        .value {
-            background-color: @color-main;
-            border-radius: 1px;
-        }
+        .value { background-color: @color-main; border-radius: 1px; }
     }
 }
 
 
 // ═══════════════════════════════════════════
-// ── ident_switch plugin — dropdown CSS ──
-// Le select est converti par Elastic en pretty-select (popover)
-// overflow:visible sur le header permet au popover de sortir
+// ── ident_switch — wrapper + select CSS ──
 // ═══════════════════════════════════════════
 
 .ident-switch-wrapper {
-    display: inline-flex;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start;
     width: 100%;
-    max-width: 100%;
     overflow: visible;
 }
 
-// Style le select natif et le bouton pretty-select
-.ident-switch-wrapper select,
-#plugin-ident_switch-account {
+#plugin-ident_switch-account,
+.ident-switch-wrapper select {
     cursor: pointer;
     background-color: transparent !important;
     border: none !important;
@@ -386,20 +383,7 @@ ul.tokens-container {
     }
 }
 
-// Le bouton affiché par pretty-select (quand Elastic le convertit)
-.pretty-select + .select-menu-button,
-.select-menu-button {
-    background: transparent !important;
-    border: none !important;
-    color: #888898 !important;
-    font-family: 'Source Code Pro', monospace !important;
-    font-size: 11px !important;
-    cursor: pointer;
-    padding: 0 1.4em 0 0.25em !important;
-}
-
-// Le menu déroulant créé par Elastic pretty-select
-// z-index élevé + positionnement correct
+// Popover créé par Elastic pretty-select (si actif)
 .select-menu {
     z-index: 1050 !important;
     background-color: #141418 !important;
@@ -413,15 +397,8 @@ ul.tokens-container {
         font-size: 11px;
         padding: 8px 12px;
 
-        &:hover,
-        &.active {
-            background-color: #16161e !important;
-        }
-
-        &.selected {
-            color: @color-main !important;
-            background-color: #1c1c2e !important;
-        }
+        &:hover, &.active { background-color: #16161e !important; }
+        &.selected { color: @color-main !important; background-color: #1c1c2e !important; }
     }
 }
 
@@ -445,7 +422,6 @@ ul.tokens-container {
 
 // ═══════════════════════════════════════════
 // ── #layout-list (message list) ──
-// template: flex, #0a0a0a
 // ═══════════════════════════════════════════
 
 #layout-list {
@@ -470,8 +446,12 @@ ul.tokens-container {
     }
 }
 
-// Toolbar dans le header de la liste (select, threads, options)
-// template: TBtn 32x32, icon-only
+// messagelist-header — justify-content: end (boutons alignés à droite)
+#messagelist-header {
+    justify-content: flex-end !important;
+}
+
+// Toolbar dans le header liste (select, threads, options) — 32×32 icon-only
 #messagelist-header .toolbar {
     display: flex !important;
     align-items: center !important;
@@ -490,11 +470,8 @@ ul.tokens-container {
         color: #55556a;
         float: none !important;
         font-size: 0 !important;
-        line-height: 32px !important;
 
-        span.inner {
-            display: none !important;
-        }
+        span.inner { display: none !important; }
 
         &:before {
             font-size: 14px !important;
@@ -512,7 +489,7 @@ ul.tokens-container {
     }
 }
 
-// Bouton Actualiser (toolbar-button) dans le header liste
+// Bouton Actualiser
 #messagelist-header a.toolbar-button {
     display: flex !important;
     align-items: center !important;
@@ -525,9 +502,7 @@ ul.tokens-container {
     font-size: 0 !important;
     float: none !important;
 
-    span.inner {
-        display: none !important;
-    }
+    span.inner { display: none !important; }
 
     &:before {
         font-size: 14px !important;
@@ -538,45 +513,25 @@ ul.tokens-container {
         height: auto !important;
     }
 
-    &:hover {
-        background-color: #16161e;
-        color: #f5f5f5;
-    }
+    &:hover { background-color: #16161e; color: #f5f5f5; }
 }
 
-// Cacher le texte sur tous les boutons des headers (back, menu, task-menu, etc.)
-.header a.button {
-    span.inner {
-        display: none !important;
-    }
-
-    &:before {
-        float: none !important;
-        height: auto !important;
-        width: auto !important;
-        margin: 0 !important;
-    }
+// Cacher le texte sur tous les boutons header
+.header a.button span.inner {
+    display: none !important;
 }
 
-// Toolbar .menu.toolbar — cacher le texte, hover
+// .menu.toolbar — cacher texte
 .menu.toolbar a {
     color: #55556a;
 
-    span.inner {
-        display: none !important;
-    }
+    span.inner { display: none !important; }
 
-    &:not(.disabled):hover {
-        background-color: #16161e;
-        color: #f5f5f5;
-    }
-
-    &:not(.disabled):focus {
-        background-color: #16161e;
-    }
+    &:not(.disabled):hover  { background-color: #16161e; color: #f5f5f5; }
+    &:not(.disabled):focus  { background-color: #16161e; }
 }
 
-// Search bar — compact, #111116 bg, #1a1a24 border, 5px radius
+// Search bar
 .searchbar {
     background-color: transparent !important;
     padding: 5px 8px !important;
@@ -599,9 +554,12 @@ ul.tokens-container {
         }
     }
 
-    &:before {
-        color: #55556a !important;
-    }
+    &:before { color: #55556a !important; }
+}
+
+// #mailsearchform — margin-left
+#mailsearchform {
+    margin-left: 16px;
 }
 
 // Message list rows
@@ -611,64 +569,29 @@ ul.tokens-container {
         transition: background .08s;
     }
 
-    tr:hover td {
-        background-color: #16161e !important;
-    }
-
-    tr.unread td {
-        background-color: #0c0c10;
-    }
-
-    tr.selected td {
-        background-color: #1c1c2e !important;
-    }
+    tr:hover td       { background-color: #16161e !important; }
+    tr.unread td      { background-color: #0c0c10; }
+    tr.selected td    { background-color: #1c1c2e !important; }
 
     td.subject {
         font-size: 13px;
 
-        span.fromto {
-            font-size: 13px;
-            color: #888898;
-        }
-
-        span.date {
-            font-family: 'Source Code Pro', monospace;
-            font-size: 10px;
-            color: #55556a;
-        }
-
-        span.subject a {
-            font-weight: 400;
-            color: #888898;
-        }
+        span.fromto { font-size: 13px; color: #888898; }
+        span.date   { font-family: 'Source Code Pro', monospace; font-size: 10px; color: #55556a; }
+        span.subject a { font-weight: 400; color: #888898; }
     }
 
     tr.unread td.subject {
-        span.fromto {
-            font-weight: 700;
-            color: #f5f5f5;
-        }
-
-        span.subject a {
-            font-weight: 600;
-            color: #f5f5f5;
-        }
+        span.fromto    { font-weight: 700; color: #f5f5f5; }
+        span.subject a { font-weight: 600; color: #f5f5f5; }
     }
 
-    span.flag {
-        color: #3a3a4a;
-    }
-
-    tr.flagged span.flag {
-        color: #e5a44d;
-    }
-
-    span.attachment span {
-        color: #55556a;
-    }
+    span.flag           { color: #3a3a4a; }
+    tr.flagged span.flag { color: #e5a44d; }
+    span.attachment span { color: #55556a; }
 }
 
-// Page navigation — mono 9px
+// Page navigation
 .menu.pagenav {
     font-family: 'Source Code Pro', monospace;
     font-size: 9px;
@@ -681,7 +604,6 @@ ul.tokens-container {
 
 // ═══════════════════════════════════════════
 // ── #layout-content (message view) ──
-// template: flex, #0a0a0a
 // ═══════════════════════════════════════════
 
 #layout-content {
@@ -696,19 +618,16 @@ ul.tokens-container {
     }
 }
 
-// Empty state watermark — visible, centré
 #layout-content .watermark {
     opacity: 0.6;
     background-color: #0a0a0a;
 }
 
-// iframe wrapper — dark bg
 #layout-content .iframe-wrapper {
     background-color: #0a0a0a;
 }
 
-// Mail action toolbar (#mailtoolbar) — reply, forward, delete, etc.
-// template: TBtn 32x32, icon-only, alignés à droite
+// Mail action toolbar (#mailtoolbar) — 32×32 icon-only
 #mailtoolbar {
     display: flex !important;
     align-items: center !important;
@@ -728,11 +647,8 @@ ul.tokens-container {
         color: #55556a;
         float: none !important;
         font-size: 0 !important;
-        line-height: 32px !important;
 
-        span.inner {
-            display: none !important;
-        }
+        span.inner { display: none !important; }
 
         &:before {
             font-size: 14px !important;
@@ -743,10 +659,7 @@ ul.tokens-container {
             height: auto !important;
         }
 
-        &:not(.disabled):hover {
-            background-color: #16161e;
-            color: #f5f5f5;
-        }
+        &:not(.disabled):hover { background-color: #16161e; color: #f5f5f5; }
     }
 
     .dropbutton {
@@ -758,19 +671,14 @@ ul.tokens-container {
             min-width: 18px !important;
             max-width: 18px !important;
             padding: 0 !important;
-
-            &:before {
-                font-size: 10px !important;
-            }
+            &:before { font-size: 10px !important; }
         }
     }
 
-    > .spacer {
-        flex: 1;
-    }
+    > .spacer { flex: 1; }
 }
 
-// Subject — Source Serif 4, 20px, gras
+// Subject — Source Serif 4, 20px, bold
 #message-header > .subject {
     font-family: 'Source Serif 4', Georgia, serif !important;
     font-size: 20px;
@@ -779,27 +687,16 @@ ul.tokens-container {
     line-height: 1.3;
     margin-bottom: 12px;
 
-    span.subject {
-        font-family: 'Source Serif 4', Georgia, serif;
-    }
+    span.subject { font-family: 'Source Serif 4', Georgia, serif; }
 }
 
-// En-têtes mail — from, email, date
 #message-header {
     .header-headers {
-        .header-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #f5f5f5;
-        }
-
-        a {
-            color: @color-main;
-        }
+        .header-title { font-size: 13px; font-weight: 600; color: #f5f5f5; }
+        a { color: @color-main; }
     }
 }
 
-// Avatar — 36px cercle, accent bg
 #message-header .contactphoto {
     width: 36px !important;
     height: 36px !important;
@@ -808,15 +705,12 @@ ul.tokens-container {
     overflow: hidden;
 }
 
-// Monospace
 .message-part div.pre,
-pre,
-code,
+pre, code,
 .message-htmlpart pre {
     font-family: 'Source Code Pro', SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-// Corps du mail en texte brut
 .message-part pre {
     font-size: 12px;
     line-height: 1.65;
@@ -856,10 +750,7 @@ code,
 
     .listing li a {
         color: #f5f5f5;
-
-        &:hover {
-            background-color: #16161e;
-        }
+        &:hover { background-color: #16161e; }
     }
 }
 
@@ -890,13 +781,8 @@ code,
     background-color: #141418;
     color: #f5f5f5;
 
-    a {
-        color: #f5f5f5;
-    }
-
-    li:hover {
-        background-color: #16161e;
-    }
+    a { color: #f5f5f5; }
+    li:hover { background-color: #16161e; }
 
     .unseen {
         background: @color-main;
@@ -914,19 +800,13 @@ code,
 .task-login {
     background-color: #050505 !important;
 
-    #logo {
-        font-family: 'Source Serif 4', Georgia, serif !important;
-    }
+    #logo { font-family: 'Source Serif 4', Georgia, serif !important; }
 
-    #layout-content {
-        background-color: #050505 !important;
-    }
+    #layout-content { background-color: #050505 !important; }
 }
 
 #login-form {
-    .oauthlogin {
-        border-top-color: #252530;
-    }
+    .oauthlogin { border-top-color: #252530; }
 
     input.form-control {
         background-color: #111116 !important;

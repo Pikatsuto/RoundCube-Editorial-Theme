@@ -19,6 +19,16 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
     rcmail.env.skin = 'elastic';
 }
 
+// Fix: remove 'pretty-select' from ident_switch dropdown before user clicks.
+// Without this, Elastic's pretty_select() tries $(select).popover() which
+// fails with "TypeError: select.popover is not a function" because Bootstrap
+// popover jQuery plugin is not available in this context.
+if (window.rcmail) {
+    rcmail.addEventListener('init', function() {
+        $('#plugin-ident_switch-account').removeClass('pretty-select');
+    });
+}
+
 function rcube_elastic_ui() {
     var prefs, ref = this,
         mode = 'normal', // one of: large, normal, small, phone
