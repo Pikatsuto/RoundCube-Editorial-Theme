@@ -7527,7 +7527,7 @@ code,
   flex: 1;
 }
 .ui-draggable-handle a {
-  min-width: 55%;
+  min-width: 60%;
   flex: 1;
 }
 .ui-draggable-handle li {
@@ -7536,7 +7536,7 @@ code,
 .ui-draggable-handle input {
   margin-right: 14px;
 }
-.treetoggle.expanded {
+.treetoggle {
   margin-top: 6px;
 }
 .formcontent {
