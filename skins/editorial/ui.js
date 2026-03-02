@@ -20,17 +20,18 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
 }
 
 // Editorial: ident_switch plugin fixes
-// 1. If plugin failed to place the select, do it manually
-// 2. Remove pretty-select so the native dropdown works
-//    (pretty-select converts it to a popover which can conflict)
+// Remove pretty-select so the native dropdown works instead of Elastic's popover
 $(document).ready(function() {
-    if (window.rcmail) {
-        rcmail.addEventListener('init', function() {
+    if (!window.rcmail) return;
+
+    rcmail.addEventListener('init', function() {
+        // Delay to ensure pretty_select() has already run
+        setTimeout(function() {
             var sel = $('#plugin-ident_switch-account');
             if (!sel.length) return;
 
             // If the select is hidden, the plugin failed to place it
-            if (sel.css('display') === 'none') {
+            if (sel.css('display') === 'none' || !sel.is(':visible')) {
                 var target = $('.header-title.username');
                 if (target.length) {
                     sel.css('display', '');
@@ -42,13 +43,15 @@ $(document).ready(function() {
                 }
             }
 
-            // Remove pretty-select to restore native dropdown behavior
-            // The plugin uses its own onchange handler
-            sel.removeClass('pretty-select');
-            sel.off('click.popover mousedown.popover');
-            sel.popover('dispose');
-        });
-    }
+            // Strip pretty-select and its popover to restore native <select>
+            sel.removeClass('pretty-select custom-select');
+            try { sel.popover('dispose'); } catch (e) { }
+            // Remove all click/focus handlers added by pretty_select
+            sel.off('click mousedown focus');
+            // Re-bind only the onchange handler from the plugin
+            // (it's already set via HTML onchange attribute, so nothing to do)
+        }, 200);
+    });
 });
 
 function rcube_elastic_ui() {
