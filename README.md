@@ -42,7 +42,7 @@ Compatible with the [identity_switch](https://github.com/toteph42/identity_switc
 ### 1. Download
 
 ```bash
-git clone https://github.com/your-username/RoundCube-Editorial-Theme.git
+git clone https://github.com/Pikatsuto/RoundCube-Editorial-Theme.git
 ```
 
 ### 2. Copy to Roundcube
