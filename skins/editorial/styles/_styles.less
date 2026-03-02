@@ -60,70 +60,77 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Task menu buttons — 36x36, border-radius 6
-#taskmenu a {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 6px !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 0 !important;
-    margin: 1px 0 !important;
-    color: #55556a;
-    background: transparent;
-    transition: all .12s;
+// Task menu buttons — ALL buttons are 36x36 icon-only, border-radius 6
+#taskmenu {
+    a {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 6px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+        margin: 1px auto !important;
+        color: #55556a;
+        background: transparent;
+        transition: all .12s;
+        line-height: 36px !important;
+        font-size: 0 !important; // hide text fallback
 
-    &:before {
-        margin: 0 !important;
-        width: auto !important;
-        height: auto !important;
-        font-size: 16px;
+        &:before {
+            margin: 0 !important;
+            width: auto !important;
+            height: auto !important;
+            font-size: 16px;
+            line-height: 36px;
+            float: none !important;
+        }
+
+        // Always hide labels — icon-only mode
+        span.inner {
+            display: none !important;
+        }
+
+        &:hover {
+            background-color: #16161e !important;
+            color: #f5f5f5 !important;
+        }
+
+        &.selected {
+            background-color: #1a1a28 !important;
+            color: @color-main !important;
+        }
     }
 
-    // Labels hidden on desktop (icon-only)
-    span.inner {
-        display: none;
-    }
-
-    &:hover {
-        background-color: #16161e !important;
-        color: #f5f5f5 !important;
-    }
-
-    &.selected {
-        background-color: #1a1a28 !important;
-        color: @color-main !important;
-    }
-}
-
-// Compose button (action button) — accent bg, black text
-#taskmenu .action-buttons a {
-    background-color: @color-main !important;
-    color: #000 !important;
-    border-radius: 6px !important;
-    margin-bottom: 10px !important;
-
-    &:before {
-        font-size: 14px;
+    // Compose button (action button) — accent bg, black text
+    .action-buttons a {
+        background-color: @color-main !important;
         color: #000 !important;
+        margin-bottom: 10px !important;
+
+        &:before {
+            font-size: 14px;
+            color: #000 !important;
+        }
+
+        &:hover {
+            background-color: lighten(@color-main, 8%) !important;
+        }
     }
 
-    &:hover {
-        background-color: lighten(@color-main, 8%) !important;
+    // Logout button — keep red color
+    a.logout {
+        color: #e05050 !important;
+
+        &:hover {
+            color: lighten(#e05050, 10%) !important;
+            background-color: #16161e !important;
+        }
     }
-}
 
-// Bottom menu items (dark mode toggle, logout etc)
-#layout-menu .special-buttons a {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 6px !important;
-    color: #55556a;
-
-    &:hover {
-        background-color: #16161e !important;
-        color: #f5f5f5 !important;
+    // Special buttons container
+    .special-buttons {
+        background-color: #050505 !important;
     }
 }
 
@@ -162,12 +169,15 @@ body, button, input, optgroup, select, textarea, .popover {
 }
 
 // Folder tree — 13px, Source Sans 3
+// Only override vertical padding, leave padding-left intact for indentation
 .folderlist li a,
 #mailbox-list li a,
 .treelist.listing li a {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
-    padding: 6px 10px !important;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 10px;
     color: #f5f5f5;
     transition: background .1s;
 }
@@ -258,16 +268,14 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Toolbar buttons — 32x32, 5px radius, #55556a
-.header a.button.icon,
-.menu.toolbar a {
+// Toolbar buttons in list/content headers — 32x32, 5px radius, #55556a
+// Only target icon buttons, not all toolbar links
+#layout-list > .header a.button.icon,
+#layout-content > .header a.button.icon {
     width: 32px;
     height: 32px;
     border-radius: 5px;
     color: #55556a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &:hover {
         background-color: #16161e;
@@ -506,17 +514,11 @@ code,
     width: 100%;
 }
 
+// Style the select — keep it functional (don't fight pretty-select)
 .ident-switch-wrapper select,
 #plugin-ident_switch-account {
     cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     background-color: transparent !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888898'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 0.3em center !important;
-    background-size: 10px 6px !important;
     border: none !important;
     box-shadow: none !important;
     color: #888898 !important;
@@ -527,10 +529,20 @@ code,
     text-overflow: ellipsis;
     padding: 0 1.4em 0 0.25em !important;
     outline: none;
+    height: auto !important;
+    line-height: normal !important;
 
     option {
         background-color: #141418;
         color: #f5f5f5;
+    }
+}
+
+// When Elastic converts to pretty-select, style the popover it opens
+.select-menu .listing li {
+    a.active.selected {
+        background-color: #1c1c2e;
+        color: @color-main;
     }
 }
 

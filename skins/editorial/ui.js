@@ -19,15 +19,18 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
     rcmail.env.skin = 'elastic';
 }
 
-// Editorial: ident_switch plugin fallback
-// The plugin's JS may have run before our skin name patch, so the select
-// might not have been placed. Re-trigger placement on init.
+// Editorial: ident_switch plugin fixes
+// 1. If plugin failed to place the select, do it manually
+// 2. Remove pretty-select so the native dropdown works
+//    (pretty-select converts it to a popover which can conflict)
 $(document).ready(function() {
     if (window.rcmail) {
         rcmail.addEventListener('init', function() {
             var sel = $('#plugin-ident_switch-account');
-            if (sel.length && sel.css('display') === 'none') {
-                // Plugin failed to place the select — do it manually for Elastic layout
+            if (!sel.length) return;
+
+            // If the select is hidden, the plugin failed to place it
+            if (sel.css('display') === 'none') {
                 var target = $('.header-title.username');
                 if (target.length) {
                     sel.css('display', '');
@@ -38,6 +41,12 @@ $(document).ready(function() {
                     }
                 }
             }
+
+            // Remove pretty-select to restore native dropdown behavior
+            // The plugin uses its own onchange handler
+            sel.removeClass('pretty-select');
+            sel.off('click.popover mousedown.popover');
+            sel.popover('dispose');
         });
     }
 });
