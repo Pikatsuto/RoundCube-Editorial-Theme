@@ -6811,6 +6811,9 @@ select.custom-select option {
 }
 .form-group {
   display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 8px 0;
 }
 .form-group.row {
   justify-content: space-between;
