@@ -1,0 +1,241 @@
+/**
+ * Editorial skin — custom style overrides
+ *
+ * True black theme with Source Sans 3 / Source Serif 4 / Source Code Pro
+ * Compatible with identity_switch plugin
+ */
+
+@import (reference) "variables";
+
+// ── Google Fonts ──
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap');
+
+// ── Font family overrides ──
+// Override the Elastic .font-family mixin output
+body, button, input, optgroup, select, textarea, .popover {
+    font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+// ── Force dark mode always on ──
+html {
+    color-scheme: dark;
+}
+
+// ── Logo styling ──
+#logo {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    opacity: 1 !important;
+}
+
+// ── Header titles with serif font ──
+#layout > div > .header .header-title,
+.header-title,
+#message-header > .subject {
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+// ── Monospace elements ──
+.message-part div.pre,
+pre,
+code,
+.message-htmlpart pre {
+    font-family: 'Source Code Pro', SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+// ── Task menu refinements ──
+#layout-menu {
+    background-color: #050505;
+}
+
+#taskmenu .action-buttons a {
+    background-color: @color-main;
+    color: #000;
+    border-radius: 6px;
+
+    &:hover {
+        background-color: lighten(@color-main, 8%);
+    }
+}
+
+// ── Sidebar active state ──
+#layout-sidebar .treelist li.mailbox.selected > a {
+    border-left: 2px solid @color-main;
+}
+
+// ── List hover states ──
+#messagelist tr:hover td {
+    background-color: #16161e;
+}
+
+// ── Content area empty state ──
+#layout-content .watermark {
+    opacity: 0.3;
+}
+
+// ── Search bar ──
+.searchbar {
+    background-color: transparent;
+
+    input {
+        background-color: #111116;
+        border-color: #1a1a24;
+        color: #f5f5f5;
+
+        &:focus {
+            background-color: #16161e;
+            border-color: @color-main;
+        }
+    }
+}
+
+// ── Quota bar ──
+.quota-widget .bar {
+    background-color: #1a1a24;
+}
+
+// ══════════════════════════════════════
+// ── Identity Switch plugin styling ──
+// ══════════════════════════════════════
+
+#identity_switch_menu {
+    margin-right: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+    font-weight: 600;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    padding-left: 2rem;
+    text-align: left;
+    width: 200px;
+    border: 1px solid #1a1a24 !important;
+    border-radius: 4px;
+    background: #111116 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23888898' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat left .75rem center/8px 10px;
+    color: #888898;
+    top: 10px;
+    left: inherit;
+    position: relative;
+    float: inline-start;
+}
+
+#identity_switch_dropdown {
+    position: fixed;
+    z-index: 1000;
+    padding: 0 .5rem 0 0;
+    min-width: 200px;
+    max-width: 280px;
+    will-change: transform;
+    top: 0;
+    left: auto;
+    margin-left: 0;
+    margin-top: 18px;
+    width: 237px;
+    transform: translate3d(63px, 49px, 0px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+    max-height: 200px;
+    overflow-x: hidden;
+    color: #f5f5f5;
+    display: none;
+    margin-left: -.5rem;
+    border: 1px solid #252530;
+    border-radius: 6px;
+    background-color: #141418;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    line-height: 35px;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        left: 0;
+        width: 100%;
+
+        &:hover {
+            background-color: #16161e;
+        }
+    }
+
+    a {
+        padding: 0 .5rem;
+        white-space: nowrap;
+        color: #f5f5f5;
+        background: none;
+        height: min-content;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .unseen {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        min-width: 2em;
+        font-weight: 700;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 10px;
+        padding: 0 .3em;
+        border-radius: 10px;
+        background: @color-main;
+        color: #000;
+        text-align: center;
+        line-height: 20px;
+    }
+}
+
+// Dark mode overrides for identity_switch (ensure consistency)
+html.dark-mode {
+    #identity_switch_menu {
+        border-color: #1a1a24 !important;
+        background-color: #111116;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23888898' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
+        color: #888898;
+    }
+
+    #identity_switch_dropdown {
+        background-color: #141418;
+        border-color: #252530;
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+
+        a {
+            color: #f5f5f5;
+        }
+
+        li:hover {
+            background-color: #16161e;
+        }
+    }
+}
+
+// ── Login page ──
+.task-login {
+    background-color: #050505;
+
+    #logo {
+        font-family: 'Source Serif 4', Georgia, serif;
+    }
+}
+
+#login-form {
+    .oauthlogin {
+        border-top-color: #252530;
+    }
+}
+
+#login-footer {
+    color: #55556a;
+
+    & > div {
+        background: #111116;
+        border: 1px solid #1a1a24;
+    }
+}
