@@ -13,6 +13,12 @@
 
 'use strict';
 
+// Editorial skin: expose as 'elastic' so plugins that check rcmail.env.skin
+// (e.g. ident_switch) can find their Elastic placement targets.
+if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
+    rcmail.env.skin = 'elastic';
+}
+
 function rcube_elastic_ui() {
     var prefs, ref = this,
         mode = 'normal', // one of: large, normal, small, phone

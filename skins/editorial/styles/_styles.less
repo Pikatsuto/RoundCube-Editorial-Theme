@@ -93,15 +93,72 @@ code,
     background-color: #1a1a24;
 }
 
-// ══════════════════════════════════════
-// ── Identity Switch plugin styling ──
-// ══════════════════════════════════════
+// ══════════════════════════════════════════════════
+// ── ident_switch plugin (Gecka-Apps) styling ──
+// ══════════════════════════════════════════════════
+
+// The plugin places a <select> inside .header-title.username
+// via plugin_switchIdent_addCbElastic(). The select gets inline
+// styles (transparent bg, no border) so we style the wrapper.
+
+.ident-switch-wrapper {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+.ident-switch-wrapper select,
+#plugin-ident_switch-account {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888898'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.3em center !important;
+    background-size: 10px 6px !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #888898 !important;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    padding: 0 1.4em 0 0.25em !important;
+    outline: none;
+
+    option {
+        background-color: #141418;
+        color: #f5f5f5;
+    }
+}
+
+.ident-switch-badge,
+#ident-switch-badge {
+    flex-shrink: 0;
+    min-width: 1.4em;
+    padding: 0.1em 0.45em;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: 'Source Code Pro', monospace;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    color: #000;
+    background-color: @color-main;
+    border-radius: 10px;
+    margin-left: 0.3em;
+}
+
+// ══════════════════════════════════════════════════════
+// ── identity_switch plugin (toteph42) styling ──
+// ══════════════════════════════════════════════════════
 
 #identity_switch_menu {
-    margin-right: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 5px;
     font-weight: 600;
     font-family: 'Source Code Pro', monospace;
     font-size: 11px;
@@ -112,107 +169,28 @@ code,
     border-radius: 4px;
     background: #111116 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23888898' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat left .75rem center/8px 10px;
     color: #888898;
-    top: 10px;
-    left: inherit;
-    position: relative;
-    float: inline-start;
 }
 
 #identity_switch_dropdown {
-    position: fixed;
-    z-index: 1000;
-    padding: 0 .5rem 0 0;
-    min-width: 200px;
-    max-width: 280px;
-    will-change: transform;
-    top: 0;
-    left: auto;
-    margin-left: 0;
-    margin-top: 18px;
-    width: 237px;
-    transform: translate3d(63px, 49px, 0px);
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
-    max-height: 200px;
-    overflow-x: hidden;
-    color: #f5f5f5;
-    display: none;
-    margin-left: -.5rem;
     border: 1px solid #252530;
     border-radius: 6px;
     background-color: #141418;
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 400;
-    line-height: 35px;
-
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    li {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        position: relative;
-        left: 0;
-        width: 100%;
-
-        &:hover {
-            background-color: #16161e;
-        }
-    }
+    color: #f5f5f5;
 
     a {
-        padding: 0 .5rem;
-        white-space: nowrap;
         color: #f5f5f5;
-        background: none;
-        height: min-content;
+    }
 
-        &:hover {
-            text-decoration: none;
-        }
+    li:hover {
+        background-color: #16161e;
     }
 
     .unseen {
-        position: absolute;
-        top: 5px;
-        right: 8px;
-        min-width: 2em;
-        font-weight: 700;
-        font-family: 'Source Code Pro', monospace;
-        font-size: 10px;
-        padding: 0 .3em;
-        border-radius: 10px;
         background: @color-main;
         color: #000;
-        text-align: center;
-        line-height: 20px;
-    }
-}
-
-// Dark mode overrides for identity_switch (ensure consistency)
-html.dark-mode {
-    #identity_switch_menu {
-        border-color: #1a1a24 !important;
-        background-color: #111116;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23888898' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e");
-        color: #888898;
-    }
-
-    #identity_switch_dropdown {
-        background-color: #141418;
-        border-color: #252530;
-        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
-
-        a {
-            color: #f5f5f5;
-        }
-
-        li:hover {
-            background-color: #16161e;
-        }
+        font-family: 'Source Code Pro', monospace;
+        font-size: 10px;
     }
 }
 
