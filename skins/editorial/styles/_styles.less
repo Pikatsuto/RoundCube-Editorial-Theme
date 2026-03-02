@@ -920,12 +920,12 @@ pre, code,
     }
 
     a {
-        min-width: 51%;
+        min-width: 55%;
         flex: 1;
     }
 
     li {
-        min-width: 51%;
+        min-width: 55%;
     }
 
     input {
@@ -1074,5 +1074,311 @@ fieldset {
     .listing li a {
         padding: 9px 14px;
         font-size: 13px;
+    }
+}
+
+
+// ═══════════════════════════════════════════
+// ── Compose page ──
+// ═══════════════════════════════════════════
+
+// Layout : compose-content en colonne pour que le body prenne toute la hauteur
+#compose-content {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100%;
+    overflow: hidden;
+
+    form.formcontent {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 0 !important;
+    }
+}
+
+// Toolbar compose (#toolbar-menu) — même style que #mailtoolbar
+#toolbar-menu {
+    display: flex !important;
+    align-items: center !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 4px !important;
+    gap: 1px;
+
+    li {
+        list-style: none;
+
+        &.spacer { flex: 1; }
+
+        a, & > a {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 32px !important;
+            height: 32px !important;
+            min-width: 32px !important;
+            padding: 0 !important;
+            border-radius: 5px;
+            color: #55556a;
+            float: none !important;
+            font-size: 0 !important;
+
+            span.inner { display: none !important; }
+
+            &:before {
+                font-size: 14px !important;
+                line-height: 1 !important;
+                margin: 0 !important;
+                width: auto !important;
+                float: none !important;
+                height: auto !important;
+            }
+
+            &:not(.disabled):hover { background-color: #16161e; color: #f5f5f5; }
+        }
+
+        .dropbutton {
+            display: inline-flex !important;
+            align-items: center;
+
+            a.dropdown {
+                width: 18px !important;
+                min-width: 18px !important;
+                padding: 0 !important;
+                &:before { font-size: 10px !important; }
+            }
+        }
+    }
+}
+
+// Bouton "toolbar-menu-button" (overflow)
+a.toolbar-menu-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 5px;
+    color: #55556a;
+    font-size: 0 !important;
+
+    &:before { font-size: 14px !important; margin: 0 !important; }
+    &:hover { background-color: #16161e; color: #f5f5f5; }
+}
+
+// En-têtes compose (De, À, Cc, Cci, Objet)
+#compose-headers {
+    border-bottom: 1px solid #1a1a24;
+    background-color: #0a0a0a;
+
+    .compose-headers {
+        .form-group.row {
+            border-bottom: 1px solid #1a1a24;
+            margin: 0;
+
+            &:last-child { border-bottom: none; }
+
+            label.col-form-label {
+                color: #55556a !important;
+                font-size: 12px !important;
+                text-align: right;
+                justify-content: flex-end;
+                display: flex;
+                align-items: center;
+                padding: 0 12px 0 0;
+                min-height: 38px;
+            }
+
+            .col-10 { padding: 0; }
+
+            .input-group {
+                flex-wrap: nowrap;
+                align-items: stretch;
+
+                input[type="text"],
+                input.form-control,
+                textarea {
+                    border: none !important;
+                    background: transparent !important;
+                    border-radius: 0 !important;
+                    padding: 8px 10px !important;
+                    font-size: 13px;
+                    resize: none;
+                    min-height: 38px;
+                    box-shadow: none !important;
+                }
+
+                textarea {
+                    max-height: 72px;
+                    overflow-y: auto;
+                }
+
+                // Boutons icon dans .input-group-append
+                .input-group-append {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 0;
+
+                    a.input-group-text {
+                        background: transparent !important;
+                        border: none !important;
+                        width: 32px;
+                        height: 32px;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        color: #55556a;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        padding: 0 !important;
+                        font-size: 0 !important;
+
+                        span.inner { display: none !important; }
+
+                        &:before {
+                            font-size: 14px !important;
+                            line-height: 1 !important;
+                            margin: 0 !important;
+                            width: auto !important;
+                            float: none !important;
+                        }
+
+                        &:hover { background-color: #16161e !important; color: #f5f5f5; }
+                    }
+                }
+            }
+
+            // Select "De" (identity)
+            #_from {
+                border: none !important;
+                background-color: transparent !important;
+                font-size: 13px;
+                padding: 8px 28px 8px 10px !important;
+                height: auto !important;
+                min-height: 38px;
+            }
+        }
+    }
+}
+
+// Corps du message
+#composebodycontainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 200px;
+
+    #composebody {
+        flex: 1;
+        height: 100% !important;
+        min-height: 200px;
+        border: none !important;
+        border-radius: 0 !important;
+        background: #0a0a0a !important;
+        resize: none;
+        padding: 16px !important;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #f5f5f5 !important;
+        font-family: 'Source Sans 3', sans-serif;
+    }
+
+    // Editor selector (plain/html toggle) — caché sauf quand actif
+    #editor-selector { display: none; }
+}
+
+// Boutons bas : Envoyer + Ouvrir dans nouvelle fenêtre
+.action-compose .formbuttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-top: 1px solid #1a1a24;
+    background-color: #0a0a0a;
+
+    .float-right {
+        a.extwin {
+            font-size: 11px;
+            color: #55556a;
+            font-family: 'Source Code Pro', monospace;
+            text-decoration: none;
+
+            &:before { font-size: 12px !important; }
+            &:hover { color: #f5f5f5; }
+        }
+    }
+}
+
+// Sidebar droite compose (options + pièces jointes)
+.sidebar-right {
+    background-color: #0a0a0a !important;
+    border-left: 1px solid #1a1a24 !important;
+
+    > .header {
+        background-color: #0a0a0a !important;
+    }
+
+    #compose-attachments {
+        border-bottom: 1px solid #1a1a24;
+
+        .upload-form {
+            padding: 12px 14px;
+            text-align: center;
+
+            .hint {
+                font-size: 11px;
+                color: #55556a;
+                font-family: 'Source Code Pro', monospace;
+                margin-bottom: 8px;
+            }
+
+            button.attach {
+                font-size: 12px;
+                width: 100%;
+            }
+        }
+
+        // Zone drag-and-drop
+        &.droptarget {
+            border: 2px dashed #1a1a24;
+            border-radius: 0;
+            margin: 0;
+
+            &.hover { border-color: @color-main; }
+        }
+    }
+
+    #compose-options {
+        padding: 4px 0;
+
+        .form-group.row {
+            margin: 0;
+            padding: 9px 14px;
+            border-bottom: 1px solid #1a1a24;
+
+            &:last-child { border-bottom: none; }
+
+            label.col-form-label {
+                color: #888898 !important;
+                font-size: 12px !important;
+                padding: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            .col-6 {
+                display: flex;
+                align-items: center;
+                padding: 0;
+            }
+
+            select {
+                font-size: 12px;
+            }
+        }
     }
 }

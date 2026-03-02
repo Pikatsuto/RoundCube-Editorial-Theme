@@ -7503,11 +7503,11 @@ code,
   flex: 1;
 }
 .ui-draggable-handle a {
-  min-width: 51%;
+  min-width: 55%;
   flex: 1;
 }
 .ui-draggable-handle li {
-  min-width: 51%;
+  min-width: 55%;
 }
 .ui-draggable-handle input {
   margin-right: 14px;
@@ -7627,4 +7627,281 @@ fieldset legend {
 .task-settings #layout-sidebar .listing li a {
   padding: 9px 14px;
   font-size: 13px;
+}
+#compose-content {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100%;
+  overflow: hidden;
+}
+#compose-content form.formcontent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+}
+#toolbar-menu {
+  display: flex !important;
+  align-items: center !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 4px !important;
+  gap: 1px;
+}
+#toolbar-menu li {
+  list-style: none;
+}
+#toolbar-menu li.spacer {
+  flex: 1;
+}
+#toolbar-menu li a,
+#toolbar-menu li > a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  padding: 0 !important;
+  border-radius: 5px;
+  color: #55556a;
+  float: none !important;
+  font-size: 0 !important;
+}
+#toolbar-menu li a span.inner,
+#toolbar-menu li > a span.inner {
+  display: none !important;
+}
+#toolbar-menu li a:before,
+#toolbar-menu li > a:before {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  width: auto !important;
+  float: none !important;
+  height: auto !important;
+}
+#toolbar-menu li a:not(.disabled):hover,
+#toolbar-menu li > a:not(.disabled):hover {
+  background-color: #16161e;
+  color: #f5f5f5;
+}
+#toolbar-menu li .dropbutton {
+  display: inline-flex !important;
+  align-items: center;
+}
+#toolbar-menu li .dropbutton a.dropdown {
+  width: 18px !important;
+  min-width: 18px !important;
+  padding: 0 !important;
+}
+#toolbar-menu li .dropbutton a.dropdown:before {
+  font-size: 10px !important;
+}
+a.toolbar-menu-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  border-radius: 5px;
+  color: #55556a;
+  font-size: 0 !important;
+}
+a.toolbar-menu-button:before {
+  font-size: 14px !important;
+  margin: 0 !important;
+}
+a.toolbar-menu-button:hover {
+  background-color: #16161e;
+  color: #f5f5f5;
+}
+#compose-headers {
+  border-bottom: 1px solid #1a1a24;
+  background-color: #0a0a0a;
+}
+#compose-headers .compose-headers .form-group.row {
+  border-bottom: 1px solid #1a1a24;
+  margin: 0;
+}
+#compose-headers .compose-headers .form-group.row:last-child {
+  border-bottom: none;
+}
+#compose-headers .compose-headers .form-group.row label.col-form-label {
+  color: #55556a !important;
+  font-size: 12px !important;
+  text-align: right;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  padding: 0 12px 0 0;
+  min-height: 38px;
+}
+#compose-headers .compose-headers .form-group.row .col-10 {
+  padding: 0;
+}
+#compose-headers .compose-headers .form-group.row .input-group {
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+#compose-headers .compose-headers .form-group.row .input-group input[type="text"],
+#compose-headers .compose-headers .form-group.row .input-group input.form-control,
+#compose-headers .compose-headers .form-group.row .input-group textarea {
+  border: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 8px 10px !important;
+  font-size: 13px;
+  resize: none;
+  min-height: 38px;
+  box-shadow: none !important;
+}
+#compose-headers .compose-headers .form-group.row .input-group textarea {
+  max-height: 72px;
+  overflow-y: auto;
+}
+#compose-headers .compose-headers .form-group.row .input-group .input-group-append {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+#compose-headers .compose-headers .form-group.row .input-group .input-group-append a.input-group-text {
+  background: transparent !important;
+  border: none !important;
+  width: 32px;
+  height: 32px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #55556a;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+#compose-headers .compose-headers .form-group.row .input-group .input-group-append a.input-group-text span.inner {
+  display: none !important;
+}
+#compose-headers .compose-headers .form-group.row .input-group .input-group-append a.input-group-text:before {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  width: auto !important;
+  float: none !important;
+}
+#compose-headers .compose-headers .form-group.row .input-group .input-group-append a.input-group-text:hover {
+  background-color: #16161e !important;
+  color: #f5f5f5;
+}
+#compose-headers .compose-headers .form-group.row #_from {
+  border: none !important;
+  background-color: transparent !important;
+  font-size: 13px;
+  padding: 8px 28px 8px 10px !important;
+  height: auto !important;
+  min-height: 38px;
+}
+#composebodycontainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 200px;
+}
+#composebodycontainer #composebody {
+  flex: 1;
+  height: 100% !important;
+  min-height: 200px;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #0a0a0a !important;
+  resize: none;
+  padding: 16px !important;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #f5f5f5 !important;
+  font-family: 'Source Sans 3', sans-serif;
+}
+#composebodycontainer #editor-selector {
+  display: none;
+}
+.action-compose .formbuttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: 1px solid #1a1a24;
+  background-color: #0a0a0a;
+}
+.action-compose .formbuttons .float-right a.extwin {
+  font-size: 11px;
+  color: #55556a;
+  font-family: 'Source Code Pro', monospace;
+  text-decoration: none;
+}
+.action-compose .formbuttons .float-right a.extwin:before {
+  font-size: 12px !important;
+}
+.action-compose .formbuttons .float-right a.extwin:hover {
+  color: #f5f5f5;
+}
+.sidebar-right {
+  background-color: #0a0a0a !important;
+  border-left: 1px solid #1a1a24 !important;
+}
+.sidebar-right > .header {
+  background-color: #0a0a0a !important;
+}
+.sidebar-right #compose-attachments {
+  border-bottom: 1px solid #1a1a24;
+}
+.sidebar-right #compose-attachments .upload-form {
+  padding: 12px 14px;
+  text-align: center;
+}
+.sidebar-right #compose-attachments .upload-form .hint {
+  font-size: 11px;
+  color: #55556a;
+  font-family: 'Source Code Pro', monospace;
+  margin-bottom: 8px;
+}
+.sidebar-right #compose-attachments .upload-form button.attach {
+  font-size: 12px;
+  width: 100%;
+}
+.sidebar-right #compose-attachments.droptarget {
+  border: 2px dashed #1a1a24;
+  border-radius: 0;
+  margin: 0;
+}
+.sidebar-right #compose-attachments.droptarget.hover {
+  border-color: #5b9bd5;
+}
+.sidebar-right #compose-options {
+  padding: 4px 0;
+}
+.sidebar-right #compose-options .form-group.row {
+  margin: 0;
+  padding: 9px 14px;
+  border-bottom: 1px solid #1a1a24;
+}
+.sidebar-right #compose-options .form-group.row:last-child {
+  border-bottom: none;
+}
+.sidebar-right #compose-options .form-group.row label.col-form-label {
+  color: #888898 !important;
+  font-size: 12px !important;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.sidebar-right #compose-options .form-group.row .col-6 {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.sidebar-right #compose-options .form-group.row select {
+  font-size: 12px;
 }
