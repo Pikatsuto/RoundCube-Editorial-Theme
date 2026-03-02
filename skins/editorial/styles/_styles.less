@@ -60,28 +60,39 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Compose button — accent bg, black text
-#taskmenu .action-buttons a {
-    background-color: @color-main !important;
-    color: #000 !important;
-    border-radius: 6px;
-
-    &:before {
-        color: #000 !important;
+// ALL taskmenu buttons — icon-only 36x36, centered, border-radius 6
+// Override Elastic's desktop media query that shows text + sets width to layout-menu-width
+#taskmenu {
+    // Force icon-only at ALL screen sizes (override Elastic's >1024px media query)
+    span.inner {
+        display: none !important;
     }
-
-    &:hover {
-        background-color: lighten(@color-main, 8%) !important;
-    }
-}
-
-// Bottom buttons (darkmode, about, logout) — same style as top buttons
-#taskmenu .special-buttons {
-    background-color: #050505 !important;
 
     a {
-        color: #55556a;
+        width: 36px !important;
+        height: 36px !important;
+        padding: 0 !important;
+        border-radius: 6px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        float: none !important;
+        font-size: 0 !important; // hide any text that leaks through
         transition: all .12s;
+        color: #55556a;
+
+        &:before {
+            font-size: 16px !important;
+            line-height: 36px !important;
+            float: none !important;
+            width: auto !important;
+            margin: 0 !important;
+        }
+
+        &.selected {
+            color: @color-main !important;
+            background-color: #1a1a28 !important;
+        }
 
         &:hover {
             background-color: #16161e !important;
@@ -89,11 +100,37 @@ body, button, input, optgroup, select, textarea, .popover {
         }
     }
 
-    a.logout {
-        color: #e05050 !important;
+    // Compose button — accent bg, black text
+    .action-buttons a {
+        background-color: @color-main !important;
+        color: #000 !important;
+        margin-bottom: 10px;
+
+        &:before {
+            font-size: 14px !important;
+            color: #000 !important;
+        }
 
         &:hover {
-            color: lighten(#e05050, 10%) !important;
+            background-color: lighten(@color-main, 8%) !important;
+            color: #000 !important;
+        }
+    }
+
+    // Bottom buttons (darkmode, about, logout) — same 36x36 style
+    .special-buttons {
+        background-color: #050505 !important;
+
+        a {
+            color: #55556a;
+        }
+
+        a.logout {
+            color: #e05050 !important;
+
+            &:hover {
+                color: lighten(#e05050, 10%) !important;
+            }
         }
     }
 }
@@ -232,11 +269,11 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Toolbar in list/content headers — hide text, keep Elastic layout
+// Toolbar buttons in all headers — icon-only, matching template TBtn (32x32)
 .menu.toolbar a {
     color: #55556a;
 
-    // Hide text labels, keep icons
+    // Hide text labels everywhere
     span.inner {
         display: none !important;
     }
@@ -248,6 +285,125 @@ body, button, input, optgroup, select, textarea, .popover {
 
     &:not(.disabled):focus {
         background-color: #16161e;
+    }
+}
+
+// Also hide text on standalone toolbar buttons (refresh, menu, back, etc.)
+.header a.button span.inner {
+    display: none !important;
+}
+
+// Mail action toolbar (#mailtoolbar) — reply, forward, delete, etc.
+// Template: icons aligned right in the content header, 32x32 each
+#mailtoolbar {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+
+    a {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        min-width: 32px !important;
+        max-width: 32px !important;
+        padding: 0 !important;
+        border-radius: 5px;
+        color: #55556a;
+        float: none !important;
+        font-size: 0 !important;
+
+        &:before {
+            font-size: 14px !important;
+            line-height: 32px !important;
+            float: none !important;
+            width: auto !important;
+            margin: 0 !important;
+        }
+
+        &:not(.disabled):hover {
+            background-color: #16161e;
+            color: #f5f5f5;
+        }
+
+        // Hide the "compose" and "hidden" buttons that don't belong here
+        &.compose.hidden {
+            display: none !important;
+        }
+    }
+
+    // Dropbuttons (reply-all + dropdown arrow, forward + dropdown arrow)
+    .dropbutton {
+        display: inline-flex !important;
+        align-items: center;
+
+        a.dropdown {
+            width: 18px !important;
+            min-width: 18px !important;
+            max-width: 18px !important;
+            padding: 0 !important;
+
+            &:before {
+                font-size: 10px !important;
+                line-height: 32px !important;
+            }
+        }
+    }
+
+    > .spacer {
+        flex: 1;
+    }
+}
+
+// List header toolbar — select, threads, options, refresh
+#messagelist-header .toolbar a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    padding: 0 !important;
+    border-radius: 5px;
+    color: #55556a;
+    float: none !important;
+    font-size: 0 !important;
+
+    &:before {
+        font-size: 14px !important;
+        line-height: 32px !important;
+        float: none !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    &:not(.disabled):hover {
+        background-color: #16161e;
+        color: #f5f5f5;
+    }
+}
+
+// Refresh button in list header
+#messagelist-header a.toolbar-button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0 !important;
+    border-radius: 5px;
+    color: #55556a;
+    font-size: 0 !important;
+
+    &:before {
+        font-size: 14px !important;
+    }
+
+    &:hover {
+        background-color: #16161e;
+        color: #f5f5f5;
     }
 }
 

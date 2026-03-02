@@ -19,42 +19,6 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
     rcmail.env.skin = 'elastic';
 }
 
-// Editorial: ident_switch plugin fixes
-$(document).ready(function() {
-    if (!window.rcmail) return;
-
-    rcmail.addEventListener('init', function() {
-        setTimeout(function() {
-            var sel = $('#plugin-ident_switch-account');
-            if (!sel.length) return;
-
-            // If the select is hidden, the plugin failed to place it
-            if (sel.css('display') === 'none' || !sel.is(':visible')) {
-                var target = $('.header-title.username');
-                if (target.length) {
-                    sel.css('display', '');
-                    if (!target.find('.ident-switch-wrapper').length) {
-                        var wrapper = $('<span class="ident-switch-wrapper"></span>');
-                        wrapper.append(sel);
-                        target.empty().append(wrapper);
-                    }
-                }
-            }
-
-            // Remove pretty-select class so Elastic doesn't intercept clicks
-            // Then dispose the popover if it was already initialized
-            if (sel.hasClass('pretty-select')) {
-                sel.removeClass('pretty-select');
-                try { sel.popover('dispose'); } catch (e) { }
-                // Clone and replace to remove all jQuery event handlers
-                // while keeping the native onchange attribute
-                var clone = sel[0].cloneNode(true);
-                sel[0].parentNode.replaceChild(clone, sel[0]);
-            }
-        }, 300);
-    });
-});
-
 function rcube_elastic_ui() {
     var prefs, ref = this,
         mode = 'normal', // one of: large, normal, small, phone
