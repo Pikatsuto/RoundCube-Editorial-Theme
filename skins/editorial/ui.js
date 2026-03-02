@@ -31,7 +31,9 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
 if (window.rcmail) {
     rcmail.addEventListener('init', function() {
         setTimeout(function() {
-            $('#plugin-ident_switch-account').off('mousedown keydown');
+            $('#plugin-ident_switch-account')
+                .off('mousedown keydown')
+                .removeClass('pretty-select custom-select form-control');
         }, 0);
     });
 }
