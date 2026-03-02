@@ -6726,29 +6726,85 @@ textarea,
 ::-webkit-scrollbar-thumb:hover {
   background: #55556a;
 }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
 input.form-control,
-textarea.form-control,
-select.form-control,
-select.custom-select {
+textarea,
+textarea.form-control {
   background-color: #111116 !important;
-  border-color: #252530 !important;
+  border: 1px solid #252530 !important;
   color: #f5f5f5 !important;
+  border-radius: 5px !important;
   font-family: 'Source Sans 3', sans-serif;
 }
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
 input.form-control:focus,
-textarea.form-control:focus,
-select.form-control:focus,
-select.custom-select:focus {
+textarea:focus,
+textarea.form-control:focus {
   background-color: #16161e !important;
   border-color: #5b9bd5 !important;
   box-shadow: none !important;
+  outline: none !important;
 }
-input.form-control option,
-textarea.form-control option,
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="search"]::placeholder,
+input[type="url"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="number"]::placeholder,
+input.form-control::placeholder,
+textarea::placeholder,
+textarea.form-control::placeholder {
+  color: #55556a !important;
+}
+select,
+select.form-control,
+select.custom-select {
+  background-color: #111116 !important;
+  border: 1px solid #252530 !important;
+  color: #f5f5f5 !important;
+  border-radius: 5px !important;
+  padding: 6px 28px 6px 10px !important;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  height: auto !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3e%3cpath fill='%23888898' d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 6px center !important;
+  background-size: 16px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  cursor: pointer;
+}
+select:focus,
+select.form-control:focus,
+select.custom-select:focus {
+  border-color: #5b9bd5 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+select option,
 select.form-control option,
 select.custom-select option {
   background-color: #141418;
   color: #f5f5f5;
+}
+.input-group-text {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #55556a;
 }
 .token-input-list,
 .token-input-list-facebook,
@@ -7426,17 +7482,15 @@ code,
   background: #111116;
   border: 1px solid #1a1a24;
 }
-#login-form .input-group-text {
-  background-color: #111116 !important;
-  border: 1px solid #252530 !important;
-  border-right: none !important;
-  color: #55556a !important;
+.task-login .input-group-lg {
+  display: flex;
 }
-#login-form .input-group .form-control {
-  border-left: none !important;
+.task-login .input-group-prepend {
+  padding-top: 6px;
+  margin-right: 6px;
 }
-#login-form .input-group:focus-within .input-group-text {
-  border-color: #5b9bd5 !important;
+.task-login #logo {
+  padding-left: 40px;
 }
 .ui-draggable-handle {
   display: flex;
@@ -7451,6 +7505,9 @@ code,
 .ui-draggable-handle a {
   min-width: 51%;
   flex: 1;
+}
+.ui-draggable-handle li {
+  min-width: 51%;
 }
 .ui-draggable-handle input {
   margin-right: 14px;

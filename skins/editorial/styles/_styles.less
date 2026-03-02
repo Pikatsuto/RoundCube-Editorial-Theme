@@ -39,25 +39,70 @@ button, input, optgroup, select, textarea, .popover {
 // ── Global dark form inputs ──
 // ═══════════════════════════════════════════
 
+// Tous les inputs texte — dark global
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
 input.form-control,
-textarea.form-control,
-select.form-control,
-select.custom-select {
+textarea,
+textarea.form-control {
     background-color: #111116 !important;
-    border-color: #252530 !important;
+    border: 1px solid #252530 !important;
     color: #f5f5f5 !important;
+    border-radius: 5px !important;
     font-family: 'Source Sans 3', sans-serif;
 
     &:focus {
         background-color: #16161e !important;
         border-color: @color-main !important;
         box-shadow: none !important;
+        outline: none !important;
+    }
+
+    &::placeholder { color: #55556a !important; }
+}
+
+// Tous les <select> natifs — dark + flèche SVG custom
+select,
+select.form-control,
+select.custom-select {
+    background-color: #111116 !important;
+    border: 1px solid #252530 !important;
+    color: #f5f5f5 !important;
+    border-radius: 5px !important;
+    padding: 6px 28px 6px 10px !important;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    height: auto !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3e%3cpath fill='%23888898' d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 6px center !important;
+    background-size: 16px !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    cursor: pointer;
+
+    &:focus {
+        border-color: @color-main !important;
+        box-shadow: none !important;
+        outline: none !important;
     }
 
     option {
         background-color: #141418;
         color: #f5f5f5;
     }
+}
+
+// input-group — icône wrapper transparent
+.input-group-text {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #55556a;
 }
 
 // Tokenizer (compose To/Cc/Bcc)
@@ -842,21 +887,19 @@ pre, code,
     }
 }
 
-// Login — input-group icon wrapper
-#login-form {
-    .input-group-text {
-        background-color: #111116 !important;
-        border: 1px solid #252530 !important;
-        border-right: none !important;
-        color: #55556a !important;
+// Login — layout
+.task-login {
+    .input-group-lg {
+        display: flex;
     }
 
-    .input-group .form-control {
-        border-left: none !important;
+    .input-group-prepend {
+        padding-top: 6px;
+        margin-right: 6px;
     }
 
-    .input-group:focus-within .input-group-text {
-        border-color: @color-main !important;
+    #logo {
+        padding-left: 40px;
     }
 }
 
@@ -879,6 +922,10 @@ pre, code,
     a {
         min-width: 51%;
         flex: 1;
+    }
+
+    li {
+        min-width: 51%;
     }
 
     input {
