@@ -60,77 +60,41 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Task menu buttons — ALL buttons are 36x36 icon-only, border-radius 6
-#taskmenu {
+// Compose button — accent bg, black text
+#taskmenu .action-buttons a {
+    background-color: @color-main !important;
+    color: #000 !important;
+    border-radius: 6px;
+
+    &:before {
+        color: #000 !important;
+    }
+
+    &:hover {
+        background-color: lighten(@color-main, 8%) !important;
+    }
+}
+
+// Bottom buttons (darkmode, about, logout) — same style as top buttons
+#taskmenu .special-buttons {
+    background-color: #050505 !important;
+
     a {
-        width: 36px !important;
-        height: 36px !important;
-        border-radius: 6px !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        padding: 0 !important;
-        margin: 1px auto !important;
         color: #55556a;
-        background: transparent;
         transition: all .12s;
-        line-height: 36px !important;
-        font-size: 0 !important; // hide text fallback
-
-        &:before {
-            margin: 0 !important;
-            width: auto !important;
-            height: auto !important;
-            font-size: 16px;
-            line-height: 36px;
-            float: none !important;
-        }
-
-        // Always hide labels — icon-only mode
-        span.inner {
-            display: none !important;
-        }
 
         &:hover {
             background-color: #16161e !important;
             color: #f5f5f5 !important;
         }
-
-        &.selected {
-            background-color: #1a1a28 !important;
-            color: @color-main !important;
-        }
     }
 
-    // Compose button (action button) — accent bg, black text
-    .action-buttons a {
-        background-color: @color-main !important;
-        color: #000 !important;
-        margin-bottom: 10px !important;
-
-        &:before {
-            font-size: 14px;
-            color: #000 !important;
-        }
-
-        &:hover {
-            background-color: lighten(@color-main, 8%) !important;
-        }
-    }
-
-    // Logout button — keep red color
     a.logout {
         color: #e05050 !important;
 
         &:hover {
             color: lighten(#e05050, 10%) !important;
-            background-color: #16161e !important;
         }
-    }
-
-    // Special buttons container
-    .special-buttons {
-        background-color: #050505 !important;
     }
 }
 
@@ -268,28 +232,11 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Toolbar in list/content headers — icon-only, compact
+// Toolbar in list/content headers — hide text, keep Elastic layout
 .menu.toolbar a {
-    min-width: 32px !important;
-    max-width: 32px !important;
-    height: 32px !important;
-    padding: 0 !important;
-    border-radius: 5px;
     color: #55556a;
-    font-size: 0 !important; // hide text
-    line-height: 32px !important;
-    float: none !important;
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
 
-    &:before {
-        font-size: 14px;
-        line-height: 32px;
-        margin: 0 !important;
-        height: auto !important;
-    }
-
+    // Hide text labels, keep icons
     span.inner {
         display: none !important;
     }
@@ -298,26 +245,9 @@ body, button, input, optgroup, select, textarea, .popover {
         background-color: #16161e;
         color: #f5f5f5;
     }
-}
 
-// Dropbutton pairs (reply-all + dropdown arrow)
-.menu.toolbar .dropbutton {
-    display: inline-flex !important;
-    float: none !important;
-}
-
-// Back/nav buttons in headers — same icon style
-.header a.button.icon {
-    border-radius: 5px;
-    color: #55556a;
-
-    span.inner {
-        display: none !important;
-    }
-
-    &:hover {
+    &:not(.disabled):focus {
         background-color: #16161e;
-        color: #f5f5f5;
     }
 }
 

@@ -6726,61 +6726,33 @@ textarea,
   font-weight: 700;
   margin-bottom: 14px;
 }
-#taskmenu a {
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 6px !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  padding: 0 !important;
-  margin: 1px auto !important;
-  color: #55556a;
-  background: transparent;
-  transition: all 0.12s;
-  line-height: 36px !important;
-  font-size: 0 !important;
-}
-#taskmenu a:before {
-  margin: 0 !important;
-  width: auto !important;
-  height: auto !important;
-  font-size: 16px;
-  line-height: 36px;
-  float: none !important;
-}
-#taskmenu a span.inner {
-  display: none !important;
-}
-#taskmenu a:hover {
-  background-color: #16161e !important;
-  color: #f5f5f5 !important;
-}
-#taskmenu a.selected {
-  background-color: #1a1a28 !important;
-  color: #5b9bd5 !important;
-}
 #taskmenu .action-buttons a {
   background-color: #5b9bd5 !important;
   color: #000 !important;
-  margin-bottom: 10px !important;
+  border-radius: 6px;
 }
 #taskmenu .action-buttons a:before {
-  font-size: 14px;
   color: #000 !important;
 }
 #taskmenu .action-buttons a:hover {
   background-color: #7bafdd !important;
 }
-#taskmenu a.logout {
-  color: #e05050 !important;
-}
-#taskmenu a.logout:hover {
-  color: #e87b7b !important;
-  background-color: #16161e !important;
-}
 #taskmenu .special-buttons {
   background-color: #050505 !important;
+}
+#taskmenu .special-buttons a {
+  color: #55556a;
+  transition: all 0.12s;
+}
+#taskmenu .special-buttons a:hover {
+  background-color: #16161e !important;
+  color: #f5f5f5 !important;
+}
+#taskmenu .special-buttons a.logout {
+  color: #e05050 !important;
+}
+#taskmenu .special-buttons a.logout:hover {
+  color: #e87b7b !important;
 }
 #layout-sidebar {
   background-color: #0e0e12 !important;
@@ -6878,24 +6850,7 @@ textarea,
   background-color: #0a0a0a !important;
 }
 .menu.toolbar a {
-  min-width: 32px !important;
-  max-width: 32px !important;
-  height: 32px !important;
-  padding: 0 !important;
-  border-radius: 5px;
   color: #55556a;
-  font-size: 0 !important;
-  line-height: 32px !important;
-  float: none !important;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-}
-.menu.toolbar a:before {
-  font-size: 14px;
-  line-height: 32px;
-  margin: 0 !important;
-  height: auto !important;
 }
 .menu.toolbar a span.inner {
   display: none !important;
@@ -6904,20 +6859,8 @@ textarea,
   background-color: #16161e;
   color: #f5f5f5;
 }
-.menu.toolbar .dropbutton {
-  display: inline-flex !important;
-  float: none !important;
-}
-.header a.button.icon {
-  border-radius: 5px;
-  color: #55556a;
-}
-.header a.button.icon span.inner {
-  display: none !important;
-}
-.header a.button.icon:hover {
+.menu.toolbar a:not(.disabled):focus {
   background-color: #16161e;
-  color: #f5f5f5;
 }
 .searchbar {
   background-color: transparent !important;

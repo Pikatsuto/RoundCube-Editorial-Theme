@@ -20,12 +20,10 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
 }
 
 // Editorial: ident_switch plugin fixes
-// Remove pretty-select so the native dropdown works instead of Elastic's popover
 $(document).ready(function() {
     if (!window.rcmail) return;
 
     rcmail.addEventListener('init', function() {
-        // Delay to ensure pretty_select() has already run
         setTimeout(function() {
             var sel = $('#plugin-ident_switch-account');
             if (!sel.length) return;
@@ -43,14 +41,17 @@ $(document).ready(function() {
                 }
             }
 
-            // Strip pretty-select and its popover to restore native <select>
-            sel.removeClass('pretty-select custom-select');
-            try { sel.popover('dispose'); } catch (e) { }
-            // Remove all click/focus handlers added by pretty_select
-            sel.off('click mousedown focus');
-            // Re-bind only the onchange handler from the plugin
-            // (it's already set via HTML onchange attribute, so nothing to do)
-        }, 200);
+            // Remove pretty-select class so Elastic doesn't intercept clicks
+            // Then dispose the popover if it was already initialized
+            if (sel.hasClass('pretty-select')) {
+                sel.removeClass('pretty-select');
+                try { sel.popover('dispose'); } catch (e) { }
+                // Clone and replace to remove all jQuery event handlers
+                // while keeping the native onchange attribute
+                var clone = sel[0].cloneNode(true);
+                sel[0].parentNode.replaceChild(clone, sel[0]);
+            }
+        }, 300);
     });
 });
 
