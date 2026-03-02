@@ -6812,6 +6812,9 @@ select.custom-select option {
 .form-group {
   display: flex;
 }
+.form-group.row {
+  justify-content: space-between;
+}
 .input-group-append {
   margin: 0 4px;
 }
