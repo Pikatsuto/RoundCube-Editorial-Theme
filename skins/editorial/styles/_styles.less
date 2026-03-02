@@ -42,6 +42,75 @@ body, button, input, optgroup, select, textarea, .popover {
 
 
 // ═══════════════════════════════════════════
+// ── Global dark form inputs ──
+// All pages: compose, settings, login, contacts…
+// ═══════════════════════════════════════════
+
+input.form-control,
+textarea.form-control,
+select.form-control,
+select.custom-select {
+    background-color: #111116 !important;
+    border-color: #252530 !important;
+    color: #f5f5f5 !important;
+    font-family: 'Source Sans 3', sans-serif;
+
+    &:focus {
+        background-color: #16161e !important;
+        border-color: @color-main !important;
+        box-shadow: none !important;
+    }
+
+    option {
+        background-color: #141418;
+        color: #f5f5f5;
+    }
+}
+
+// Tokenizer recipient input (compose To/Cc/Bcc fields)
+.token-input-list,
+.token-input-list-facebook,
+ul.tokens-container {
+    background-color: #111116 !important;
+    border-color: #252530 !important;
+
+    li input {
+        background-color: transparent !important;
+        color: #f5f5f5 !important;
+    }
+}
+
+// Generic form labels
+.form-group label,
+.col-form-label {
+    color: #888898;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+}
+
+// Checkbox / radio
+.form-check-input {
+    background-color: #111116;
+    border-color: #252530;
+}
+
+// Buttons (secondary/default)
+.btn-secondary {
+    background-color: #1a1a28 !important;
+    border-color: #252530 !important;
+    color: #f5f5f5 !important;
+}
+
+// Primary button
+.btn-primary {
+    background-color: @color-main !important;
+    color: #000 !important;
+    border: none !important;
+    font-weight: 600;
+}
+
+
+// ═══════════════════════════════════════════
 // ── #layout-menu (task menu sidebar) ──
 // template: 52px, #050505, flex column, center
 // ═══════════════════════════════════════════
@@ -60,10 +129,14 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// ALL taskmenu buttons — icon-only 36x36, centered, border-radius 6
-// Override Elastic's desktop media query that shows text + sets width to layout-menu-width
+// #taskmenu — flex column, tous les boutons centrés 36x36
+// Override la media query Elastic >1024px qui affiche le texte
 #taskmenu {
-    // Force icon-only at ALL screen sizes (override Elastic's >1024px media query)
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+
     span.inner {
         display: none !important;
     }
@@ -71,22 +144,27 @@ body, button, input, optgroup, select, textarea, .popover {
     a {
         width: 36px !important;
         height: 36px !important;
+        min-width: 36px !important;
+        max-width: 36px !important;
         padding: 0 !important;
+        margin: 1px 0;
         border-radius: 6px;
         display: flex !important;
-        align-items: center;
-        justify-content: center;
+        align-items: center !important;
+        justify-content: center !important;
         float: none !important;
-        font-size: 0 !important; // hide any text that leaks through
+        font-size: 0 !important;
         transition: all .12s;
         color: #55556a;
+        line-height: 36px !important;
 
         &:before {
             font-size: 16px !important;
-            line-height: 36px !important;
+            line-height: 1 !important;
             float: none !important;
             width: auto !important;
             margin: 0 !important;
+            height: auto !important;
         }
 
         &.selected {
@@ -100,7 +178,7 @@ body, button, input, optgroup, select, textarea, .popover {
         }
     }
 
-    // Compose button — accent bg, black text
+    // Bouton Composer — accent bg, texte noir
     .action-buttons a {
         background-color: @color-main !important;
         color: #000 !important;
@@ -117,9 +195,14 @@ body, button, input, optgroup, select, textarea, .popover {
         }
     }
 
-    // Bottom buttons (darkmode, about, logout) — same 36x36 style
+    // Boutons bas (darkmode, ?, logout) — identiques aux boutons du haut
     .special-buttons {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         background-color: #050505 !important;
+        padding-bottom: 8px;
 
         a {
             color: #55556a;
@@ -137,20 +220,41 @@ body, button, input, optgroup, select, textarea, .popover {
 
 
 // ═══════════════════════════════════════════
+// ── All layout headers — vertical centering ──
+// layout.less has justify-content:center on .header
+// Add align-items:center so icons are vertically centered
+// ═══════════════════════════════════════════
+
+#layout > div > .header {
+    align-items: center !important;
+    border-bottom: 1px solid #1a1a24 !important;
+}
+
+#layout > div > .footer {
+    align-items: center !important;
+    border-top: 1px solid #1a1a24 !important;
+}
+
+
+// ═══════════════════════════════════════════
 // ── #layout-sidebar (folder list) ──
 // template: 230px, #0e0e12, border-right #1a1a24
 // ═══════════════════════════════════════════
 
+// overflow: visible pour que le dropdown ident_switch puisse dépasser le header
 #layout-sidebar {
     background-color: #0e0e12 !important;
     border-color: #1a1a24 !important;
 
-    // Header — 42px, username in mono 11px #888898
+    // Header — 42px, username en mono 11px #888898
+    // overflow:visible override le overflow:hidden de layout.less → permet le dropdown
     > .header {
         background-color: #0e0e12 !important;
         height: 42px !important;
         min-height: 42px !important;
         border-bottom: 1px solid #1a1a24 !important;
+        overflow: visible !important;
+        z-index: 20;
 
         .header-title {
             font-family: 'Source Serif 4', Georgia, serif;
@@ -158,7 +262,7 @@ body, button, input, optgroup, select, textarea, .popover {
             font-weight: 600;
         }
 
-        // Username text — mono
+        // Username — mono
         .header-title.username,
         .username {
             font-family: 'Source Code Pro', monospace !important;
@@ -170,7 +274,7 @@ body, button, input, optgroup, select, textarea, .popover {
 }
 
 // Folder tree — 13px, Source Sans 3
-// Only override vertical padding, leave padding-left intact for indentation
+// Seulement padding vertical, laisser padding-left pour l'indentation
 .folderlist li a,
 #mailbox-list li a,
 .treelist.listing li a {
@@ -183,7 +287,7 @@ body, button, input, optgroup, select, textarea, .popover {
     transition: background .1s;
 }
 
-// Selected folder — accent color, left border, #1a1a28 bg
+// Dossier sélectionné — accent, bordure gauche, bg #1a1a28
 .treelist.listing li.selected > a,
 .folderlist li.mailbox.selected > a {
     color: @color-main !important;
@@ -191,13 +295,13 @@ body, button, input, optgroup, select, textarea, .popover {
     border-left: 2px solid @color-main !important;
 }
 
-// Folder hover
+// Hover dossier
 .treelist.listing li > a:hover,
 .folderlist li a:hover {
     background-color: #16161e !important;
 }
 
-// Unread count badges — accent bg, black text, mono 9px
+// Badges non-lus — accent bg, texte noir, mono 9px
 .folderlist li.mailbox .unreadcount {
     background-color: @color-main !important;
     color: #000 !important;
@@ -210,7 +314,7 @@ body, button, input, optgroup, select, textarea, .popover {
     text-align: center;
 }
 
-// Folder icons — #55556a for inactive
+// Icônes dossiers
 .treelist.listing li > a:before {
     color: #55556a;
 }
@@ -218,7 +322,7 @@ body, button, input, optgroup, select, textarea, .popover {
     color: @color-main;
 }
 
-// Unread folders — bold
+// Dossiers non-lus — gras
 .folderlist li.unread > a {
     font-weight: 600;
 }
@@ -243,6 +347,103 @@ body, button, input, optgroup, select, textarea, .popover {
 
 
 // ═══════════════════════════════════════════
+// ── ident_switch plugin — dropdown CSS ──
+// Le select est converti par Elastic en pretty-select (popover)
+// overflow:visible sur le header permet au popover de sortir
+// ═══════════════════════════════════════════
+
+.ident-switch-wrapper {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+}
+
+// Style le select natif et le bouton pretty-select
+.ident-switch-wrapper select,
+#plugin-ident_switch-account {
+    cursor: pointer;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #888898 !important;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    max-width: 190px;
+    text-overflow: ellipsis;
+    padding: 0 1.4em 0 0.25em !important;
+    outline: none;
+    height: auto !important;
+    line-height: normal !important;
+    -webkit-appearance: auto;
+    appearance: auto;
+
+    option {
+        background-color: #141418;
+        color: #f5f5f5;
+    }
+}
+
+// Le bouton affiché par pretty-select (quand Elastic le convertit)
+.pretty-select + .select-menu-button,
+.select-menu-button {
+    background: transparent !important;
+    border: none !important;
+    color: #888898 !important;
+    font-family: 'Source Code Pro', monospace !important;
+    font-size: 11px !important;
+    cursor: pointer;
+    padding: 0 1.4em 0 0.25em !important;
+}
+
+// Le menu déroulant créé par Elastic pretty-select
+// z-index élevé + positionnement correct
+.select-menu {
+    z-index: 1050 !important;
+    background-color: #141418 !important;
+    border: 1px solid #252530 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8) !important;
+
+    .listing li a {
+        color: #f5f5f5 !important;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 11px;
+        padding: 8px 12px;
+
+        &:hover,
+        &.active {
+            background-color: #16161e !important;
+        }
+
+        &.selected {
+            color: @color-main !important;
+            background-color: #1c1c2e !important;
+        }
+    }
+}
+
+.ident-switch-badge,
+#ident-switch-badge {
+    flex-shrink: 0;
+    min-width: 1.4em;
+    padding: 0.1em 0.45em;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: 'Source Code Pro', monospace;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    color: #000;
+    background-color: @color-main;
+    border-radius: 10px;
+    margin-left: 0.3em;
+}
+
+
+// ═══════════════════════════════════════════
 // ── #layout-list (message list) ──
 // template: flex, #0a0a0a
 // ═══════════════════════════════════════════
@@ -255,7 +456,7 @@ body, button, input, optgroup, select, textarea, .popover {
         height: 42px !important;
         min-height: 42px !important;
         border-bottom: 1px solid #1a1a24 !important;
-        padding: 0 6px !important;
+        padding: 0 4px !important;
 
         .header-title {
             font-family: 'Source Serif 4', Georgia, serif;
@@ -269,11 +470,98 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Toolbar buttons in all headers — icon-only, matching template TBtn (32x32)
+// Toolbar dans le header de la liste (select, threads, options)
+// template: TBtn 32x32, icon-only
+#messagelist-header .toolbar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 2px;
+
+    a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        max-width: 32px !important;
+        padding: 0 !important;
+        border-radius: 5px;
+        color: #55556a;
+        float: none !important;
+        font-size: 0 !important;
+        line-height: 32px !important;
+
+        span.inner {
+            display: none !important;
+        }
+
+        &:before {
+            font-size: 14px !important;
+            line-height: 1 !important;
+            float: none !important;
+            width: auto !important;
+            margin: 0 !important;
+            height: auto !important;
+        }
+
+        &:not(.disabled):hover {
+            background-color: #16161e;
+            color: #f5f5f5;
+        }
+    }
+}
+
+// Bouton Actualiser (toolbar-button) dans le header liste
+#messagelist-header a.toolbar-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 5px;
+    color: #55556a;
+    font-size: 0 !important;
+    float: none !important;
+
+    span.inner {
+        display: none !important;
+    }
+
+    &:before {
+        font-size: 14px !important;
+        line-height: 1 !important;
+        float: none !important;
+        width: auto !important;
+        margin: 0 !important;
+        height: auto !important;
+    }
+
+    &:hover {
+        background-color: #16161e;
+        color: #f5f5f5;
+    }
+}
+
+// Cacher le texte sur tous les boutons des headers (back, menu, task-menu, etc.)
+.header a.button {
+    span.inner {
+        display: none !important;
+    }
+
+    &:before {
+        float: none !important;
+        height: auto !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+}
+
+// Toolbar .menu.toolbar — cacher le texte, hover
 .menu.toolbar a {
     color: #55556a;
 
-    // Hide text labels everywhere
     span.inner {
         display: none !important;
     }
@@ -285,125 +573,6 @@ body, button, input, optgroup, select, textarea, .popover {
 
     &:not(.disabled):focus {
         background-color: #16161e;
-    }
-}
-
-// Also hide text on standalone toolbar buttons (refresh, menu, back, etc.)
-.header a.button span.inner {
-    display: none !important;
-}
-
-// Mail action toolbar (#mailtoolbar) — reply, forward, delete, etc.
-// Template: icons aligned right in the content header, 32x32 each
-#mailtoolbar {
-    display: flex;
-    align-items: center;
-    gap: 1px;
-
-    a {
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        min-width: 32px !important;
-        max-width: 32px !important;
-        padding: 0 !important;
-        border-radius: 5px;
-        color: #55556a;
-        float: none !important;
-        font-size: 0 !important;
-
-        &:before {
-            font-size: 14px !important;
-            line-height: 32px !important;
-            float: none !important;
-            width: auto !important;
-            margin: 0 !important;
-        }
-
-        &:not(.disabled):hover {
-            background-color: #16161e;
-            color: #f5f5f5;
-        }
-
-        // Hide the "compose" and "hidden" buttons that don't belong here
-        &.compose.hidden {
-            display: none !important;
-        }
-    }
-
-    // Dropbuttons (reply-all + dropdown arrow, forward + dropdown arrow)
-    .dropbutton {
-        display: inline-flex !important;
-        align-items: center;
-
-        a.dropdown {
-            width: 18px !important;
-            min-width: 18px !important;
-            max-width: 18px !important;
-            padding: 0 !important;
-
-            &:before {
-                font-size: 10px !important;
-                line-height: 32px !important;
-            }
-        }
-    }
-
-    > .spacer {
-        flex: 1;
-    }
-}
-
-// List header toolbar — select, threads, options, refresh
-#messagelist-header .toolbar a {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    min-width: 32px !important;
-    max-width: 32px !important;
-    padding: 0 !important;
-    border-radius: 5px;
-    color: #55556a;
-    float: none !important;
-    font-size: 0 !important;
-
-    &:before {
-        font-size: 14px !important;
-        line-height: 32px !important;
-        float: none !important;
-        width: auto !important;
-        margin: 0 !important;
-    }
-
-    &:not(.disabled):hover {
-        background-color: #16161e;
-        color: #f5f5f5;
-    }
-}
-
-// Refresh button in list header
-#messagelist-header a.toolbar-button {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 0 !important;
-    border-radius: 5px;
-    color: #55556a;
-    font-size: 0 !important;
-
-    &:before {
-        font-size: 14px !important;
-    }
-
-    &:hover {
-        background-color: #16161e;
-        color: #f5f5f5;
     }
 }
 
@@ -437,28 +606,23 @@ body, button, input, optgroup, select, textarea, .popover {
 
 // Message list rows
 #messagelist {
-    // Row borders
     tr {
         border-bottom: 1px solid #1a1a24 !important;
         transition: background .08s;
     }
 
-    // Hover state
     tr:hover td {
         background-color: #16161e !important;
     }
 
-    // Unread messages — slight bg tint
     tr.unread td {
         background-color: #0c0c10;
     }
 
-    // Selected row
     tr.selected td {
         background-color: #1c1c2e !important;
     }
 
-    // From/subject — 13px
     td.subject {
         font-size: 13px;
 
@@ -479,7 +643,6 @@ body, button, input, optgroup, select, textarea, .popover {
         }
     }
 
-    // Unread — bold from, semibold subject
     tr.unread td.subject {
         span.fromto {
             font-weight: 700;
@@ -492,7 +655,6 @@ body, button, input, optgroup, select, textarea, .popover {
         }
     }
 
-    // Flag icon
     span.flag {
         color: #3a3a4a;
     }
@@ -501,7 +663,6 @@ body, button, input, optgroup, select, textarea, .popover {
         color: #e5a44d;
     }
 
-    // Attachment icon
     span.attachment span {
         color: #55556a;
     }
@@ -531,11 +692,11 @@ body, button, input, optgroup, select, textarea, .popover {
         height: 42px !important;
         min-height: 42px !important;
         border-bottom: 1px solid #1a1a24 !important;
-        padding: 0 6px !important;
+        padding: 0 4px !important;
     }
 }
 
-// Empty state watermark — visible, centered
+// Empty state watermark — visible, centré
 #layout-content .watermark {
     opacity: 0.6;
     background-color: #0a0a0a;
@@ -546,7 +707,70 @@ body, button, input, optgroup, select, textarea, .popover {
     background-color: #0a0a0a;
 }
 
-// Subject heading — Source Serif 4, 20px, bold
+// Mail action toolbar (#mailtoolbar) — reply, forward, delete, etc.
+// template: TBtn 32x32, icon-only, alignés à droite
+#mailtoolbar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1px;
+    flex-shrink: 0;
+
+    a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        max-width: 32px !important;
+        padding: 0 !important;
+        border-radius: 5px;
+        color: #55556a;
+        float: none !important;
+        font-size: 0 !important;
+        line-height: 32px !important;
+
+        span.inner {
+            display: none !important;
+        }
+
+        &:before {
+            font-size: 14px !important;
+            line-height: 1 !important;
+            float: none !important;
+            width: auto !important;
+            margin: 0 !important;
+            height: auto !important;
+        }
+
+        &:not(.disabled):hover {
+            background-color: #16161e;
+            color: #f5f5f5;
+        }
+    }
+
+    .dropbutton {
+        display: inline-flex !important;
+        align-items: center;
+
+        a.dropdown {
+            width: 18px !important;
+            min-width: 18px !important;
+            max-width: 18px !important;
+            padding: 0 !important;
+
+            &:before {
+                font-size: 10px !important;
+            }
+        }
+    }
+
+    > .spacer {
+        flex: 1;
+    }
+}
+
+// Subject — Source Serif 4, 20px, gras
 #message-header > .subject {
     font-family: 'Source Serif 4', Georgia, serif !important;
     font-size: 20px;
@@ -560,7 +784,7 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Mail headers — from name, email, date
+// En-têtes mail — from, email, date
 #message-header {
     .header-headers {
         .header-title {
@@ -575,7 +799,7 @@ body, button, input, optgroup, select, textarea, .popover {
     }
 }
 
-// Contact photo / avatar — 36px circle, accent bg
+// Avatar — 36px cercle, accent bg
 #message-header .contactphoto {
     width: 36px !important;
     height: 36px !important;
@@ -584,7 +808,7 @@ body, button, input, optgroup, select, textarea, .popover {
     overflow: hidden;
 }
 
-// Monospace elements — Source Code Pro
+// Monospace
 .message-part div.pre,
 pre,
 code,
@@ -592,7 +816,7 @@ code,
     font-family: 'Source Code Pro', SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-// Plain text message body
+// Corps du mail en texte brut
 .message-part pre {
     font-size: 12px;
     line-height: 1.65;
@@ -605,20 +829,11 @@ code,
 
 
 // ═══════════════════════════════════════════
-// ── Headers — all panels ──
+// ── Header title — Source Serif 4 partout ──
 // ═══════════════════════════════════════════
 
-#layout > div > .header {
-    border-bottom: 1px solid #1a1a24 !important;
-}
-
-#layout > div > .footer {
-    border-top: 1px solid #1a1a24 !important;
-}
-
-// Header title — serif on sidebar
 .header-title {
-    font-family: 'Source Serif 4', Georgia, serif;
+    font-family: 'Source Serif 4', Georgia, serif !important;
 }
 
 
@@ -633,64 +848,19 @@ code,
     border-radius: 6px;
 }
 
+.popupmenu {
+    background-color: #141418;
+    border: 1px solid #252530;
+    border-radius: 6px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
 
-// ═══════════════════════════════════════════
-// ── ident_switch plugin (Gecka-Apps) ──
-// ═══════════════════════════════════════════
-
-.ident-switch-wrapper {
-    display: inline-flex;
-    align-items: center;
-    width: 100%;
-}
-
-// Style the select — keep it functional (don't fight pretty-select)
-.ident-switch-wrapper select,
-#plugin-ident_switch-account {
-    cursor: pointer;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: #888898 !important;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    max-width: 200px;
-    text-overflow: ellipsis;
-    padding: 0 1.4em 0 0.25em !important;
-    outline: none;
-    height: auto !important;
-    line-height: normal !important;
-
-    option {
-        background-color: #141418;
+    .listing li a {
         color: #f5f5f5;
-    }
-}
 
-// When Elastic converts to pretty-select, style the popover it opens
-.select-menu .listing li {
-    a.active.selected {
-        background-color: #1c1c2e;
-        color: @color-main;
+        &:hover {
+            background-color: #16161e;
+        }
     }
-}
-
-.ident-switch-badge,
-#ident-switch-badge {
-    flex-shrink: 0;
-    min-width: 1.4em;
-    padding: 0.1em 0.45em;
-    font-size: 9px;
-    font-weight: 700;
-    font-family: 'Source Code Pro', monospace;
-    line-height: 1.4;
-    text-align: center;
-    white-space: nowrap;
-    color: #000;
-    background-color: @color-main;
-    border-radius: 10px;
-    margin-left: 0.3em;
 }
 
 
@@ -759,20 +929,20 @@ code,
     }
 
     input.form-control {
-        background-color: #111116;
-        border-color: #252530;
-        color: #f5f5f5;
+        background-color: #111116 !important;
+        border-color: #252530 !important;
+        color: #f5f5f5 !important;
 
         &:focus {
-            background-color: #16161e;
-            border-color: @color-main;
+            background-color: #16161e !important;
+            border-color: @color-main !important;
         }
     }
 
     .btn-primary {
-        background-color: @color-main;
-        color: #000;
-        border: none;
+        background-color: @color-main !important;
+        color: #000 !important;
+        border: none !important;
         font-weight: 600;
     }
 }
