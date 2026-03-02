@@ -19,13 +19,20 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
     rcmail.env.skin = 'elastic';
 }
 
-// Fix: remove 'pretty-select' from ident_switch dropdown before user clicks.
-// Without this, Elastic's pretty_select() tries $(select).popover() which
-// fails with "TypeError: select.popover is not a function" because Bootstrap
-// popover jQuery plugin is not available in this context.
+// Fix ident_switch dropdown: Elastic's pretty_select() binds mousedown/keydown
+// handlers that call open_func() → select.popover() which fails because
+// Bootstrap's jQuery popover plugin is unavailable in this context.
+//
+// Our init listener registers BEFORE Elastic's (line 4492 creates the UI),
+// so we can't unbind synchronously — Elastic hasn't bound the handlers yet.
+// setTimeout(fn, 0) defers removal until after ALL synchronous init code
+// (including Elastic's init listener) has run. Then we .off() the handlers
+// and the native <select> dropdown works normally.
 if (window.rcmail) {
     rcmail.addEventListener('init', function() {
-        $('#plugin-ident_switch-account').removeClass('pretty-select');
+        setTimeout(function() {
+            $('#plugin-ident_switch-account').off('mousedown keydown');
+        }, 0);
     });
 }
 
