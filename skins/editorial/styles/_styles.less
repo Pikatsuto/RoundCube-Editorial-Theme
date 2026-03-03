@@ -195,12 +195,12 @@ a, button, .btn {
 
 
 // ═══════════════════════════════════════════
-// ── FLAT DESIGN — Kill ALL non-structural borders ──
-// Only keep panel separators (sidebar|list|content)
+// ── Border control — match template.jsx exactly ──
+// Template has borders on: message rows, searchbar, pagenav, headers
+// Template has NO borders on: folder items, settings rows, menus
 // ═══════════════════════════════════════════
 
-// List items — NO borders (folders, contacts, settings nav, etc.)
-.listing tbody td,
+// Folder list items — NO borders (template: clean, no separators)
 .listing li,
 .listing li > a,
 .treelist.listing li,
@@ -210,119 +210,53 @@ a, button, .btn {
     border-bottom: 0 !important;
     border-top: 0 !important;
 }
+.listing ul { border-top: 0 !important; }
 
-// Nested lists — no top border
-.listing ul {
-    border-top: 0 !important;
+// Message list rows — YES border-bottom (template has it)
+#messagelist tr {
+    border-bottom: 1px solid #1a1a24 !important;
 }
-
-// Message list rows — no borders
-#messagelist tr,
-#messagelist tr td,
-#messagelist tbody td {
+#messagelist tr td {
     border: 0 !important;
-    border-bottom: 0 !important;
 }
 
-// Contacts list, address book
+// Contacts list — no borders
 #contacts-table tr td,
 #directorylist li,
-#directorylist li a {
-    border: 0 !important;
-}
+#directorylist li a { border: 0 !important; }
 
 // Settings form rows — no borders
 .propform tr.form-group,
-.propform tr.form-group td {
-    border: 0 !important;
-}
+.propform tr.form-group td { border: 0 !important; }
 
-// Compose header rows — no borders
-#compose-headers .compose-headers .form-group.row {
-    border: 0 !important;
-}
+// Compose header/options rows — no borders
+#compose-headers .compose-headers .form-group.row,
+#compose-options .form-group.row { border: 0 !important; }
 
-// Compose options rows — no borders
-#compose-options .form-group.row {
-    border: 0 !important;
-}
-
-// Fieldsets — no borders at all
-fieldset {
-    border: 0 !important;
-}
+// Fieldsets — no borders
+fieldset { border: 0 !important; }
 
 // Tables — no internal borders
-.table td,
-.table th,
-.table thead th {
-    border: 0 !important;
-}
+.table td, .table th, .table thead th { border: 0 !important; }
 
-// Nav tabs — minimal
-.nav-tabs {
-    border-bottom: 0 !important;
-}
+// Menus, popovers — no borders on items
+.popupmenu .listing li, .popupmenu .listing li a,
+.select-menu .listing li, .select-menu .listing li a,
+.navlist li, .navlist li a { border: 0 !important; }
 
-// Attachment list — no border
-.attachmentslist,
-.attachmentlist {
-    border: 0 !important;
-}
-
-// Menu items — no borders
-.popupmenu .listing li,
-.popupmenu .listing li a,
-.select-menu .listing li,
-.select-menu .listing li a {
-    border: 0 !important;
-}
-
-// Treescroll bottom border
-.treescroll {
-    border-bottom: 0 !important;
-}
-
-// Navlist items
-.navlist li,
-.navlist li a {
-    border: 0 !important;
-}
-
-// Subscription table
-#subscription-table td {
-    border: 0 !important;
-}
-
-// Roundcube message notifications — flat, no border
-.roundcube-message {
-    border: 0 !important;
-}
-
-// Token/recipient inputs — no border
-.recipient-input {
-    border: 0 !important;
-}
-
-// Table-card — no border
-.table-card {
-    border: 0 !important;
-}
-.table-card > .footer {
-    border-top: 0 !important;
-}
-
-// Search-related borders
-.navlist-search-folder {
-    border-bottom: 0 !important;
-}
+// Various — no borders
+.treescroll, #subscription-table td,
+.attachmentslist, .attachmentlist,
+.roundcube-message, .recipient-input,
+.table-card, .navlist-search-folder { border: 0 !important; }
+.table-card > .footer { border-top: 0 !important; }
 
 
 // ═══════════════════════════════════════════
 // ── Global dark form inputs ──
 // ═══════════════════════════════════════════
 
-// Tous les inputs texte — dark global, flat
+// Tous les inputs texte — dark global
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -336,7 +270,7 @@ textarea.form-control {
     background-color: #111116 !important;
     border: 1px solid #1a1a24 !important;
     color: #f5f5f5 !important;
-    border-radius: 6px !important;
+    border-radius: 5px !important;
     font-family: 'Source Sans 3', sans-serif;
 
     &:focus {
@@ -356,7 +290,7 @@ select.custom-select {
     background-color: #111116 !important;
     border: 1px solid #1a1a24 !important;
     color: #f5f5f5 !important;
-    border-radius: 6px !important;
+    border-radius: 4px !important;
     padding: 6px 28px 6px 10px !important;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
@@ -448,8 +382,8 @@ ul.tokens-container {
     background-color: #1a1a28 !important;
     border: 0 !important;
     color: #f5f5f5 !important;
-    border-radius: 6px;
-    padding: 6px 16px;
+    border-radius: 4px;
+    padding: 5px 14px;
     font-weight: 500;
 }
 
@@ -458,8 +392,8 @@ ul.tokens-container {
     color: #000 !important;
     border: 0 !important;
     font-weight: 600;
-    border-radius: 6px;
-    padding: 6px 16px;
+    border-radius: 4px;
+    padding: 5px 14px;
 }
 
 
@@ -501,7 +435,7 @@ ul.tokens-container {
         max-width: 36px !important;
         padding: 0 !important;
         margin: 0 !important;
-        border-radius: 10px;
+        border-radius: 6px;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -654,15 +588,13 @@ a.button.icon.back-sidebar-button.folders {
     }
 }
 
-// Folder tree — 13px, Source Sans 3, padding généreux
+// Folder tree — 13px, Source Sans 3 — match template exactly
 .folderlist li a,
 #mailbox-list li a,
 .treelist.listing li a {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-right: 12px;
+    padding: 6px 10px !important;
     color: #f5f5f5;
     transition: background .1s;
 }
@@ -752,7 +684,7 @@ a.button.icon.back-sidebar-button.folders {
     z-index: 1050 !important;
     background-color: #141418 !important;
     border: 0 !important;
-    border-radius: 10px !important;
+    border-radius: 6px !important;
     box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8) !important;
     padding: 4px !important;
 
@@ -760,8 +692,8 @@ a.button.icon.back-sidebar-button.folders {
         color: #f5f5f5 !important;
         font-family: 'Source Code Pro', monospace;
         font-size: 11px;
-        padding: 8px 14px;
-        border-radius: 8px;
+        padding: 6px 12px;
+        border-radius: 4px;
         margin: 1px 0;
 
         &:hover, &.active { background-color: #16161e !important; }
@@ -833,7 +765,7 @@ a.button.icon.back-sidebar-button.folders {
         min-width: 32px !important;
         max-width: 32px !important;
         padding: 0 !important;
-        border-radius: 8px;
+        border-radius: 5px;
         color: #55556a;
         float: none !important;
         font-size: 0 !important;
@@ -864,7 +796,7 @@ a.button.icon.back-sidebar-button.folders {
     width: 32px !important;
     height: 32px !important;
     padding: 0 !important;
-    border-radius: 8px;
+    border-radius: 5px;
     color: #55556a;
     font-size: 0 !important;
     float: none !important;
@@ -898,21 +830,24 @@ a.button.icon.back-sidebar-button.folders {
     &:not(.disabled):focus  { background-color: #16161e; }
 }
 
-// Search bar — flat
+// Search bar — match template exactly
 .searchbar {
     background-color: transparent !important;
     padding: 5px 8px !important;
-    border: 0 !important;
+    border-bottom: 1px solid #1a1a24 !important;
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
 
     input,
     input.form-control {
         background-color: #111116 !important;
-        border: 0 !important;
-        border-radius: 6px !important;
+        border: 1px solid #1a1a24 !important;
+        border-radius: 5px !important;
         color: #f5f5f5 !important;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 12px;
-        padding: 7px 12px !important;
+        padding: 5px 9px !important;
         height: auto !important;
 
         &:focus {
@@ -947,10 +882,10 @@ a.button.icon.back-sidebar-button.folders {
 
     td.subject {
         font-size: 13px;
-        padding: 10px 12px 10px 6px;
+        padding: 10px 10px 10px 4px;
 
         span.fromto { font-size: 13px; color: #888898; }
-        span.date   { font-family: 'Source Code Pro', monospace; font-size: 10px; color: #55556a; letter-spacing: 0.3px; }
+        span.date   { font-family: 'Source Code Pro', monospace; font-size: 10px; color: #55556a; }
         span.subject a { font-weight: 400; color: #888898; }
     }
 
@@ -964,13 +899,16 @@ a.button.icon.back-sidebar-button.folders {
     span.attachment span { color: #55556a; }
 }
 
-// Page navigation — flat
+// Page navigation — match template
 .menu.pagenav {
     font-family: 'Source Code Pro', monospace;
     font-size: 9px;
     color: #55556a;
     background-color: #0a0a0a !important;
-    border: 0 !important;
+    border-top: 1px solid #1a1a24 !important;
+    border-bottom: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
     padding: 5px 10px;
 }
 
@@ -1028,7 +966,7 @@ a.button.icon.back-sidebar-button.folders {
         min-width: 32px !important;
         max-width: 32px !important;
         padding: 0 !important;
-        border-radius: 8px;
+        border-radius: 5px;
         color: #55556a;
         float: none !important;
         font-size: 0 !important;
@@ -1124,7 +1062,7 @@ pre, code,
     background-color: #141418;
     border: 0 !important;
     box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
+    border-radius: 6px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -1132,16 +1070,16 @@ pre, code,
 .popupmenu {
     background-color: #141418;
     border: 0 !important;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
     .listing li a {
         color: #f5f5f5;
-        padding: 8px 14px;
-        border-radius: 6px;
-        margin: 2px 4px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        margin: 1px 4px;
         &:hover { background-color: #16161e; }
     }
 }
@@ -1169,13 +1107,13 @@ pre, code,
 #identity_switch_dropdown {
     box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
     border: 0;
-    border-radius: 10px;
+    border-radius: 6px;
     background-color: #141418;
     color: #f5f5f5;
     padding: 4px;
 
-    a { color: #f5f5f5; padding: 8px 14px; border-radius: 6px; display: block; }
-    li:hover { background-color: #16161e; border-radius: 6px; }
+    a { color: #f5f5f5; padding: 6px 12px; border-radius: 4px; display: block; }
+    li:hover { background-color: #16161e; border-radius: 4px; }
 
     .unseen {
         background: @color-main;
@@ -1255,8 +1193,8 @@ pre, code,
         color: #000 !important;
         border: none !important;
         font-weight: 600;
-        border-radius: 10px;
-        padding: .6rem 2rem;
+        border-radius: 4px;
+        padding: .5rem 1.5rem;
         transition: background-color 0.2s ease, transform 0.15s ease;
 
         &:hover {
@@ -1276,7 +1214,7 @@ pre, code,
     & > div {
         background: #111116;
         border: 0;
-        border-radius: 8px;
+        border-radius: 5px;
         padding: 1.2rem;
     }
 }
@@ -1377,10 +1315,10 @@ fieldset {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 10px 12px;
+    border-radius: 5px;
     border: 0;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     background-color: #111116;
     cursor: pointer;
     transition: background-color .12s;
@@ -1450,18 +1388,16 @@ fieldset {
         font-family: 'Source Sans 3', sans-serif;
         font-size: 13px;
         font-weight: 500;
-        border-radius: 8px;
-        padding: 8px 22px;
+        border-radius: 4px;
+        padding: 5px 14px;
     }
 }
 
 // Settings sidebar nav
 .task-settings #layout-sidebar {
     .listing li a {
-        padding: 10px 16px;
+        padding: 6px 10px;
         font-size: 13px;
-        border-radius: 8px;
-        margin: 2px 6px;
     }
 }
 
@@ -1510,7 +1446,7 @@ fieldset {
             height: 32px !important;
             min-width: 32px !important;
             padding: 0 !important;
-            border-radius: 8px;
+            border-radius: 5px;
             color: #55556a;
             float: none !important;
             font-size: 0 !important;
@@ -1551,7 +1487,7 @@ a.toolbar-menu-button {
     width: 32px !important;
     height: 32px !important;
     padding: 0 !important;
-    border-radius: 8px;
+    border-radius: 5px;
     color: #55556a;
     font-size: 0 !important;
 
@@ -1631,7 +1567,7 @@ a.toolbar-menu-button {
                         align-items: center !important;
                         justify-content: center !important;
                         color: #55556a;
-                        border-radius: 8px;
+                        border-radius: 5px;
                         cursor: pointer;
                         padding: 0 !important;
                         font-size: 0 !important;
@@ -1757,7 +1693,7 @@ a.toolbar-menu-button {
                 background: #111116 !important;
                 border: 0 !important;
                 color: #888898 !important;
-                border-radius: 8px;
+                border-radius: 5px;
                 padding: 10px 14px;
                 font-size: 12px;
                 font-family: 'Source Sans 3', sans-serif;
@@ -1827,12 +1763,12 @@ a.toolbar-menu-button {
     z-index: 10000;
 
     div {
-        border-radius: 12px;
+        border-radius: 5px;
         border: 0;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 13px;
         font-weight: 500;
-        padding: 12px 18px;
+        padding: 10px 14px;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
@@ -1950,7 +1886,7 @@ body > li.recipient.ui-sortable-helper {
 
 // ── jQuery UI Dialog — flat editorial style ──
 .ui-dialog {
-    border-radius: 12px;
+    border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
     border: 0 !important;
@@ -1958,7 +1894,7 @@ body > li.recipient.ui-sortable-helper {
     .ui-dialog-titlebar {
         background-color: #141418;
         border: 0 !important;
-        padding: 14px 20px;
+        padding: 10px 16px;
     }
 
     .ui-dialog-title {
@@ -1971,13 +1907,13 @@ body > li.recipient.ui-sortable-helper {
     .ui-dialog-content {
         background-color: #0a0a0a;
         color: #f5f5f5;
-        padding: 16px 20px;
+        padding: 12px 16px;
     }
 
     .ui-dialog-buttonpane {
         background-color: #0a0a0a;
         border: 0 !important;
-        padding: 12px 20px;
+        padding: 10px 16px;
     }
 }
 
@@ -2002,7 +1938,7 @@ body > li.recipient.ui-sortable-helper {
 #rcmdraglayer {
     background-color: #141418;
     border: 0;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
 }
 
@@ -2010,7 +1946,7 @@ body > li.recipient.ui-sortable-helper {
 p.image-attachment {
     border: 0 !important;
     background-color: #111116;
-    border-radius: 8px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -2027,7 +1963,7 @@ fieldset.advanced > legend {
 .ui-datepicker {
     background-color: #141418;
     border: 0 !important;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: 0 16px 56px rgba(0, 0, 0, 0.7);
     padding: 8px;
     backdrop-filter: blur(12px);
@@ -2049,7 +1985,7 @@ fieldset.advanced > legend {
 
     .ui-state-default {
         color: #f5f5f5;
-        border-radius: 8px;
+        border-radius: 5px;
         transition: background-color 0.1s ease;
 
         &:hover {
@@ -2060,13 +1996,13 @@ fieldset.advanced > legend {
     .ui-state-active {
         background-color: @color-main;
         color: #000;
-        border-radius: 8px;
+        border-radius: 5px;
     }
 
     .ui-state-highlight {
         background-color: fadeout(@color-main, 80%);
         color: @color-main;
-        border-radius: 8px;
+        border-radius: 5px;
     }
 }
 
@@ -2092,7 +2028,7 @@ img.contactphoto,
 .ui-menu {
     background-color: #141418;
     border: 0 !important;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: 0 16px 56px rgba(0, 0, 0, 0.7);
     padding: 4px;
     backdrop-filter: blur(12px);
@@ -2104,7 +2040,7 @@ img.contactphoto,
         .ui-menu-item-wrapper {
             color: #f5f5f5;
             padding: 8px 12px;
-            border-radius: 8px;
+            border-radius: 5px;
             transition: background-color 0.08s ease;
 
             &.ui-state-active {

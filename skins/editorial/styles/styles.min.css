@@ -4994,8 +4994,8 @@ div.tox .tox-dialog__footer .tox-button {
   color: #000 !important;
   border: 0 !important;
   font-weight: 600;
-  border-radius: 6px;
-  padding: 6px 16px;
+  border-radius: 4px;
+  padding: 5px 14px;
   font-weight: normal;
   padding: 0.5rem 0.75rem;
 }
@@ -5037,8 +5037,8 @@ div.tox .tox-dialog__footer .tox-button.tox-button--secondary {
   background-color: #1a1a28 !important;
   border: 0 !important;
   color: #f5f5f5 !important;
-  border-radius: 6px;
-  padding: 6px 16px;
+  border-radius: 4px;
+  padding: 5px 14px;
   font-weight: 500;
   color: #f5f5f5;
 }
@@ -5151,8 +5151,8 @@ div.tox .image-selector button {
   background-color: #1a1a28 !important;
   border: 0 !important;
   color: #f5f5f5 !important;
-  border-radius: 6px;
-  padding: 6px 16px;
+  border-radius: 4px;
+  padding: 5px 14px;
   font-weight: 500;
   padding: 0.5rem 0.75rem;
   line-height: 1.5;
@@ -6760,7 +6760,6 @@ button,
 .listing li > a {
   transition: background-color 0.1s ease;
 }
-.listing tbody td,
 .listing li,
 .listing li > a,
 .treelist.listing li,
@@ -6773,11 +6772,11 @@ button,
 .listing ul {
   border-top: 0 !important;
 }
-#messagelist tr,
-#messagelist tr td,
-#messagelist tbody td {
+#messagelist tr {
+  border-bottom: 1px solid #1a1a24 !important;
+}
+#messagelist tr td {
   border: 0 !important;
-  border-bottom: 0 !important;
 }
 #contacts-table tr td,
 #directorylist li,
@@ -6788,9 +6787,7 @@ button,
 .propform tr.form-group td {
   border: 0 !important;
 }
-#compose-headers .compose-headers .form-group.row {
-  border: 0 !important;
-}
+#compose-headers .compose-headers .form-group.row,
 #compose-options .form-group.row {
   border: 0 !important;
 }
@@ -6802,43 +6799,26 @@ fieldset {
 .table thead th {
   border: 0 !important;
 }
-.nav-tabs {
-  border-bottom: 0 !important;
-}
-.attachmentslist,
-.attachmentlist {
-  border: 0 !important;
-}
 .popupmenu .listing li,
 .popupmenu .listing li a,
 .select-menu .listing li,
-.select-menu .listing li a {
-  border: 0 !important;
-}
-.treescroll {
-  border-bottom: 0 !important;
-}
+.select-menu .listing li a,
 .navlist li,
 .navlist li a {
   border: 0 !important;
 }
-#subscription-table td {
-  border: 0 !important;
-}
-.roundcube-message {
-  border: 0 !important;
-}
-.recipient-input {
-  border: 0 !important;
-}
-.table-card {
+.treescroll,
+#subscription-table td,
+.attachmentslist,
+.attachmentlist,
+.roundcube-message,
+.recipient-input,
+.table-card,
+.navlist-search-folder {
   border: 0 !important;
 }
 .table-card > .footer {
   border-top: 0 !important;
-}
-.navlist-search-folder {
-  border-bottom: 0 !important;
 }
 input[type="text"],
 input[type="email"],
@@ -6853,7 +6833,7 @@ textarea.form-control {
   background-color: #111116 !important;
   border: 1px solid #1a1a24 !important;
   color: #f5f5f5 !important;
-  border-radius: 6px !important;
+  border-radius: 5px !important;
   font-family: 'Source Sans 3', sans-serif;
 }
 input[type="text"]:focus,
@@ -6889,7 +6869,7 @@ select.custom-select {
   background-color: #111116 !important;
   border: 1px solid #1a1a24 !important;
   color: #f5f5f5 !important;
-  border-radius: 6px !important;
+  border-radius: 4px !important;
   padding: 6px 28px 6px 10px !important;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 13px;
@@ -6970,8 +6950,8 @@ ul.tokens-container li input {
   background-color: #1a1a28 !important;
   border: 0 !important;
   color: #f5f5f5 !important;
-  border-radius: 6px;
-  padding: 6px 16px;
+  border-radius: 4px;
+  padding: 5px 14px;
   font-weight: 500;
 }
 .btn-primary {
@@ -6979,8 +6959,8 @@ ul.tokens-container li input {
   color: #000 !important;
   border: 0 !important;
   font-weight: 600;
-  border-radius: 6px;
-  padding: 6px 16px;
+  border-radius: 4px;
+  padding: 5px 14px;
 }
 #layout-menu {
   background-color: #050505 !important;
@@ -7012,7 +6992,7 @@ ul.tokens-container li input {
   max-width: 36px !important;
   padding: 0 !important;
   margin: 0 !important;
-  border-radius: 10px;
+  border-radius: 6px;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -7127,9 +7107,7 @@ a.button.icon.back-sidebar-button.folders {
 .treelist.listing li a {
   font-family: 'Source Sans 3', sans-serif;
   font-size: 13px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-right: 12px;
+  padding: 6px 10px !important;
   color: #f5f5f5;
   transition: background 0.1s;
 }
@@ -7212,7 +7190,7 @@ a.button.icon.back-sidebar-button.folders {
   z-index: 1050 !important;
   background-color: #141418 !important;
   border: 0 !important;
-  border-radius: 10px !important;
+  border-radius: 6px !important;
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8) !important;
   padding: 4px !important;
 }
@@ -7220,8 +7198,8 @@ a.button.icon.back-sidebar-button.folders {
   color: #f5f5f5 !important;
   font-family: 'Source Code Pro', monospace;
   font-size: 11px;
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
   margin: 1px 0;
 }
 .select-menu .listing li a:hover,
@@ -7283,7 +7261,7 @@ a.button.icon.back-sidebar-button.folders {
   min-width: 32px !important;
   max-width: 32px !important;
   padding: 0 !important;
-  border-radius: 8px;
+  border-radius: 5px;
   color: #55556a;
   float: none !important;
   font-size: 0 !important;
@@ -7310,7 +7288,7 @@ a.button.icon.back-sidebar-button.folders {
   width: 32px !important;
   height: 32px !important;
   padding: 0 !important;
-  border-radius: 8px;
+  border-radius: 5px;
   color: #55556a;
   font-size: 0 !important;
   float: none !important;
@@ -7349,17 +7327,20 @@ a.button.icon.back-sidebar-button.folders {
 .searchbar {
   background-color: transparent !important;
   padding: 5px 8px !important;
-  border: 0 !important;
+  border-bottom: 1px solid #1a1a24 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
 }
 .searchbar input,
 .searchbar input.form-control {
   background-color: #111116 !important;
-  border: 0 !important;
-  border-radius: 6px !important;
+  border: 1px solid #1a1a24 !important;
+  border-radius: 5px !important;
   color: #f5f5f5 !important;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
-  padding: 7px 12px !important;
+  padding: 5px 9px !important;
   height: auto !important;
 }
 .searchbar input:focus,
@@ -7391,7 +7372,7 @@ a.button.icon.back-sidebar-button.folders {
 }
 #messagelist td.subject {
   font-size: 13px;
-  padding: 10px 12px 10px 6px;
+  padding: 10px 10px 10px 4px;
 }
 #messagelist td.subject span.fromto {
   font-size: 13px;
@@ -7401,7 +7382,6 @@ a.button.icon.back-sidebar-button.folders {
   font-family: 'Source Code Pro', monospace;
   font-size: 10px;
   color: #55556a;
-  letter-spacing: 0.3px;
 }
 #messagelist td.subject span.subject a {
   font-weight: 400;
@@ -7429,7 +7409,10 @@ a.button.icon.back-sidebar-button.folders {
   font-size: 9px;
   color: #55556a;
   background-color: #0a0a0a !important;
-  border: 0 !important;
+  border-top: 1px solid #1a1a24 !important;
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
   padding: 5px 10px;
 }
 .pagenav.menu.footer.small {
@@ -7473,7 +7456,7 @@ a.button.icon.back-sidebar-button.folders {
   min-width: 32px !important;
   max-width: 32px !important;
   padding: 0 !important;
-  border-radius: 8px;
+  border-radius: 5px;
   color: #55556a;
   float: none !important;
   font-size: 0 !important;
@@ -7557,23 +7540,23 @@ code,
   background-color: #141418;
   border: 0 !important;
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
-  border-radius: 10px;
+  border-radius: 6px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 .popupmenu {
   background-color: #141418;
   border: 0 !important;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 .popupmenu .listing li a {
   color: #f5f5f5;
-  padding: 8px 14px;
-  border-radius: 6px;
-  margin: 2px 4px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin: 1px 4px;
 }
 .popupmenu .listing li a:hover {
   background-color: #16161e;
@@ -7595,20 +7578,20 @@ code,
 #identity_switch_dropdown {
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
   border: 0;
-  border-radius: 10px;
+  border-radius: 6px;
   background-color: #141418;
   color: #f5f5f5;
   padding: 4px;
 }
 #identity_switch_dropdown a {
   color: #f5f5f5;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
   display: block;
 }
 #identity_switch_dropdown li:hover {
   background-color: #16161e;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 #identity_switch_dropdown .unseen {
   background: #5b9bd5;
@@ -7673,8 +7656,8 @@ code,
   color: #000 !important;
   border: none !important;
   font-weight: 600;
-  border-radius: 10px;
-  padding: 0.6rem 2rem;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 #login-form .btn-primary:hover {
@@ -7690,7 +7673,7 @@ code,
 #login-footer > div {
   background: #111116;
   border: 0;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 1.2rem;
 }
 .task-login .input-group-lg {
@@ -7758,10 +7741,10 @@ fieldset legend {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 5px;
   border: 0;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   background-color: #111116;
   cursor: pointer;
   transition: background-color 0.12s;
@@ -7823,14 +7806,12 @@ fieldset legend {
   font-family: 'Source Sans 3', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  border-radius: 8px;
-  padding: 8px 22px;
+  border-radius: 4px;
+  padding: 5px 14px;
 }
 .task-settings #layout-sidebar .listing li a {
-  padding: 10px 16px;
+  padding: 6px 10px;
   font-size: 13px;
-  border-radius: 8px;
-  margin: 2px 6px;
 }
 #compose-content {
   display: flex !important;
@@ -7870,7 +7851,7 @@ fieldset legend {
   height: 32px !important;
   min-width: 32px !important;
   padding: 0 !important;
-  border-radius: 8px;
+  border-radius: 5px;
   color: #55556a;
   float: none !important;
   font-size: 0 !important;
@@ -7912,7 +7893,7 @@ a.toolbar-menu-button {
   width: 32px !important;
   height: 32px !important;
   padding: 0 !important;
-  border-radius: 8px;
+  border-radius: 5px;
   color: #55556a;
   font-size: 0 !important;
 }
@@ -7989,7 +7970,7 @@ a.toolbar-menu-button:hover {
   align-items: center !important;
   justify-content: center !important;
   color: #55556a;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   padding: 0 !important;
   font-size: 0 !important;
@@ -8098,7 +8079,7 @@ a.toolbar-menu-button:hover {
   background: #111116 !important;
   border: 0 !important;
   color: #888898 !important;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 10px 14px;
   font-size: 12px;
   font-family: 'Source Sans 3', sans-serif;
@@ -8149,12 +8130,12 @@ a.toolbar-menu-button:hover {
   z-index: 10000;
 }
 #messagestack div {
-  border-radius: 12px;
+  border-radius: 5px;
   border: 0;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  padding: 12px 18px;
+  padding: 10px 14px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -8246,7 +8227,7 @@ body > li.recipient.ui-sortable-helper .name {
   border-bottom: 2px solid #5b9bd5 !important;
 }
 .ui-dialog {
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
   border: 0 !important;
@@ -8254,7 +8235,7 @@ body > li.recipient.ui-sortable-helper .name {
 .ui-dialog .ui-dialog-titlebar {
   background-color: #141418;
   border: 0 !important;
-  padding: 14px 20px;
+  padding: 10px 16px;
 }
 .ui-dialog .ui-dialog-title {
   font-family: 'Source Serif 4', Georgia, serif;
@@ -8265,12 +8246,12 @@ body > li.recipient.ui-sortable-helper .name {
 .ui-dialog .ui-dialog-content {
   background-color: #0a0a0a;
   color: #f5f5f5;
-  padding: 16px 20px;
+  padding: 12px 16px;
 }
 .ui-dialog .ui-dialog-buttonpane {
   background-color: #0a0a0a;
   border: 0 !important;
-  padding: 12px 20px;
+  padding: 10px 16px;
 }
 .table td,
 .table th,
@@ -8287,13 +8268,13 @@ body > li.recipient.ui-sortable-helper .name {
 #rcmdraglayer {
   background-color: #141418;
   border: 0;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
 }
 p.image-attachment {
   border: 0 !important;
   background-color: #111116;
-  border-radius: 8px;
+  border-radius: 5px;
   overflow: hidden;
 }
 fieldset.advanced > legend {
@@ -8305,7 +8286,7 @@ fieldset.advanced > legend:hover {
 .ui-datepicker {
   background-color: #141418;
   border: 0 !important;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.7);
   padding: 8px;
   backdrop-filter: blur(12px);
@@ -8325,7 +8306,7 @@ fieldset.advanced > legend:hover {
 }
 .ui-datepicker .ui-state-default {
   color: #f5f5f5;
-  border-radius: 8px;
+  border-radius: 5px;
   transition: background-color 0.1s ease;
 }
 .ui-datepicker .ui-state-default:hover {
@@ -8334,12 +8315,12 @@ fieldset.advanced > legend:hover {
 .ui-datepicker .ui-state-active {
   background-color: #5b9bd5;
   color: #000;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 .ui-datepicker .ui-state-highlight {
   background-color: rgba(91, 155, 213, 0.2);
   color: #5b9bd5;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 .floating-action-buttons a.button {
   box-shadow: 0 4px 20px rgba(91, 155, 213, 0.4);
@@ -8357,7 +8338,7 @@ img.contactphoto,
 .ui-menu {
   background-color: #141418;
   border: 0 !important;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 16px 56px rgba(0, 0, 0, 0.7);
   padding: 4px;
   backdrop-filter: blur(12px);
@@ -8369,7 +8350,7 @@ img.contactphoto,
 .ui-menu .ui-menu-item .ui-menu-item-wrapper {
   color: #f5f5f5;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 5px;
   transition: background-color 0.08s ease;
 }
 .ui-menu .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
