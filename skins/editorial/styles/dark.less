@@ -176,10 +176,11 @@ html.dark-mode {
 
     #taskmenu a,
     .menu.toolbar a {
-        color: @color-dark-font;
+        color: #55556a;
 
         &.selected {
-            background-color: @color-dark-list-selected-background;
+            color: @color-main;
+            background-color: #1a1a28;
         }
     }
 
@@ -192,7 +193,7 @@ html.dark-mode {
 
     #taskmenu {
         .action-buttons a {
-            color: @color-main;
+            color: #000;
         }
 
         a {
@@ -246,16 +247,16 @@ html.dark-mode {
     .menu.toolbar .dropbutton:not(.disabled):hover,
     .menu a:not(.disabled):focus,
     .menu a:not(.disabled):hover {
-        background-color: @color-dark-list-selected-background;
+        background-color: #16161e;
     }
 
     .menu.toolbar a.selected {
-        color: @color-success;
+        color: @color-main;
         background: transparent;
     }
 
     .menu.toolbar .dropbutton a.dropdown:hover {
-        background-color: lighten(@color-dark-list-selected-background, 5%);
+        background-color: #1a1a28;
     }
 
     // ---------------------------------
@@ -360,7 +361,7 @@ html.dark-mode {
     .folderlist li.mailbox .unreadcount {
         background-color: @color-dark-list-badge-background;
         color: @color-dark-list-badge;
-        font-weight: normal;
+        font-weight: 700;
     }
 
     .attachmentslist {

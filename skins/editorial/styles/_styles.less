@@ -442,7 +442,7 @@ ul.tokens-container {
         float: none !important;
         font-size: 0 !important;
         transition: all .12s;
-        color: #55556a;
+        color: #55556a !important;
         line-height: 36px !important;
 
         &:before {
@@ -497,7 +497,7 @@ ul.tokens-container {
         padding-bottom: 8px;
 
         a {
-            color: #55556a;
+            color: #55556a !important;
         }
 
         a.logout {
@@ -595,7 +595,7 @@ a.button.icon.back-sidebar-button.folders {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
     padding: 6px 10px !important;
-    color: #f5f5f5;
+    color: #f5f5f5 !important;
     transition: background .1s;
 }
 
@@ -616,16 +616,16 @@ a.button.icon.back-sidebar-button.folders {
     color: #000 !important;
     font-family: 'Source Code Pro', monospace;
     font-size: 9px !important;
-    font-weight: 700;
+    font-weight: 700 !important;
     padding: 1px 5px;
     border-radius: 10px;
     min-width: 16px;
     text-align: center;
 }
 
-.treelist.listing li > a:before          { color: #55556a; }
-.treelist.listing li.selected > a:before  { color: @color-main; }
-.folderlist li.unread > a                 { font-weight: 600; }
+.treelist.listing li > a:before          { color: #55556a !important; }
+.treelist.listing li.selected > a:before  { color: @color-main !important; }
+.folderlist li.unread > a                 { font-weight: 600 !important; }
 
 .quota-widget {
     font-family: 'Source Code Pro', monospace;
@@ -766,7 +766,7 @@ a.button.icon.back-sidebar-button.folders {
         max-width: 32px !important;
         padding: 0 !important;
         border-radius: 5px;
-        color: #55556a;
+        color: #55556a !important;
         float: none !important;
         font-size: 0 !important;
 
@@ -782,8 +782,8 @@ a.button.icon.back-sidebar-button.folders {
         }
 
         &:not(.disabled):hover {
-            background-color: #16161e;
-            color: #f5f5f5;
+            background-color: #16161e !important;
+            color: #f5f5f5 !important;
         }
     }
 }
@@ -797,7 +797,7 @@ a.button.icon.back-sidebar-button.folders {
     height: 32px !important;
     padding: 0 !important;
     border-radius: 5px;
-    color: #55556a;
+    color: #55556a !important;
     font-size: 0 !important;
     float: none !important;
 
@@ -812,7 +812,7 @@ a.button.icon.back-sidebar-button.folders {
         height: auto !important;
     }
 
-    &:hover { background-color: #16161e; color: #f5f5f5; }
+    &:hover { background-color: #16161e !important; color: #f5f5f5 !important; }
 }
 
 // Cacher le texte sur tous les boutons header
@@ -822,12 +822,13 @@ a.button.icon.back-sidebar-button.folders {
 
 // .menu.toolbar — cacher texte
 .menu.toolbar a {
-    color: #55556a;
+    color: #55556a !important;
 
     span.inner { display: none !important; }
 
-    &:not(.disabled):hover  { background-color: #16161e; color: #f5f5f5; }
-    &:not(.disabled):focus  { background-color: #16161e; }
+    &:not(.disabled):hover  { background-color: #16161e !important; color: #f5f5f5 !important; }
+    &:not(.disabled):focus  { background-color: #16161e !important; }
+    &.selected { color: @color-main !important; background: transparent !important; }
 }
 
 // Search bar — match template exactly
@@ -967,7 +968,7 @@ a.button.icon.back-sidebar-button.folders {
         max-width: 32px !important;
         padding: 0 !important;
         border-radius: 5px;
-        color: #55556a;
+        color: #55556a !important;
         float: none !important;
         font-size: 0 !important;
 
@@ -982,7 +983,7 @@ a.button.icon.back-sidebar-button.folders {
             height: auto !important;
         }
 
-        &:not(.disabled):hover { background-color: #16161e; color: #f5f5f5; }
+        &:not(.disabled):hover { background-color: #16161e !important; color: #f5f5f5 !important; }
     }
 
     .dropbutton {
@@ -1447,7 +1448,7 @@ fieldset {
             min-width: 32px !important;
             padding: 0 !important;
             border-radius: 5px;
-            color: #55556a;
+            color: #55556a !important;
             float: none !important;
             font-size: 0 !important;
 
@@ -1462,7 +1463,7 @@ fieldset {
                 height: auto !important;
             }
 
-            &:not(.disabled):hover { background-color: #16161e; color: #f5f5f5; }
+            &:not(.disabled):hover { background-color: #16161e !important; color: #f5f5f5 !important; }
         }
 
         .dropbutton {
@@ -1488,11 +1489,11 @@ a.toolbar-menu-button {
     height: 32px !important;
     padding: 0 !important;
     border-radius: 5px;
-    color: #55556a;
+    color: #55556a !important;
     font-size: 0 !important;
 
     &:before { font-size: 14px !important; margin: 0 !important; }
-    &:hover { background-color: #16161e; color: #f5f5f5; }
+    &:hover { background-color: #16161e !important; color: #f5f5f5 !important; }
 }
 
 // En-têtes compose (De, À, Cc, Cci, Objet)
