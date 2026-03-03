@@ -3,14 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" href="styles/fonts/lucide.css">
 <style type="text/css">
-html, body { height: 100%; overflow: hidden; }
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@1,400&display=swap');
+html, body { height: 100%; overflow: hidden; margin: 0; }
 body {
-  background: url(images/logo.svg) center no-repeat #0a0a0a;
-  background-size: 100px;
-  opacity: 0.5;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.icon {
+  width: 32px;
+  height: 32px;
+  stroke: #3a3a4a;
+  stroke-width: 1;
+  fill: none;
+}
+.text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #55556a;
 }
 </style>
 </head>
-<body></body>
+<body>
+<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+  <rect width="20" height="16" x="2" y="4" rx="2"/>
+  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+</svg>
+<span class="text">Sélectionnez un message</span>
+</body>
 </html>

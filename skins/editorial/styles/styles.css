@@ -7114,16 +7114,13 @@ a.button.icon.back-sidebar-button.folders {
   padding: 6px 10px !important;
   color: #f5f5f5 !important;
   transition: background 0.1s;
-  display: flex !important;
-  align-items: center !important;
-  gap: 7px;
 }
 .treelist.listing li > a:before {
   color: #55556a !important;
   font-size: 15px !important;
-  width: auto !important;
-  margin: 0 !important;
-  flex-shrink: 0;
+  margin-right: 7px !important;
+  width: 1.2em !important;
+  text-align: center;
 }
 .treelist.listing li.selected > a,
 .folderlist li.mailbox.selected > a {
@@ -7163,7 +7160,6 @@ a.button.icon.back-sidebar-button.folders {
   border-radius: 10px;
   min-width: 16px;
   text-align: center;
-  margin-left: auto;
 }
 .folderlist li.unread > a {
   font-weight: 600 !important;
@@ -7408,7 +7404,8 @@ a.button.icon.back-sidebar-button.folders {
   transition: background 0.08s;
   border-bottom: 1px solid #1a1a24 !important;
 }
-#messagelist tr:hover td {
+#messagelist tr:hover td,
+#messagelist tr.unread:hover td {
   background-color: #16161e !important;
 }
 #messagelist tr.unread td {
@@ -7518,29 +7515,7 @@ a.button.icon.back-sidebar-button.folders {
   padding: 0 4px !important;
 }
 #layout-content .watermark {
-  background-image: none !important;
   background-color: #0a0a0a;
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-#layout-content .watermark:before {
-  font-family: 'Icons';
-  content: "\e10f";
-  font-size: 32px;
-  color: #3a3a4a;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-#layout-content .watermark:after {
-  content: "Sélectionnez un message";
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-style: italic;
-  font-size: 14px;
-  color: #55556a;
 }
 #layout-content .listing-info {
   font-family: 'Source Serif 4', Georgia, serif;
