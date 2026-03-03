@@ -34,6 +34,21 @@ button, input, optgroup, select, textarea, .popover {
 ::-webkit-scrollbar-thumb { background: #1a1a24; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #55556a; }
 
+// Text selection — portfolio signature blue tint
+::selection {
+    background: fadeout(@color-main, 70%);
+}
+
+// Smooth transitions — never transition: all (portfolio rule)
+a, button, .btn {
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.listing tbody td,
+.listing li > a {
+    transition: background-color 0.1s ease;
+}
+
 
 // ═══════════════════════════════════════════
 // ── Global dark form inputs ──
@@ -704,9 +719,17 @@ a.button.icon.back-sidebar-button.folders {
     }
 }
 
+// Watermark empty state — serif italic like template
 #layout-content .watermark {
-    opacity: 0.6;
+    opacity: 0.5;
     background-color: #0a0a0a;
+}
+
+#layout-content .listing-info {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    color: #3a3a4a;
+    font-size: 14px;
 }
 
 #layout-content .iframe-wrapper {
@@ -886,30 +909,79 @@ pre, code,
 .task-login {
     background-color: #050505 !important;
 
-    #logo { font-family: 'Source Serif 4', Georgia, serif !important; }
+    #logo {
+        font-family: 'Source Serif 4', Georgia, serif !important;
+        top: auto;
+        position: relative;
+        margin-bottom: 2.5rem;
+    }
 
-    #layout-content { background-color: #050505 !important; }
+    #layout-content {
+        background-color: #050505 !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 #login-form {
-    .oauthlogin { border-top-color: #252530; }
+    top: auto;
+    position: relative;
 
-    input.form-control {
-        background-color: #111116 !important;
-        border-color: #252530 !important;
-        color: #f5f5f5 !important;
+    // Underline-style inputs — clean editorial look
+    .input-group {
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid #1a1a24;
+        border-radius: 0;
+        margin-bottom: .25rem;
+        transition: border-color 0.2s ease;
 
-        &:focus {
-            background-color: #16161e !important;
-            border-color: @color-main !important;
+        &:focus-within {
+            border-bottom-color: @color-main;
         }
     }
+
+    .input-group-text {
+        background: transparent !important;
+        border: 0 !important;
+        color: #55556a;
+        padding: .6rem .5rem;
+    }
+
+    input.form-control {
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        color: #f5f5f5 !important;
+        padding: .6rem .5rem !important;
+        box-shadow: none !important;
+
+        &:focus {
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+    }
+
+    .oauthlogin { border-top-color: #252530; }
 
     .btn-primary {
         background-color: @color-main !important;
         color: #000 !important;
         border: none !important;
         font-weight: 600;
+        border-radius: 4px;
+        padding: .5rem 1.5rem;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: lighten(@color-main, 8%) !important;
+        }
+    }
+
+    .formbuttons + .oauthlogin {
+        border-top-color: #1a1a24;
     }
 }
 
@@ -919,6 +991,7 @@ pre, code,
     & > div {
         background: #111116;
         border: 1px solid #1a1a24;
+        border-radius: 6px;
     }
 }
 
@@ -931,10 +1004,6 @@ pre, code,
     .input-group-prepend {
         padding-top: 6px;
         margin-right: 6px;
-    }
-
-    #logo {
-        padding-left: 40px;
     }
 }
 
@@ -1455,5 +1524,325 @@ a.toolbar-menu-button {
                 font-size: 12px;
             }
         }
+    }
+}
+
+
+// ═══════════════════════════════════════════
+// ── Polish — Micro-interactions & Refinements ──
+// Inspired by template.jsx & gabriel-guillou.fr portfolio
+// ═══════════════════════════════════════════
+
+// ── Focus-visible — keyboard navigation only ──
+:focus-visible {
+    outline: 2px solid fadeout(@color-main, 50%);
+    outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+// ── Notification toast messages ──
+#messagestack {
+    z-index: 10000;
+
+    div {
+        border-radius: 6px;
+        border: 0;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .alert-info {
+        background-color: fadeout(#141418, 8%);
+        border-left: 3px solid @color-main;
+    }
+    .alert-success {
+        background-color: fadeout(#141418, 8%);
+        border-left: 3px solid @color-success;
+    }
+    .alert-warning {
+        background-color: fadeout(#141418, 8%);
+        border-left: 3px solid @color-warning;
+    }
+    .alert-danger {
+        background-color: fadeout(#141418, 8%);
+        border-left: 3px solid @color-error;
+    }
+}
+
+// ── Column resizer — subtle hover feedback ──
+.column-resizer {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: fadeout(@color-main, 85%);
+    }
+    &.active {
+        background-color: fadeout(@color-main, 90%);
+    }
+}
+
+// ── Compose — recipient pills ──
+.recipient-input li.recipient,
+body > li.recipient.ui-sortable-helper {
+    background-color: #16161e;
+    border-color: #252530;
+    border-radius: 4px;
+    transition: border-color 0.12s ease;
+
+    &:hover {
+        border-color: fadeout(@color-main, 50%);
+    }
+
+    .name {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 12px;
+    }
+}
+
+// Tagedit (compose tags)
+.tagedit-list li.tagedit-listelement-old {
+    background-color: #16161e;
+    border-color: #252530;
+    border-radius: 4px;
+    transition: border-color 0.12s ease;
+
+    &:hover {
+        border-color: fadeout(@color-main, 50%);
+    }
+}
+
+// ── Settings listing items — hover feedback ──
+.listing.iconized li > a {
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+// ── Table rows — subtle hover ──
+.table-widget table.options-table tr {
+    transition: background-color 0.08s ease;
+
+    &:hover td {
+        background-color: #16161e;
+    }
+}
+
+// ── Subscription table — green checkboxes ──
+#subscription-table {
+    .custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+        background-color: @color-success;
+        border-color: @color-success;
+    }
+}
+
+// ── Nav tabs — editorial style ──
+.nav-tabs {
+    border-color: #1a1a24;
+
+    .nav-link {
+        border-color: transparent;
+        color: #888898;
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 13px;
+        transition: color 0.15s ease, border-color 0.15s ease;
+
+        &:hover {
+            border-color: #252530;
+            color: #f5f5f5;
+        }
+
+        &.active {
+            background-color: #0a0a0a;
+            border-color: #252530;
+            border-bottom-color: #0a0a0a;
+            color: #f5f5f5;
+            font-weight: 600;
+        }
+    }
+}
+
+// ── jQuery UI Dialog — editorial style ──
+.ui-dialog {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    border-color: #252530;
+
+    .ui-dialog-titlebar {
+        background-color: #141418;
+        border-color: #1a1a24;
+        padding: 12px 16px;
+    }
+
+    .ui-dialog-title {
+        font-family: 'Source Serif 4', Georgia, serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #f5f5f5;
+    }
+
+    .ui-dialog-content {
+        background-color: #0a0a0a;
+        color: #f5f5f5;
+    }
+
+    .ui-dialog-buttonpane {
+        background-color: #0a0a0a;
+        border-color: #1a1a24;
+        padding: 10px 16px;
+    }
+}
+
+// ── Bootstrap table borders ──
+.table {
+    td, th, thead th {
+        border-color: #1a1a24;
+    }
+}
+
+// ── Loading spinner ──
+.iframe-loader {
+    background-color: fadeout(#0a0a0a, 5%);
+
+    .spinner-border {
+        color: #1a1a24;
+        border-color: currentColor #252530 currentColor currentColor;
+    }
+}
+
+// ── Drag layer ──
+#rcmdraglayer {
+    background-color: #141418;
+    border: 1px solid #252530;
+    border-radius: 6px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+// ── Image attachments ──
+p.image-attachment {
+    border-color: #1a1a24;
+    background-color: #111116;
+    border-radius: 6px;
+}
+
+// ── Fieldset advanced toggle ──
+fieldset.advanced > legend {
+    transition: color 0.15s ease;
+
+    &:hover {
+        color: @color-main;
+    }
+}
+
+// ── Datepicker refinements ──
+.ui-datepicker {
+    background-color: #0e0e12;
+    border-color: #252530;
+    border-radius: 6px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+
+    .ui-datepicker-header {
+        background-color: #141418;
+        border-color: #1a1a24;
+        color: #f5f5f5;
+    }
+
+    th {
+        color: #55556a;
+    }
+
+    .ui-state-default {
+        color: #f5f5f5;
+        border-radius: 4px;
+        transition: background-color 0.1s ease;
+
+        &:hover {
+            background-color: #16161e;
+        }
+    }
+
+    .ui-state-active {
+        background-color: @color-main;
+        color: #000;
+    }
+
+    .ui-state-highlight {
+        background-color: fadeout(@color-main, 80%);
+        color: @color-main;
+    }
+}
+
+// ── Floating action button — mobile ──
+.floating-action-buttons a.button {
+    box-shadow: 0 4px 20px fadeout(@color-main, 60%);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 6px 28px fadeout(@color-main, 40%);
+        transform: scale(1.05);
+    }
+}
+
+// ── Contact photo — circle with accent bg ──
+img.contactphoto,
+#contactpic {
+    border-radius: 50% !important;
+    background-color: #1a1a28 !important;
+}
+
+// ── Autocomplete popup ──
+.ui-menu {
+    background-color: #0e0e12;
+    border: 1px solid #252530;
+    border-radius: 6px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+
+    .ui-menu-item {
+        border-color: #1a1a24;
+
+        .ui-menu-item-wrapper {
+            color: #f5f5f5;
+            padding: 6px 10px;
+            transition: background-color 0.08s ease;
+
+            &.ui-state-active {
+                background-color: #1c1c2e;
+                color: #f5f5f5;
+            }
+        }
+    }
+}
+
+// ── Quota widget in sidebar ──
+#layout-sidebar .quota-widget {
+    padding: 7px 10px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 9px;
+    color: #55556a;
+
+    &:before {
+        font-size: 1em;
+        color: #55556a;
+    }
+
+    .bar {
+        height: 2px !important;
+        background-color: #1a1a24;
+        border: 0;
+        border-radius: 1px;
+
+        .value {
+            background-color: @color-main;
+            border-radius: 1px;
+            opacity: 1;
+        }
+    }
+
+    .count {
+        font-family: 'Source Code Pro', monospace;
     }
 }
