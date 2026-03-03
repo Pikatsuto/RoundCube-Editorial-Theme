@@ -349,6 +349,10 @@ select.custom-select {
     background-color: #0a0a0a;
 }
 
+#layout-sidebar .scroller {
+    background-color: #0e0e12 !important;
+}
+
 .icon {
     line-height: initial;
 }
@@ -597,6 +601,18 @@ a.button.icon.back-sidebar-button.folders {
     padding: 6px 10px !important;
     color: #f5f5f5 !important;
     transition: background .1s;
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px;
+}
+
+// Folder icons — 15px, dim color
+.treelist.listing li > a:before {
+    color: #55556a !important;
+    font-size: 15px !important;
+    width: auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
 }
 
 .treelist.listing li.selected > a,
@@ -606,9 +622,27 @@ a.button.icon.back-sidebar-button.folders {
     border-left: 2px solid @color-main !important;
 }
 
+.treelist.listing li.selected > a:before {
+    color: @color-main !important;
+}
+
 .treelist.listing li > a:hover,
 .folderlist li a:hover {
     background-color: #16161e !important;
+}
+
+// Nested folders — indentation 16px per level (template: depth * 16px)
+.treelist.listing ul {
+    padding-left: 0 !important;
+
+    li > a { padding-left: 26px !important; } // depth 1 = 10 + 16
+    ul li > a { padding-left: 42px !important; } // depth 2 = 10 + 32
+    ul ul li > a { padding-left: 58px !important; } // depth 3 = 10 + 48
+}
+
+// Treetoggle (expand/collapse arrow) — color matches template textDim
+.treetoggle {
+    color: #55556a !important;
 }
 
 .folderlist li.mailbox .unreadcount {
@@ -621,11 +655,10 @@ a.button.icon.back-sidebar-button.folders {
     border-radius: 10px;
     min-width: 16px;
     text-align: center;
+    margin-left: auto;
 }
 
-.treelist.listing li > a:before          { color: #55556a !important; }
-.treelist.listing li.selected > a:before  { color: @color-main !important; }
-.folderlist li.unread > a                 { font-weight: 600 !important; }
+.folderlist li.unread > a { font-weight: 600 !important; }
 
 .quota-widget {
     font-family: 'Source Code Pro', monospace;
@@ -663,15 +696,20 @@ a.button.icon.back-sidebar-button.folders {
     color: #888898 !important;
     font-family: 'Source Code Pro', monospace;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 400;
     max-width: 190px;
     text-overflow: ellipsis;
-    padding: 0 1.4em 0 0.25em !important;
+    padding: 0 18px 0 0 !important;
     outline: none;
     height: auto !important;
     line-height: normal !important;
-    -webkit-appearance: auto;
-    appearance: auto;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    // MoreVertical-like dots indicator
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2355556a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='12' cy='5' r='1'/%3e%3ccircle cx='12' cy='12' r='1'/%3e%3ccircle cx='12' cy='19' r='1'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0 center !important;
+    background-size: 13px !important;
 
     option {
         background-color: #141418;
@@ -858,12 +896,27 @@ a.button.icon.back-sidebar-button.folders {
     }
 
     &:before { color: #55556a !important; }
+
+    // Hide search options/reset buttons — template has only the input
+    a.button,
+    a.options,
+    a.reset,
+    a.search,
+    .searchmenulink,
+    .input-group-append {
+        display: none !important;
+    }
+
+    // Search form — full width, no margin
+    form {
+        flex: 1;
+    }
 }
 
 // search forms — margin-left
 #mailsearchform,
 #searchform {
-    margin-left: 16px;
+    margin-left: 0;
 }
 
 // button margin-left
@@ -871,23 +924,43 @@ a.button.icon.back-sidebar-button.folders {
     margin-left: 8px !important;
 }
 
-// Message list rows — FLAT, no borders
+// Message list rows — match template exactly
 #messagelist {
     tr {
         transition: background .08s;
+        border-bottom: 1px solid #1a1a24 !important;
     }
 
     tr:hover td       { background-color: #16161e !important; }
-    tr.unread td      { background-color: #0c0c10; }
+    tr.unread td      { background-color: #0c0c10 !important; }
     tr.selected td    { background-color: #1c1c2e !important; }
+
+    // Flag/star column — match template star sizing
+    td.flag {
+        width: 26px !important;
+        padding: 10px 2px 10px 8px !important;
+        vertical-align: top;
+    }
 
     td.subject {
         font-size: 13px;
         padding: 10px 10px 10px 4px;
 
-        span.fromto { font-size: 13px; color: #888898; }
-        span.date   { font-family: 'Source Code Pro', monospace; font-size: 10px; color: #55556a; }
-        span.subject a { font-weight: 400; color: #888898; }
+        span.fromto {
+            font-size: 13px;
+            color: #888898;
+        }
+        span.date {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 10px;
+            color: #55556a;
+        }
+        span.subject a {
+            font-weight: 400;
+            color: #888898;
+            display: block;
+            margin-bottom: 2px;
+        }
     }
 
     tr.unread td.subject {
@@ -895,8 +968,19 @@ a.button.icon.back-sidebar-button.folders {
         span.subject a { font-weight: 600; color: #f5f5f5; }
     }
 
-    span.flag           { color: #3a3a4a; }
-    tr.flagged span.flag { color: #e5a44d; }
+    // Star/flag icons
+    span.flag {
+        color: #3a3a4a !important;
+
+        &:before {
+            content: "\e17c" !important; // Lucide star icon
+            font-size: 13px !important;
+        }
+    }
+    tr.flagged span.flag {
+        color: #e5a44d !important;
+    }
+
     span.attachment span { color: #55556a; }
 }
 
@@ -911,6 +995,46 @@ a.button.icon.back-sidebar-button.folders {
     border-left: 0 !important;
     border-right: 0 !important;
     padding: 5px 10px;
+    justify-content: space-between !important;
+
+    // Page info text
+    .pagenav-text {
+        font-family: 'Source Code Pro', monospace;
+        font-size: 9px;
+        color: #55556a;
+    }
+
+    // Page navigation arrows
+    a {
+        color: #55556a !important;
+        padding: 0 4px !important;
+        width: auto !important;
+        height: auto !important;
+        min-width: auto !important;
+
+        &:before {
+            font-size: 12px !important;
+        }
+    }
+
+    // Hide text labels in pagination
+    .inner {
+        display: none !important;
+    }
+
+    // Page input field
+    input.pagenav-current {
+        width: 28px !important;
+        padding: 1px 4px !important;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 9px;
+        text-align: center;
+        background-color: transparent !important;
+        border: 1px solid #1a1a24 !important;
+        border-radius: 3px !important;
+        color: #55556a !important;
+        height: auto !important;
+    }
 }
 
 .pagenav.menu.footer.small {
@@ -934,16 +1058,41 @@ a.button.icon.back-sidebar-button.folders {
     }
 }
 
-// Watermark empty state — serif italic like template
+// Watermark empty state — match template: mail icon + italic text
 #layout-content .watermark {
-    opacity: 0.5;
+    background-image: none !important;
     background-color: #0a0a0a;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    // Mail icon via pseudo-element
+    &:before {
+        font-family: 'Icons';
+        content: "\e10f"; // mail icon (Lucide)
+        font-size: 32px;
+        color: #3a3a4a;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    // Text "Sélectionnez un message"
+    &:after {
+        content: "Sélectionnez un message";
+        font-family: 'Source Serif 4', Georgia, serif;
+        font-style: italic;
+        font-size: 14px;
+        color: #55556a;
+    }
 }
 
 #layout-content .listing-info {
     font-family: 'Source Serif 4', Georgia, serif;
     font-style: italic;
-    color: #3a3a4a;
+    color: #55556a;
     font-size: 14px;
 }
 
