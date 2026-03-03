@@ -2,6 +2,7 @@
  * Editorial skin — custom style overrides
  *
  * True black theme with Source Sans 3 / Source Serif 4 / Source Code Pro
+ * Lucide icons · Modern rounded design
  * Compatible with ident_switch and identity_switch plugins
  */
 
@@ -9,6 +10,148 @@
 
 // ── Google Fonts ──
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap');
+
+
+// ═══════════════════════════════════════════
+// ── Lucide icon font override ──
+// Replaces FontAwesome 'Icons' with Lucide
+// ═══════════════════════════════════════════
+
+@font-face {
+    font-family: 'Icons';
+    font-style: normal;
+    font-weight: 900;
+    src: url("../fonts/lucide.woff2") format('woff2'),
+         url("../fonts/lucide.woff") format('woff');
+}
+@font-face {
+    font-family: 'Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/lucide.woff2") format('woff2'),
+         url("../fonts/lucide.woff") format('woff');
+}
+
+// FA → Lucide codepoint remapping (all icons used in theme)
+@fa-var-address-book:               "\e463"; // contact-2
+@fa-var-address-card:               "\e617"; // id-card
+@fa-var-align-justify:              "\e184"; // align-justify
+@fa-var-angle-double-down:          "\e071"; // chevrons-down
+@fa-var-angle-double-left:          "\e072"; // chevrons-left
+@fa-var-angle-double-right:         "\e073"; // chevrons-right
+@fa-var-angle-double-up:            "\e074"; // chevrons-up
+@fa-var-angle-down:                 "\e06d"; // chevron-down
+@fa-var-angle-left:                 "\e06e"; // chevron-left
+@fa-var-angle-right:                "\e06f"; // chevron-right
+@fa-var-angle-up:                   "\e070"; // chevron-up
+@fa-var-archive:                    "\e041"; // archive
+@fa-var-arrow-left:                 "\e048"; // arrow-left
+@fa-var-arrow-right:                "\e049"; // arrow-right
+@fa-var-asterisk:                   "\e1ef"; // asterisk
+@fa-var-bars:                       "\e115"; // menu
+@fa-var-bell:                       "\e059"; // bell
+@fa-var-calendar:                   "\e063"; // calendar
+@fa-var-calendar-alt:               "\e2b9"; // calendar-days
+@fa-var-caret-down:                 "\e06d"; // chevron-down
+@fa-var-check:                      "\e06c"; // check
+@fa-var-check-circle:               "\e226"; // circle-check
+@fa-var-check-square:               "\e559"; // square-check
+@fa-var-chevron-left:               "\e06e"; // chevron-left
+@fa-var-chevron-right:              "\e06f"; // chevron-right
+@fa-var-circle:                     "\e076"; // circle
+@fa-var-circle-notch:               "\e10a"; // loader-2
+@fa-var-clock:                      "\e087"; // clock
+@fa-var-cog:                        "\e154"; // settings
+@fa-var-comment:                    "\e116"; // message-circle
+@fa-var-comments:                   "\e40d"; // messages-square
+@fa-var-compress-arrows-alt:        "\e11b"; // minimize-2
+@fa-var-copy:                       "\e09e"; // copy
+@fa-var-desktop:                    "\e11d"; // monitor
+@fa-var-download:                   "\e0b2"; // download
+@fa-var-edit:                       "\e1f9"; // pencil
+@fa-var-ellipsis-h:                 "\e0b6"; // ellipsis
+@fa-var-ellipsis-v:                 "\e0b7"; // ellipsis-vertical
+@fa-var-envelope:                   "\e10f"; // mail
+@fa-var-envelope-open:              "\e363"; // mail-open
+@fa-var-eraser:                     "\e28f"; // eraser
+@fa-var-exclamation-circle:         "\e077"; // circle-alert
+@fa-var-exclamation-triangle:       "\e193"; // triangle-alert
+@fa-var-external-link-square-alt:   "\e0b9"; // external-link
+@fa-var-eye:                        "\e0ba"; // eye
+@fa-var-file:                       "\e0c0"; // file
+@fa-var-file-alt:                   "\e0cc"; // file-text
+@fa-var-file-archive:               "\e30d"; // file-archive
+@fa-var-file-audio:                 "\e31a"; // file-audio
+@fa-var-file-code:                  "\e0c3"; // file-code
+@fa-var-file-excel:                 "\e326"; // file-spreadsheet
+@fa-var-file-image:                 "\e31c"; // file-image
+@fa-var-file-pdf:                   "\e0cc"; // file-text
+@fa-var-file-powerpoint:            "\e4ae"; // presentation
+@fa-var-file-video:                 "\e321"; // file-video
+@fa-var-file-word:                  "\e0cc"; // file-text
+@fa-var-filter:                     "\e0dc"; // filter
+@fa-var-fire-alt:                   "\e0d2"; // flame
+@fa-var-flag:                       "\e0d1"; // flag
+@fa-var-folder:                     "\e0d7"; // folder
+@fa-var-folder-open:                "\e247"; // folder-open
+@fa-var-globe:                      "\e0e8"; // globe
+@fa-var-hdd:                        "\e0ed"; // hard-drive
+@fa-var-home:                       "\e0f5"; // home
+@fa-var-id-card:                    "\e617"; // id-card
+@fa-var-image:                      "\e0f6"; // image
+@fa-var-inbox:                      "\e0f7"; // inbox
+@fa-var-info-circle:                "\e0f9"; // info
+@fa-var-key:                        "\e0fd"; // key
+@fa-var-life-ring:                  "\e101"; // life-buoy
+@fa-var-lightbulb:                  "\e1c2"; // lightbulb
+@fa-var-link:                       "\e102"; // link
+@fa-var-lock:                       "\e10b"; // lock
+@fa-var-moon:                       "\e11e"; // moon
+@fa-var-mouse-pointer:              "\e11f"; // mouse-pointer
+@fa-var-paperclip:                  "\e12d"; // paperclip
+@fa-var-paper-plane:                "\e152"; // send
+@fa-var-pen:                        "\e12f"; // pen
+@fa-var-pencil-alt:                 "\e1f9"; // pencil
+@fa-var-plus:                       "\e13d"; // plus
+@fa-var-plus-square:                "\e173"; // square-plus
+@fa-var-power-off:                  "\e140"; // power
+@fa-var-print:                      "\e141"; // printer
+@fa-var-qrcode:                     "\e1df"; // qr-code
+@fa-var-question:                   "\e082"; // circle-help
+@fa-var-question-circle:            "\e082"; // circle-help
+@fa-var-redo:                       "\e143"; // redo
+@fa-var-redo-alt:                   "\e2a0"; // redo-2
+@fa-var-reply:                      "\e22a"; // reply
+@fa-var-reply-all:                  "\e22b"; // reply-all
+@fa-var-rss-square:                 "\e14a"; // rss
+@fa-var-save:                       "\e14d"; // save
+@fa-var-search:                     "\e151"; // search
+@fa-var-search-minus:               "\e1b7"; // zoom-out
+@fa-var-search-plus:                "\e1b6"; // zoom-in
+@fa-var-server:                     "\e153"; // server
+@fa-var-share:                      "\e155"; // share
+@fa-var-share-alt:                  "\e156"; // share-2
+@fa-var-share-square:               "\e229"; // forward
+@fa-var-shield-alt:                 "\e158"; // shield
+@fa-var-signature:                  "\e5f2"; // signature
+@fa-var-sign-in-alt:                "\e10d"; // log-in
+@fa-var-sliders-h:                  "\e29a"; // sliders-horizontal
+@fa-var-spell-check:                "\e49a"; // spell-check
+@fa-var-sticky-note:                "\e303"; // sticky-note
+@fa-var-sun:                        "\e178"; // sun
+@fa-var-sync:                       "\e145"; // refresh-cw
+@fa-var-tag:                        "\e17f"; // tag
+@fa-var-tasks:                      "\e1d0"; // list-checks
+@fa-var-times:                      "\e1b2"; // x
+@fa-var-trash-alt:                  "\e18e"; // trash-2
+@fa-var-undo:                       "\e19b"; // undo
+@fa-var-unlock:                     "\e10c"; // unlock
+@fa-var-upload:                     "\e19e"; // upload
+@fa-var-user:                       "\e19f"; // user
+@fa-var-user-friends:               "\e1a4"; // users
+@fa-var-user-plus:                  "\e1a2"; // user-plus
+@fa-var-user-times:                 "\e1a3"; // user-x
+@fa-var-users:                      "\e1a4"; // users
 
 
 // ═══════════════════════════════════════════
@@ -22,6 +165,7 @@ html {
 body {
     margin: 0 !important;
     font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
 }
 
 button, input, optgroup, select, textarea, .popover {
@@ -39,7 +183,7 @@ button, input, optgroup, select, textarea, .popover {
     background: fadeout(@color-main, 70%);
 }
 
-// Smooth transitions — never transition: all (portfolio rule)
+// Smooth transitions
 a, button, .btn {
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
@@ -68,7 +212,7 @@ textarea.form-control {
     background-color: #111116 !important;
     border: 1px solid #252530 !important;
     color: #f5f5f5 !important;
-    border-radius: 5px !important;
+    border-radius: 8px !important;
     font-family: 'Source Sans 3', sans-serif;
 
     &:focus {
@@ -88,7 +232,7 @@ select.custom-select {
     background-color: #111116 !important;
     border: 1px solid #252530 !important;
     color: #f5f5f5 !important;
-    border-radius: 5px !important;
+    border-radius: 8px !important;
     padding: 6px 28px 6px 10px !important;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
@@ -180,6 +324,9 @@ ul.tokens-container {
     background-color: #1a1a28 !important;
     border-color: #252530 !important;
     color: #f5f5f5 !important;
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-weight: 500;
 }
 
 .btn-primary {
@@ -187,6 +334,8 @@ ul.tokens-container {
     color: #000 !important;
     border: none !important;
     font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 16px;
 }
 
 
@@ -228,7 +377,7 @@ ul.tokens-container {
         max-width: 36px !important;
         padding: 0 !important;
         margin: 0 !important;
-        border-radius: 6px;
+        border-radius: 10px;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -381,15 +530,15 @@ a.button.icon.back-sidebar-button.folders {
     }
 }
 
-// Folder tree — 13px, Source Sans 3, padding vertical uniquement (préserver indent)
+// Folder tree — 13px, Source Sans 3, padding généreux
 .folderlist li a,
 #mailbox-list li a,
 .treelist.listing li a {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 12px;
     color: #f5f5f5;
     transition: background .1s;
 }
@@ -398,12 +547,14 @@ a.button.icon.back-sidebar-button.folders {
 .folderlist li.mailbox.selected > a {
     color: @color-main !important;
     background-color: #1a1a28 !important;
-    border-left: 2px solid @color-main !important;
+    border-left: 3px solid @color-main !important;
+    border-radius: 0 6px 6px 0;
 }
 
 .treelist.listing li > a:hover,
 .folderlist li a:hover {
     background-color: #16161e !important;
+    border-radius: 0 6px 6px 0;
 }
 
 .folderlist li.mailbox .unreadcount {
@@ -479,14 +630,17 @@ a.button.icon.back-sidebar-button.folders {
     z-index: 1050 !important;
     background-color: #141418 !important;
     border: 1px solid #252530 !important;
-    border-radius: 6px !important;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8) !important;
+    padding: 4px !important;
 
     .listing li a {
         color: #f5f5f5 !important;
         font-family: 'Source Code Pro', monospace;
         font-size: 11px;
-        padding: 8px 12px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        margin: 1px 0;
 
         &:hover, &.active { background-color: #16161e !important; }
         &.selected { color: @color-main !important; background-color: #1c1c2e !important; }
@@ -557,7 +711,7 @@ a.button.icon.back-sidebar-button.folders {
         min-width: 32px !important;
         max-width: 32px !important;
         padding: 0 !important;
-        border-radius: 5px;
+        border-radius: 8px;
         color: #55556a;
         float: none !important;
         font-size: 0 !important;
@@ -588,7 +742,7 @@ a.button.icon.back-sidebar-button.folders {
     width: 32px !important;
     height: 32px !important;
     padding: 0 !important;
-    border-radius: 5px;
+    border-radius: 8px;
     color: #55556a;
     font-size: 0 !important;
     float: none !important;
@@ -625,18 +779,18 @@ a.button.icon.back-sidebar-button.folders {
 // Search bar
 .searchbar {
     background-color: transparent !important;
-    padding: 5px 8px !important;
+    padding: 6px 10px !important;
     border-bottom: 1px solid #1a1a24;
 
     input,
     input.form-control {
         background-color: #111116 !important;
         border: 1px solid #1a1a24 !important;
-        border-radius: 5px !important;
+        border-radius: 10px !important;
         color: #f5f5f5 !important;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 12px;
-        padding: 5px 9px !important;
+        padding: 7px 12px !important;
         height: auto !important;
 
         &:focus {
@@ -672,9 +826,10 @@ a.button.icon.back-sidebar-button.folders {
 
     td.subject {
         font-size: 13px;
+        padding: 10px 12px 10px 6px;
 
         span.fromto { font-size: 13px; color: #888898; }
-        span.date   { font-family: 'Source Code Pro', monospace; font-size: 10px; color: #55556a; }
+        span.date   { font-family: 'Source Code Pro', monospace; font-size: 10px; color: #55556a; letter-spacing: 0.3px; }
         span.subject a { font-weight: 400; color: #888898; }
     }
 
@@ -752,7 +907,7 @@ a.button.icon.back-sidebar-button.folders {
         min-width: 32px !important;
         max-width: 32px !important;
         padding: 0 !important;
-        border-radius: 5px;
+        border-radius: 8px;
         color: #55556a;
         float: none !important;
         font-size: 0 !important;
@@ -826,7 +981,7 @@ pre, code,
     color: #f5f5f5;
     background-color: #0e0e12;
     padding: 14px;
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid #1a1a24;
 }
 
@@ -847,18 +1002,25 @@ pre, code,
 .popover {
     background-color: #0e0e12;
     border: 1px solid #252530;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
-    border-radius: 6px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .popupmenu {
     background-color: #141418;
     border: 1px solid #252530;
-    border-radius: 6px;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     .listing li a {
         color: #f5f5f5;
+        padding: 8px 14px;
+        border-radius: 6px;
+        margin: 2px 4px;
         &:hover { background-color: #16161e; }
     }
 }
@@ -878,20 +1040,21 @@ pre, code,
     text-align: left;
     width: 200px;
     border: 1px solid #1a1a24 !important;
-    border-radius: 4px;
+    border-radius: 8px;
     background: #111116 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23888898' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat left .75rem center/8px 10px;
     color: #888898;
 }
 
 #identity_switch_dropdown {
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
     border: 1px solid #252530;
-    border-radius: 6px;
+    border-radius: 12px;
     background-color: #141418;
     color: #f5f5f5;
+    padding: 4px;
 
-    a { color: #f5f5f5; }
-    li:hover { background-color: #16161e; }
+    a { color: #f5f5f5; padding: 8px 14px; border-radius: 8px; display: block; }
+    li:hover { background-color: #16161e; border-radius: 8px; }
 
     .unseen {
         background: @color-main;
@@ -971,12 +1134,13 @@ pre, code,
         color: #000 !important;
         border: none !important;
         font-weight: 600;
-        border-radius: 4px;
-        padding: .5rem 1.5rem;
-        transition: background-color 0.2s ease;
+        border-radius: 10px;
+        padding: .6rem 2rem;
+        transition: background-color 0.2s ease, transform 0.15s ease;
 
         &:hover {
             background-color: lighten(@color-main, 8%) !important;
+            transform: translateY(-1px);
         }
     }
 
@@ -991,7 +1155,8 @@ pre, code,
     & > div {
         background: #111116;
         border: 1px solid #1a1a24;
-        border-radius: 6px;
+        border-radius: 12px;
+        padding: 1.2rem;
     }
 }
 
@@ -1051,24 +1216,25 @@ pre, code,
     color: #f5f5f5;
 }
 
-// Fieldsets
+// Fieldsets — arrondis modernes
 fieldset {
     border: 1px solid #1a1a24 !important;
-    border-width: 0 0 2px 0 !important;
+    border-width: 0 0 1px 0 !important;
     border-radius: 0;
-    padding: 0 16px 12px !important;
-    margin-bottom: 16px !important;
+    padding: 0 20px 16px !important;
+    margin-bottom: 20px !important;
     background-color: transparent;
 
     legend {
         font-family: 'Source Serif 4', Georgia, serif;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 600;
         color: #f5f5f5;
         padding: 0 !important;
         width: auto;
         float: none;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
+        letter-spacing: 0.2px;
     }
 }
 
@@ -1095,14 +1261,14 @@ fieldset {
 .skinselection {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
-    border-radius: 6px;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
     border: 1px solid #1a1a24;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     background-color: #111116;
     cursor: pointer;
-    transition: border-color .12s;
+    transition: border-color .12s, background-color .12s;
     width: 100%;
 
     &:has(input:checked) {
@@ -1119,7 +1285,7 @@ fieldset {
     }
 
     .skinthumbnail {
-        border-radius: 4px;
+        border-radius: 8px;
         width: 48px !important;
         height: 48px !important;
         object-fit: cover;
@@ -1164,21 +1330,24 @@ fieldset {
 
 // Save / form buttons
 .formbuttons {
-    padding: 12px 0 4px;
+    padding: 14px 0 6px;
 
     .btn, button {
         font-family: 'Source Sans 3', sans-serif;
         font-size: 13px;
-        border-radius: 5px;
-        padding: 7px 18px;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 8px 22px;
     }
 }
 
 // Settings sidebar nav
 .task-settings #layout-sidebar {
     .listing li a {
-        padding: 9px 14px;
+        padding: 10px 16px;
         font-size: 13px;
+        border-radius: 8px;
+        margin: 2px 6px;
     }
 }
 
@@ -1227,7 +1396,7 @@ fieldset {
             height: 32px !important;
             min-width: 32px !important;
             padding: 0 !important;
-            border-radius: 5px;
+            border-radius: 8px;
             color: #55556a;
             float: none !important;
             font-size: 0 !important;
@@ -1268,7 +1437,7 @@ a.toolbar-menu-button {
     width: 32px !important;
     height: 32px !important;
     padding: 0 !important;
-    border-radius: 5px;
+    border-radius: 8px;
     color: #55556a;
     font-size: 0 !important;
 
@@ -1348,7 +1517,7 @@ a.toolbar-menu-button {
                         align-items: center !important;
                         justify-content: center !important;
                         color: #55556a;
-                        border-radius: 5px;
+                        border-radius: 8px;
                         cursor: pointer;
                         padding: 0 !important;
                         font-size: 0 !important;
@@ -1474,8 +1643,8 @@ a.toolbar-menu-button {
                 background: transparent !important;
                 border: 1px dashed #252530 !important;
                 color: #888898 !important;
-                border-radius: 5px;
-                padding: 7px 12px;
+                border-radius: 10px;
+                padding: 10px 14px;
                 font-size: 12px;
                 font-family: 'Source Sans 3', sans-serif;
                 cursor: pointer;
@@ -1542,19 +1711,20 @@ a.toolbar-menu-button {
     outline: none;
 }
 
-// ── Notification toast messages ──
+// ── Notification toasts ──
 #messagestack {
     z-index: 10000;
 
     div {
-        border-radius: 6px;
+        border-radius: 12px;
         border: 0;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 13px;
         font-weight: 500;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        padding: 12px 18px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
     }
 
     .alert-info {
@@ -1592,11 +1762,13 @@ a.toolbar-menu-button {
 body > li.recipient.ui-sortable-helper {
     background-color: #16161e;
     border-color: #252530;
-    border-radius: 4px;
-    transition: border-color 0.12s ease;
+    border-radius: 20px;
+    padding: 3px 10px;
+    transition: border-color 0.12s ease, background-color 0.12s ease;
 
     &:hover {
         border-color: fadeout(@color-main, 50%);
+        background-color: #1a1a28;
     }
 
     .name {
@@ -1609,7 +1781,8 @@ body > li.recipient.ui-sortable-helper {
 .tagedit-list li.tagedit-listelement-old {
     background-color: #16161e;
     border-color: #252530;
-    border-radius: 4px;
+    border-radius: 20px;
+    padding: 3px 10px;
     transition: border-color 0.12s ease;
 
     &:hover {
@@ -1639,20 +1812,23 @@ body > li.recipient.ui-sortable-helper {
     }
 }
 
-// ── Nav tabs — editorial style ──
+// ── Nav tabs ──
 .nav-tabs {
     border-color: #1a1a24;
 
     .nav-link {
         border-color: transparent;
+        border-radius: 8px 8px 0 0;
         color: #888898;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 13px;
-        transition: color 0.15s ease, border-color 0.15s ease;
+        padding: 8px 16px;
+        transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 
         &:hover {
             border-color: #252530;
             color: #f5f5f5;
+            background-color: #111116;
         }
 
         &.active {
@@ -1667,20 +1843,20 @@ body > li.recipient.ui-sortable-helper {
 
 // ── jQuery UI Dialog — editorial style ──
 .ui-dialog {
-    border-radius: 8px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
     border-color: #252530;
 
     .ui-dialog-titlebar {
         background-color: #141418;
         border-color: #1a1a24;
-        padding: 12px 16px;
+        padding: 14px 20px;
     }
 
     .ui-dialog-title {
         font-family: 'Source Serif 4', Georgia, serif;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 600;
         color: #f5f5f5;
     }
@@ -1688,12 +1864,13 @@ body > li.recipient.ui-sortable-helper {
     .ui-dialog-content {
         background-color: #0a0a0a;
         color: #f5f5f5;
+        padding: 16px 20px;
     }
 
     .ui-dialog-buttonpane {
         background-color: #0a0a0a;
         border-color: #1a1a24;
-        padding: 10px 16px;
+        padding: 12px 20px;
     }
 }
 
@@ -1718,15 +1895,16 @@ body > li.recipient.ui-sortable-helper {
 #rcmdraglayer {
     background-color: #141418;
     border: 1px solid #252530;
-    border-radius: 6px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
 }
 
 // ── Image attachments ──
 p.image-attachment {
     border-color: #1a1a24;
     background-color: #111116;
-    border-radius: 6px;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 // ── Fieldset advanced toggle ──
@@ -1738,26 +1916,33 @@ fieldset.advanced > legend {
     }
 }
 
-// ── Datepicker refinements ──
+// ── Datepicker ──
 .ui-datepicker {
     background-color: #0e0e12;
-    border-color: #252530;
-    border-radius: 6px;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+    border: 1px solid #252530;
+    border-radius: 14px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.7);
+    padding: 8px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     .ui-datepicker-header {
         background-color: #141418;
         border-color: #1a1a24;
+        border-radius: 8px;
         color: #f5f5f5;
+        margin-bottom: 4px;
     }
 
     th {
         color: #55556a;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 11px;
     }
 
     .ui-state-default {
         color: #f5f5f5;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: background-color 0.1s ease;
 
         &:hover {
@@ -1768,11 +1953,13 @@ fieldset.advanced > legend {
     .ui-state-active {
         background-color: @color-main;
         color: #000;
+        border-radius: 8px;
     }
 
     .ui-state-highlight {
         background-color: fadeout(@color-main, 80%);
         color: @color-main;
+        border-radius: 8px;
     }
 }
 
@@ -1798,15 +1985,19 @@ img.contactphoto,
 .ui-menu {
     background-color: #0e0e12;
     border: 1px solid #252530;
-    border-radius: 6px;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.7);
+    padding: 4px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     .ui-menu-item {
-        border-color: #1a1a24;
+        border-color: transparent;
 
         .ui-menu-item-wrapper {
             color: #f5f5f5;
-            padding: 6px 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
             transition: background-color 0.08s ease;
 
             &.ui-state-active {
