@@ -908,9 +908,10 @@ ul.treelist li div.treetoggle {
     border-left: 0 !important;
     border-right: 0 !important;
 
-    &:before {
+    form::before {
+        position: absolute;
+        margin-left: 8px;
         color: #55556a !important;
-        margin-right: 8px !important;
         font-size: 14px !important;
     }
 
@@ -950,8 +951,9 @@ ul.treelist li div.treetoggle {
 // search forms — margin-left
 #mailsearchform,
 #searchform {
-    margin-left: 16px;
+    margin-left: 0px;
     padding: 8px !important;
+    padding-left: 32px !important;
 }
 
 // button margin-left
