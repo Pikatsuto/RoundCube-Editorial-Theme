@@ -809,6 +809,11 @@ ul.treelist li div.treetoggle {
 // messagelist-header — justify-content: end (boutons alignés à droite)
 #messagelist-header {
     justify-content: flex-end !important;
+
+    li {
+        display: flex;
+        align-items: center;
+    }
 }
 
 // Toolbar dans le header liste (select, threads, options) — 32×32 icon-only
@@ -897,10 +902,11 @@ ul.treelist li div.treetoggle {
     display: none !important;
 }
 
-// Search bar — match template exactly
+// Search bar
 .searchbar {
     background-color: transparent !important;
-    padding: 6px 6px !important;
+    height: min-content;
+    line-height: 32px;
     border-bottom: 1px solid #1a1a24 !important;
     border-top: 0 !important;
     border-left: 0 !important;
@@ -916,13 +922,12 @@ ul.treelist li div.treetoggle {
     input,
     input.form-control {
         background-color: #111116 !important;
-        border: 1px solid #1a1a24 !important;
-        border-radius: 5px !important;
+        border: 0 !important;
+        border-radius: 0 !important;
         color: #f5f5f5 !important;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 12px;
-        padding: 5px 9px 5px 28px !important;
-        height: auto !important;
+        padding-left: 32px !important;
 
         &:focus {
             background-color: #16161e !important;
@@ -946,13 +951,6 @@ ul.treelist li div.treetoggle {
     }
 }
 
-// search forms — margin-left
-#mailsearchform,
-#searchform {
-    margin-left: 0px;
-    padding: 8px !important;
-    padding-left: 32px !important;
-}
 
 // button margin-left
 #rcmbtn108 {

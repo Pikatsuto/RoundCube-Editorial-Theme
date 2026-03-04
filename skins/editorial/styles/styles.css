@@ -7295,6 +7295,10 @@ ul.treelist li div.treetoggle:before {
 #messagelist-header {
   justify-content: flex-end !important;
 }
+#messagelist-header li {
+  display: flex;
+  align-items: center;
+}
 #messagelist-header .toolbar {
   display: flex !important;
   align-items: center !important;
@@ -7381,7 +7385,8 @@ ul.treelist li div.treetoggle:before {
 }
 .searchbar {
   background-color: transparent !important;
-  padding: 6px 6px !important;
+  height: min-content;
+  line-height: 32px;
   border-bottom: 1px solid #1a1a24 !important;
   border-top: 0 !important;
   border-left: 0 !important;
@@ -7396,13 +7401,12 @@ ul.treelist li div.treetoggle:before {
 .searchbar input,
 .searchbar input.form-control {
   background-color: #111116 !important;
-  border: 1px solid #1a1a24 !important;
-  border-radius: 5px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   color: #f5f5f5 !important;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
-  padding: 5px 9px 5px 28px !important;
-  height: auto !important;
+  padding-left: 32px !important;
 }
 .searchbar input:focus,
 .searchbar input.form-control:focus {
@@ -7419,12 +7423,6 @@ ul.treelist li div.treetoggle:before {
 }
 .searchbar form {
   flex: 1;
-}
-#mailsearchform,
-#searchform {
-  margin-left: 0px;
-  padding: 8px !important;
-  padding-left: 32px !important;
 }
 #rcmbtn108 {
   margin-left: 8px !important;
