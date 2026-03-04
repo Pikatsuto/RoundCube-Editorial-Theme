@@ -137,6 +137,8 @@
 @fa-var-sign-in-alt:                "\e10d"; // log-in
 @fa-var-sliders-h:                  "\e29a"; // sliders-horizontal
 @fa-var-spell-check:                "\e49a"; // spell-check
+@fa-var-star:                       "\e176"; // star
+@fa-var-star-half:                  "\e20b"; // star-half
 @fa-var-sticky-note:                "\e303"; // sticky-note
 @fa-var-sun:                        "\e178"; // sun
 @fa-var-sync:                       "\e145"; // refresh-cw
@@ -594,12 +596,13 @@ a.button.icon.back-sidebar-button.folders {
 
 // Folder tree — 13px, Source Sans 3 — match template exactly
 .folderlist li a,
-#mailbox-list li a,
 .treelist.listing li a {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
     padding: 6px 10px !important;
     color: #f5f5f5 !important;
+    line-height: normal !important;
+    border-left: 2px solid transparent !important;
     transition: background .1s;
 }
 
@@ -610,6 +613,39 @@ a.button.icon.back-sidebar-button.folders {
     margin-right: 7px !important;
     width: 1.2em !important;
     text-align: center;
+}
+
+// Virtual folders — prevent Elastic's 0.4 opacity
+.listing li.virtual > a {
+    opacity: 1 !important;
+}
+
+// Treetoggle — compact, absolute positioned
+ul.treelist li div.treetoggle {
+    position: absolute !important;
+    top: 0 !important;
+    left: 2px !important;
+    width: 18px !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #55556a !important;
+    cursor: pointer;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+
+    &:before {
+        margin: 0 !important;
+        font-size: 10px !important;
+    }
+}
+
+// Items WITH a treetoggle child — extra padding-left to clear the chevron
+// :has() targets li elements that contain a div.treetoggle direct child
+.treelist.listing li:has(> div.treetoggle) > a {
+    padding-left: 22px !important;
 }
 
 .treelist.listing li.selected > a,
@@ -628,19 +664,23 @@ a.button.icon.back-sidebar-button.folders {
     background-color: #16161e !important;
 }
 
-// Nested folders — indentation 16px per level (template: depth * 16px)
+// Nested folders — zero ul padding, explicit per-depth on <a>
 .treelist.listing ul {
     padding-left: 0 !important;
-
-    li > a { padding-left: 26px !important; } // depth 1 = 10 + 16
-    ul li > a { padding-left: 42px !important; } // depth 2 = 10 + 32
-    ul ul li > a { padding-left: 58px !important; } // depth 3 = 10 + 48
 }
 
-// Treetoggle (expand/collapse arrow) — color matches template textDim
-.treetoggle {
-    color: #55556a !important;
-}
+// Depth 1
+.treelist.listing ul li > a { padding-left: 26px !important; }
+.treelist.listing ul li:has(> div.treetoggle) > a { padding-left: 38px !important; }
+.treelist.listing ul li > div.treetoggle { left: 18px !important; }
+
+// Depth 2
+.treelist.listing ul ul li > a { padding-left: 42px !important; }
+.treelist.listing ul ul li:has(> div.treetoggle) > a { padding-left: 54px !important; }
+.treelist.listing ul ul li > div.treetoggle { left: 34px !important; }
+
+// Depth 3
+.treelist.listing ul ul ul li > a { padding-left: 58px !important; }
 
 .folderlist li.mailbox .unreadcount {
     background-color: @color-main !important;
@@ -970,7 +1010,7 @@ a.button.icon.back-sidebar-button.folders {
         color: #3a3a4a !important;
 
         &:before {
-            content: "\e17c" !important; // Lucide star icon
+            content: "\e176" !important; // Lucide star icon
             font-size: 13px !important;
         }
     }
