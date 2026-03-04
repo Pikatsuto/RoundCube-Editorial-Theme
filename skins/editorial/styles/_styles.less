@@ -595,11 +595,13 @@ a.button.icon.back-sidebar-button.folders {
 }
 
 // Folder tree — 13px, Source Sans 3 — match template exactly
+// ALL items at same depth get same padding-left so icons align vertically
+// Chevron space is always reserved; treetoggle sits in it when present
 .folderlist li a,
 .treelist.listing li a {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px;
-    padding: 6px 10px !important;
+    padding: 6px 10px 6px 22px !important; // 22px reserves space for chevron
     color: #f5f5f5 !important;
     line-height: normal !important;
     border-left: 2px solid transparent !important;
@@ -620,7 +622,7 @@ a.button.icon.back-sidebar-button.folders {
     opacity: 1 !important;
 }
 
-// Treetoggle — compact, absolute positioned
+// Treetoggle — sits in the reserved 22px space before the icon
 ul.treelist li div.treetoggle {
     position: absolute !important;
     top: 0 !important;
@@ -642,12 +644,6 @@ ul.treelist li div.treetoggle {
     }
 }
 
-// Items WITH a treetoggle child — extra padding-left to clear the chevron
-// :has() targets li elements that contain a div.treetoggle direct child
-.treelist.listing li:has(> div.treetoggle) > a {
-    padding-left: 22px !important;
-}
-
 .treelist.listing li.selected > a,
 .folderlist li.mailbox.selected > a {
     color: @color-main !important;
@@ -664,23 +660,21 @@ ul.treelist li div.treetoggle {
     background-color: #16161e !important;
 }
 
-// Nested folders — zero ul padding, explicit per-depth on <a>
+// Nested folders — zero ul padding, uniform per-depth padding on <a>
 .treelist.listing ul {
     padding-left: 0 !important;
 }
 
-// Depth 1
-.treelist.listing ul li > a { padding-left: 26px !important; }
-.treelist.listing ul li:has(> div.treetoggle) > a { padding-left: 38px !important; }
+// Depth 1 — all items same padding, treetoggle shifted
+.treelist.listing ul li > a { padding-left: 38px !important; }
 .treelist.listing ul li > div.treetoggle { left: 18px !important; }
 
 // Depth 2
-.treelist.listing ul ul li > a { padding-left: 42px !important; }
-.treelist.listing ul ul li:has(> div.treetoggle) > a { padding-left: 54px !important; }
+.treelist.listing ul ul li > a { padding-left: 54px !important; }
 .treelist.listing ul ul li > div.treetoggle { left: 34px !important; }
 
 // Depth 3
-.treelist.listing ul ul ul li > a { padding-left: 58px !important; }
+.treelist.listing ul ul ul li > a { padding-left: 70px !important; }
 
 .folderlist li.mailbox .unreadcount {
     background-color: @color-main !important;

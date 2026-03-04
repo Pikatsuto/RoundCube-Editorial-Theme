@@ -7110,7 +7110,7 @@ a.button.icon.back-sidebar-button.folders {
 .treelist.listing li a {
   font-family: 'Source Sans 3', sans-serif;
   font-size: 13px;
-  padding: 6px 10px !important;
+  padding: 6px 10px 6px 22px !important;
   color: #f5f5f5 !important;
   line-height: normal !important;
   border-left: 2px solid transparent !important;
@@ -7145,9 +7145,6 @@ ul.treelist li div.treetoggle:before {
   margin: 0 !important;
   font-size: 12px !important;
 }
-.treelist.listing li:has(> div.treetoggle) > a {
-  padding-left: 22px !important;
-}
 .treelist.listing li.selected > a,
 .folderlist li.mailbox.selected > a {
   color: #5b9bd5 !important;
@@ -7165,25 +7162,19 @@ ul.treelist li div.treetoggle:before {
   padding-left: 0 !important;
 }
 .treelist.listing ul li > a {
-  padding-left: 26px !important;
-}
-.treelist.listing ul li:has(> div.treetoggle) > a {
   padding-left: 38px !important;
 }
 .treelist.listing ul li > div.treetoggle {
   left: 18px !important;
 }
 .treelist.listing ul ul li > a {
-  padding-left: 42px !important;
-}
-.treelist.listing ul ul li:has(> div.treetoggle) > a {
   padding-left: 54px !important;
 }
 .treelist.listing ul ul li > div.treetoggle {
   left: 34px !important;
 }
 .treelist.listing ul ul ul li > a {
-  padding-left: 58px !important;
+  padding-left: 70px !important;
 }
 .folderlist li.mailbox .unreadcount {
   background-color: #5b9bd5 !important;
