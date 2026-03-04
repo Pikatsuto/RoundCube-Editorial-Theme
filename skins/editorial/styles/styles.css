@@ -2477,9 +2477,9 @@ a.toolbar-button {
 }
 /*** Searchbar and searchoptions widgets ***/
 .searchbar {
-  height: 36px;
-  min-height: 36px;
-  line-height: 36px;
+  height: 32px;
+  min-height: 32px;
+  line-height: 32px;
   background-color: #111116;
   border-bottom: 1px solid #1a1a24;
   display: flex;
@@ -2493,7 +2493,7 @@ a.toolbar-button {
 }
 .searchbar form:before {
   content: "\e151";
-  height: 36px;
+  height: 32px;
   color: #55556a;
   margin: 0 0 0 0.75rem;
 }
@@ -2513,7 +2513,7 @@ a.toolbar-button {
 }
 .searchbar a:before {
   width: 2rem;
-  height: 36px;
+  height: 32px;
   margin: 0;
 }
 .searchbar a.options:before {
@@ -7385,8 +7385,6 @@ ul.treelist li div.treetoggle:before {
 }
 .searchbar {
   background-color: transparent !important;
-  line-height: 32px;
-  height: 32px;
   border-bottom: 1px solid #1a1a24 !important;
   border-top: 0 !important;
   border-left: 0 !important;
