@@ -626,7 +626,7 @@ ul.treelist li div.treetoggle {
     top: 0 !important;
     left: 2px !important;
     width: 18px !important;
-    height: 100% !important;
+    height: 10px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -956,7 +956,8 @@ ul.treelist li div.treetoggle {
 // search forms — margin-left
 #mailsearchform,
 #searchform {
-    margin-left: 0;
+    margin-left: 18px;
+    padding: 8px !important;
 }
 
 // button margin-left
@@ -1001,6 +1002,9 @@ ul.treelist li div.treetoggle {
         span.fromto {
             font-size: 13px;
             color: #888898;
+        }
+        span.date.skip-on-drag {
+            margin-right: 10px;
         }
         span.date {
             font-family: 'Source Code Pro', monospace;

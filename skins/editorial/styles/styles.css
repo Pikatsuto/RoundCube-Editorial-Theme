@@ -7131,7 +7131,7 @@ ul.treelist li div.treetoggle {
   top: 0 !important;
   left: 2px !important;
   width: 18px !important;
-  height: 100% !important;
+  height: 10px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -7432,7 +7432,8 @@ ul.treelist li div.treetoggle:before {
 }
 #mailsearchform,
 #searchform {
-  margin-left: 0;
+  margin-left: 18px;
+  padding: 8px !important;
 }
 #rcmbtn108 {
   margin-left: 8px !important;
@@ -7470,6 +7471,9 @@ ul.treelist li div.treetoggle:before {
 #messagelist td.subject span.fromto {
   font-size: 13px;
   color: #888898;
+}
+#messagelist td.subject span.date.skip-on-drag {
+  margin-right: 10px;
 }
 #messagelist td.subject span.date {
   font-family: 'Source Code Pro', monospace;
