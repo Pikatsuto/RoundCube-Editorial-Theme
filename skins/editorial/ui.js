@@ -19,14 +19,13 @@ if (window.rcmail && rcmail.env && rcmail.env.skin === 'editorial') {
     rcmail.env.skin = 'elastic';
 }
 
-// Global fix: Bootstrap 5 (loaded as deps/bootstrap.bundle.min.js) dropped the
-// jQuery plugin API — $.fn.popover no longer exists. Elastic's pretty_select()
-// calls open_func() → select.popover() which throws on every <select>.
+// Global fix: Elastic's pretty_select() replaces native <select> with custom
+// popover-based dropdowns. We strip those handlers so native browser dropdowns
+// work normally (better dark-mode support and no custom styling conflicts).
 //
 // Our init listener registers BEFORE Elastic's (line 4492 creates the UI),
 // so we defer removal with setTimeout(fn, 0) which runs after ALL synchronous
-// init code. We then strip the handlers and the pretty-select classes from
-// every <select> on the page so native browser dropdowns work normally.
+// init code.
 if (window.rcmail) {
     rcmail.addEventListener('init', function() {
         setTimeout(function() {
