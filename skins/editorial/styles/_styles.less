@@ -532,13 +532,6 @@ ul.tokens-container {
     border-top: 1px solid #1a1a24 !important;
 }
 
-// Header avec role=toolbar (mail action bar) — caché sur desktop/tablet
-// Sur mobile ce header sert au bouton retour + actions
-@media screen and (min-width: 481px) {
-    .header[role="toolbar"] {
-        display: none !important;
-    }
-}
 
 // .footer.small — caché
 .footer.small {
@@ -883,20 +876,25 @@ ul.treelist li div.treetoggle {
     &:hover { background-color: #16161e !important; color: #f5f5f5 !important; }
 }
 
-// Cacher le texte sur tous les boutons header
+// Cacher le texte sur les boutons header (sauf dans les popovers)
 .header a.button span.inner {
     display: none !important;
 }
+.popover .header a.button span.inner {
+    display: inline !important;
+}
 
-// .menu.toolbar — cacher texte
+// .menu.toolbar — cacher texte uniquement en contexte toolbar (pas dans popovers)
 .menu.toolbar a {
     color: #55556a !important;
-
-    span.inner { display: none !important; }
 
     &:not(.disabled):hover  { background-color: #16161e !important; color: #f5f5f5 !important; }
     &:not(.disabled):focus  { background-color: #16161e !important; }
     &.selected { color: @color-main !important; background: transparent !important; }
+}
+// Masquer span.inner seulement dans #layout (pas dans popover)
+#layout .menu.toolbar a span.inner {
+    display: none !important;
 }
 
 // Search bar — match template exactly
@@ -1243,15 +1241,72 @@ pre, code,
     border-radius: 6px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+
+    .popover-body { padding: 0; overflow-x: hidden; }
+
+    // Reset menu items inside popovers — restaurer le comportement Elastic
+    // Les toolbars icon-only deviennent des listes verticales avec texte
+    .menu li {
+        display: block !important;
+        height: auto !important;
+        text-align: left !important;
+
+        &.spacer { display: none !important; }
+    }
+
+    .menu li a {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: unset !important;
+        height: auto !important;
+        font-size: 1rem !important;
+        text-align: left !important;
+        float: none !important;
+        padding: 0 .5rem !important;
+        color: #f5f5f5 !important;
+        line-height: 2.4em;
+        border-radius: 4px;
+
+        span.inner {
+            display: inline !important;
+        }
+
+        &:before {
+            float: left !important;
+            margin-right: .5rem !important;
+            width: 1.18em !important;
+            min-width: 1.18em;
+            height: inherit !important;
+            line-height: inherit !important;
+            font-size: 1rem !important;
+        }
+
+        &:not(.disabled):hover {
+            background-color: #16161e !important;
+            color: #f5f5f5 !important;
+        }
+    }
+
+    .menu .dropbutton {
+        display: block !important;
+
+        a.dropdown { display: none !important; }
+    }
+
+    .listing li a {
+        color: #f5f5f5;
+        padding: 6px 12px;
+        border-radius: 4px;
+        margin: 1px 4px;
+        &:hover { background-color: #16161e; }
+    }
 }
 
 .popupmenu {
     background-color: #141418;
     border: 0 !important;
     border-radius: 6px;
-    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 
     .listing li a {
         color: #f5f5f5;
@@ -1600,8 +1655,8 @@ fieldset {
     }
 }
 
-// Toolbar compose (#toolbar-menu) — même style que #mailtoolbar
-#toolbar-menu {
+// Toolbar compose (#toolbar-menu) — seulement dans le header, PAS dans les popovers
+.header #toolbar-menu {
     display: flex !important;
     align-items: center !important;
     list-style: none !important;

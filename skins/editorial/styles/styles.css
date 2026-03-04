@@ -7065,11 +7065,6 @@ ul.tokens-container li input {
   align-items: center !important;
   border-top: 1px solid #1a1a24 !important;
 }
-@media screen and (min-width: 481px) {
-  .header[role="toolbar"] {
-    display: none !important;
-  }
-}
 .footer.small {
   display: none !important;
 }
@@ -7364,11 +7359,11 @@ ul.treelist li div.treetoggle:before {
 .header a.button span.inner {
   display: none !important;
 }
+.popover .header a.button span.inner {
+  display: inline !important;
+}
 .menu.toolbar a {
   color: #55556a !important;
-}
-.menu.toolbar a span.inner {
-  display: none !important;
 }
 .menu.toolbar a:not(.disabled):hover {
   background-color: #16161e !important;
@@ -7380,6 +7375,9 @@ ul.treelist li div.treetoggle:before {
 .menu.toolbar a.selected {
   color: #5b9bd5 !important;
   background: transparent !important;
+}
+#layout .menu.toolbar a span.inner {
+  display: none !important;
 }
 .searchbar {
   background-color: transparent !important;
@@ -7672,13 +7670,67 @@ code,
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+.popover .popover-body {
+  padding: 0;
+  overflow-x: hidden;
+}
+.popover .menu li {
+  display: block !important;
+  height: auto !important;
+  text-align: left !important;
+}
+.popover .menu li.spacer {
+  display: none !important;
+}
+.popover .menu li a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: unset !important;
+  height: auto !important;
+  font-size: 1rem !important;
+  text-align: left !important;
+  float: none !important;
+  padding: 0 0.5rem !important;
+  color: #f5f5f5 !important;
+  line-height: 2.4em;
+  border-radius: 4px;
+}
+.popover .menu li a span.inner {
+  display: inline !important;
+}
+.popover .menu li a:before {
+  float: left !important;
+  margin-right: 0.5rem !important;
+  width: 1.18em !important;
+  min-width: 1.18em;
+  height: inherit !important;
+  line-height: inherit !important;
+  font-size: 1rem !important;
+}
+.popover .menu li a:not(.disabled):hover {
+  background-color: #16161e !important;
+  color: #f5f5f5 !important;
+}
+.popover .menu .dropbutton {
+  display: block !important;
+}
+.popover .menu .dropbutton a.dropdown {
+  display: none !important;
+}
+.popover .listing li a {
+  color: #f5f5f5;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin: 1px 4px;
+}
+.popover .listing li a:hover {
+  background-color: #16161e;
+}
 .popupmenu {
   background-color: #141418;
   border: 0 !important;
   border-radius: 6px;
-  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 .popupmenu .listing li a {
   color: #f5f5f5;
@@ -7954,7 +8006,7 @@ fieldset legend {
   overflow: hidden;
   padding: 0 !important;
 }
-#toolbar-menu {
+.header #toolbar-menu {
   display: flex !important;
   align-items: center !important;
   list-style: none !important;
@@ -7962,16 +8014,16 @@ fieldset legend {
   padding: 0 4px !important;
   gap: 1px;
 }
-#toolbar-menu li {
+.header #toolbar-menu li {
   list-style: none;
   height: min-content !important;
   border-block-width: 0;
 }
-#toolbar-menu li.spacer {
+.header #toolbar-menu li.spacer {
   flex: 1;
 }
-#toolbar-menu li a,
-#toolbar-menu li > a {
+.header #toolbar-menu li a,
+.header #toolbar-menu li > a {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -7984,12 +8036,12 @@ fieldset legend {
   float: none !important;
   font-size: 0 !important;
 }
-#toolbar-menu li a span.inner,
-#toolbar-menu li > a span.inner {
+.header #toolbar-menu li a span.inner,
+.header #toolbar-menu li > a span.inner {
   display: none !important;
 }
-#toolbar-menu li a:before,
-#toolbar-menu li > a:before {
+.header #toolbar-menu li a:before,
+.header #toolbar-menu li > a:before {
   font-size: 14px !important;
   line-height: 1 !important;
   margin: 0 !important;
@@ -7997,21 +8049,21 @@ fieldset legend {
   float: none !important;
   height: auto !important;
 }
-#toolbar-menu li a:not(.disabled):hover,
-#toolbar-menu li > a:not(.disabled):hover {
+.header #toolbar-menu li a:not(.disabled):hover,
+.header #toolbar-menu li > a:not(.disabled):hover {
   background-color: #16161e !important;
   color: #f5f5f5 !important;
 }
-#toolbar-menu li .dropbutton {
+.header #toolbar-menu li .dropbutton {
   display: inline-flex !important;
   align-items: center;
 }
-#toolbar-menu li .dropbutton a.dropdown {
+.header #toolbar-menu li .dropbutton a.dropdown {
   width: 18px !important;
   min-width: 18px !important;
   padding: 0 !important;
 }
-#toolbar-menu li .dropbutton a.dropdown:before {
+.header #toolbar-menu li .dropbutton a.dropdown:before {
   font-size: 10px !important;
 }
 a.toolbar-menu-button {
