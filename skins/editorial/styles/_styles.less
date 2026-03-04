@@ -638,7 +638,7 @@ ul.treelist li div.treetoggle {
 
     &:before {
         margin: 0 !important;
-        font-size: 10px !important;
+        font-size: 12px !important;
     }
 }
 
@@ -908,11 +908,17 @@ ul.treelist li div.treetoggle {
 // Search bar — match template exactly
 .searchbar {
     background-color: transparent !important;
-    padding: 5px 8px !important;
+    padding: 6px 10px !important;
     border-bottom: 1px solid #1a1a24 !important;
     border-top: 0 !important;
     border-left: 0 !important;
     border-right: 0 !important;
+
+    &:before {
+        color: #55556a !important;
+        margin-right: 8px !important;
+        font-size: 14px !important;
+    }
 
     input,
     input.form-control {
@@ -922,7 +928,7 @@ ul.treelist li div.treetoggle {
         color: #f5f5f5 !important;
         font-family: 'Source Sans 3', sans-serif;
         font-size: 12px;
-        padding: 5px 9px !important;
+        padding: 5px 9px 5px 28px !important;
         height: auto !important;
 
         &:focus {
@@ -930,8 +936,6 @@ ul.treelist li div.treetoggle {
             border-color: @color-main !important;
         }
     }
-
-    &:before { color: #55556a !important; }
 
     // Hide search options/reset buttons — template has only the input
     a.button,
@@ -960,6 +964,12 @@ ul.treelist li div.treetoggle {
     margin-left: 8px !important;
 }
 
+// Hide selection column in header too
+#messagelist-fixedcopy th.selection,
+#messagelist th.selection {
+    display: none !important;
+}
+
 // Message list rows — match template exactly
 #messagelist {
     tr {
@@ -972,10 +982,15 @@ ul.treelist li div.treetoggle {
     tr.unread td       { background-color: #0c0c10 !important; }
     tr.selected td     { background-color: #1c1c2e !important; }
 
-    // Flag/star column — match template star sizing
-    td.flag {
-        width: 26px !important;
-        padding: 10px 2px 10px 8px !important;
+    // Hide selection checkbox column
+    td.selection {
+        display: none !important;
+    }
+
+    // Flag/star + attachment column (class is "flags" plural, not "flag")
+    td.flags {
+        width: 20px !important;
+        padding: 10px 4px 10px 0 !important;
         vertical-align: top;
     }
 
@@ -1005,12 +1020,14 @@ ul.treelist li div.treetoggle {
         span.subject a { font-weight: 600; color: #f5f5f5; }
     }
 
-    // Star/flag icons
+    // Star/flag icons — need font-family since span.flag:before doesn't inherit Icons
     span.flag {
         color: #3a3a4a !important;
 
         &:before {
             content: "\e176" !important; // Lucide star icon
+            font-family: 'Icons' !important;
+            font-weight: 900;
             font-size: 13px !important;
         }
     }

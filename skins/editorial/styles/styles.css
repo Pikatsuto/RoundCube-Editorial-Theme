@@ -7143,7 +7143,7 @@ ul.treelist li div.treetoggle {
 }
 ul.treelist li div.treetoggle:before {
   margin: 0 !important;
-  font-size: 10px !important;
+  font-size: 12px !important;
 }
 .treelist.listing li:has(> div.treetoggle) > a {
   padding-left: 22px !important;
@@ -7392,11 +7392,16 @@ ul.treelist li div.treetoggle:before {
 }
 .searchbar {
   background-color: transparent !important;
-  padding: 5px 8px !important;
+  padding: 6px 10px !important;
   border-bottom: 1px solid #1a1a24 !important;
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 0 !important;
+}
+.searchbar:before {
+  color: #55556a !important;
+  margin-right: 8px !important;
+  font-size: 14px !important;
 }
 .searchbar input,
 .searchbar input.form-control {
@@ -7406,16 +7411,13 @@ ul.treelist li div.treetoggle:before {
   color: #f5f5f5 !important;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
-  padding: 5px 9px !important;
+  padding: 5px 9px 5px 28px !important;
   height: auto !important;
 }
 .searchbar input:focus,
 .searchbar input.form-control:focus {
   background-color: #16161e !important;
   border-color: #5b9bd5 !important;
-}
-.searchbar:before {
-  color: #55556a !important;
 }
 .searchbar a.button,
 .searchbar a.options,
@@ -7435,6 +7437,10 @@ ul.treelist li div.treetoggle:before {
 #rcmbtn108 {
   margin-left: 8px !important;
 }
+#messagelist-fixedcopy th.selection,
+#messagelist th.selection {
+  display: none !important;
+}
 #messagelist tr {
   transition: background 0.08s;
   border-bottom: 1px solid #1a1a24 !important;
@@ -7449,9 +7455,12 @@ ul.treelist li div.treetoggle:before {
 #messagelist tr.selected td {
   background-color: #1c1c2e !important;
 }
-#messagelist td.flag {
-  width: 26px !important;
-  padding: 10px 2px 10px 8px !important;
+#messagelist td.selection {
+  display: none !important;
+}
+#messagelist td.flags {
+  width: 20px !important;
+  padding: 10px 4px 10px 0 !important;
   vertical-align: top;
 }
 #messagelist td.subject {
@@ -7486,6 +7495,8 @@ ul.treelist li div.treetoggle:before {
 }
 #messagelist span.flag:before {
   content: "\e176" !important;
+  font-family: 'Icons' !important;
+  font-weight: 900;
   font-size: 13px !important;
 }
 #messagelist tr.flagged span.flag {
