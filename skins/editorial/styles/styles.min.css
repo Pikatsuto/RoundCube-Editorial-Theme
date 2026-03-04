@@ -7712,6 +7712,9 @@ code,
   background-color: #16161e !important;
   color: #f5f5f5 !important;
 }
+.popover .menu li a[aria-haspopup] {
+  display: flex !important;
+}
 .popover .menu .dropbutton {
   display: block !important;
 }
@@ -7726,6 +7729,9 @@ code,
 }
 .popover .listing li a:hover {
   background-color: #16161e;
+}
+.popover-body > .popupmenu {
+  height: auto !important;
 }
 .popupmenu {
   background-color: #141418;

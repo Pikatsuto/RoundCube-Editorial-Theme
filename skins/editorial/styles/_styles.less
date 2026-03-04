@@ -1288,6 +1288,11 @@ pre, code,
         }
     }
 
+    // Sous-menus avec flèche — display flex pour aligner icône + texte + flèche
+    .menu li a[aria-haspopup] {
+        display: flex !important;
+    }
+
     .menu .dropbutton {
         display: block !important;
 
@@ -1301,6 +1306,11 @@ pre, code,
         margin: 1px 4px;
         &:hover { background-color: #16161e; }
     }
+}
+
+// Forcer height auto sur popupmenu (base a height:100% qui peut causer des problèmes)
+.popover-body > .popupmenu {
+    height: auto !important;
 }
 
 .popupmenu {
